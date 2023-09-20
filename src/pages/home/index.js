@@ -1,68 +1,38 @@
 import React from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 import firstImage from "../../assets/images/home-1.png";
 import secondImage from "../../assets/images/home-2.png";
 import thirdImage from "../../assets/images/home-3.png";
-import {
-  MdOutlinePeopleOutline,
-  MdCheckCircleOutline,
-  MdOutlineMedicalServices,
-} from "react-icons/md";
+
+import InfoCards from "../../components/InfoCards";
+import InfoDataCards from "../../components/InfoDataCards";
+import Campanhas from "../../components/Campaigns";
+import Benefits from "../../components/Benefits";
+
+import ItemHospital from "../../components/ItemHospital";
 
 export default function Home() {
   return (
     <div>
       <div className="d-flex p-5">
         <Col>
-          <h1>Seja um doador</h1>
-          <h4>Faça sua parte, e junte-se à nossa missão</h4>
-          <Button>Mais informações</Button>
-          <Button>Juntar-se</Button>
+          <div className="title">Seja um doador</div>
+          <div className="content-text-opacity my-4">
+            Faça sua parte, e junte-se à nossa missão
+          </div>
+          <div className="py-3">
+            <Button variant="none">MAIS INFORMAÇÕES</Button>
+            <Button className="ml-2">JUNTAR-SE</Button>
+          </div>
         </Col>
-        <img className="content-img" src={firstImage} />
+        <img className="img-fluid" src={firstImage} />
       </div>
+      <InfoCards />
+      <InfoDataCards />
       <div className="d-flex p-5">
         <Col>
-          <h3>Doação de Sangue</h3>
-          <h4>Interdum et malesuada fames ac ante…</h4>
-        </Col>
-        <Col>
-          <h3>Doação de Sangue</h3>
-          <h4>Interdum et malesuada fames ac ante…</h4>
-        </Col>
-        <Col>
-          <h3>Doação de Sangue</h3>
-          <h4>Interdum et malesuada fames ac ante…</h4>
-        </Col>
-      </div>
-      <div className="d-flex p-5">
-        <Col>
-          <MdOutlinePeopleOutline />
-          <h3>+500 vidas</h3>
-          <h4>
-            Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.{" "}
-          </h4>
-        </Col>
-        <Col>
-          <MdOutlineMedicalServices />
-          <h3>+100 Hospitais</h3>
-          <h4>
-            Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.{" "}
-          </h4>
-        </Col>
-        <Col>
-          <MdCheckCircleOutline />
-          <h3>+200 Órgãos</h3>
-          <h4>
-            Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.{" "}
-          </h4>
-        </Col>
-      </div>
-      <div className="d-flex p-5">
-        <img className="content-img" src={secondImage} />
-        <Col>
-          <h1>Seja um doador</h1>
-          <h5>
+          <div className="title">Doação de sangue</div>
+          <div className="content-text">
             Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate
             sed. Nam sollicitudin dignissim nunc, cursus ullamcorper eros
             vulputate sed. Nam sollicitudin dignissim nunc, cursus ullamcorper
@@ -70,23 +40,47 @@ export default function Home() {
             ullamcorper eros vulputate sed. Nam sollicitudin dignissim nunc,
             cursus ullamcorper eros vulputate sed. Nam sollicitudin dignissim
             nunc, cursus ullamcorper eros vulputate sed.
-          </h5>
+          </div>
         </Col>
+        <img className="img-fluid-50" src={thirdImage} />
       </div>
-      <div className="d-flex p-5">
-        <Col>
-          <h1>Seja um doador</h1>
-          <h5>
-            Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate
-            sed. Nam sollicitudin dignissim nunc, cursus ullamcorper eros
-            vulputate sed. Nam sollicitudin dignissim nunc, cursus ullamcorper
-            eros vulputate sed. Nam sollicitudin dignissim nunc, cursus
-            ullamcorper eros vulputate sed. Nam sollicitudin dignissim nunc,
-            cursus ullamcorper eros vulputate sed. Nam sollicitudin dignissim
-            nunc, cursus ullamcorper eros vulputate sed.
-          </h5>
-        </Col>
-        <img className="content-img" src={thirdImage} />
+      <Row>
+        <div className="d-flex p-5">
+          <img className="img-fluid-50" src={secondImage} />
+          <Col>
+            <div className="title">Doação de órgãos</div>
+            <div className="content-text">
+              Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate
+              sed. Nam sollicitudin dignissim nunc, cursus ullamcorper eros
+              vulputate sed. Nam sollicitudin dignissim nunc, cursus ullamcorper
+              eros vulputate sed. Nam sollicitudin dignissim nunc, cursus
+              ullamcorper eros vulputate sed. Nam sollicitudin dignissim nunc,
+              cursus ullamcorper eros vulputate sed. Nam sollicitudin dignissim
+              nunc, cursus ullamcorper eros vulputate sed.
+            </div>
+          </Col>
+        </div>
+        <div className="d-flex justify-content-center">
+          <Button variant="outline-primary">LER MAIS</Button>
+          <Button className="ml-2">JUNTAR-SE</Button>
+        </div>
+      </Row>
+      <Campanhas />
+      <Benefits />
+      <div className="p-5">
+        <div className="title">Hospitais Parceiros</div>
+        <div className="text">
+          Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate
+          sed.
+        </div>
+        <div className="d-flex mt-4 justify-content-around">
+          <ItemHospital />
+          <ItemHospital />
+        </div>
+        <div className="d-flex mt-4 justify-content-around">
+          <ItemHospital />
+          <ItemHospital />
+        </div>
       </div>
     </div>
   );

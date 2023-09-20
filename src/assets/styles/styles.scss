@@ -11,8 +11,11 @@ $theme-colors: (
   "secondary": #bf573d,
 );
 
+$card-border-width: 0;
+$card-border-radius: 20px;
 $font-sans-serif: "Lato", sans-serif;
 $border-radius: 2rem;
+$border-radius-lg: 2rem;
 $btn-font-family: "Lato", sans-serif;
 $btn-font-size: 16px;
 $btn-font-weight: bold;
@@ -37,4 +40,110 @@ $nav-link-font-size: 18px;
   width: 100vw;
   height: 100vh;
 }
+
+.title {
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.content-text-opacity {
+  font-size: 24px;
+  opacity: 54%;
+}
+
+.ml-2 {
+  margin-left: 0.5rem !important;
+}
+
+.info-card-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.info-card-text {
+  font-size: 18px;
+  text-align: justify;
+}
+
+.icon-card {
+  color: #7b2c22;
+  height: 5rem;
+  width: 5rem;
+}
+
+.number-card-info {
+  color: #7b2c22;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.text-card-sub {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-top: -0.8rem !important;
+}
+
+.img-fluid-50 {
+  max-width: 50%;
+  height: auto;
+}
+
+.content-text {
+  font-size: 22px;
+  font-weight: 400;
+  text-align: justify;
+}
+
+.img-card-campaign {
+  width: 20vw !important;
+  height: 38vh !important;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.bold-card-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.age-card-campaign {
+  font-weight: 300;
+  opacity: 70%;
+}
+
+.blood-type-card-campaign {
+  font-weight: 800;
+  color: #7b2c22;
+}
+.card-gradient {
+  border-radius: 24px;
+  border: 0px solid #bf573d;
+  background: linear-gradient(118deg, #7b2c22 6.86%, #bf5447 103.41%);
+}
+
+.title-white {
+  font-weight: 800;
+  font-size: 24px;
+  color: #fff;
+}
+
+.text-white {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.button-white {
+  color: #bf573d !important;
+  background-color: white !important;
+  border-color: white !important;
+  padding: 0.5rem 4rem !important;
+}
+
+.img-card-hospital {
+  width: 18vw;
+  height: 22vh;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
 @import "/node_modules/bootstrap//scss//bootstrap";
