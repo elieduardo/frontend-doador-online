@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+  --bs-body-font-family: "Lato", sans-serif;
+  --bs-btn-font-family: "Lato", sans-serif;
+  --bs-border-radius: 1rem;
+}
+
+$theme-colors: (
+  "primary": #7b2c22,
+  "secondary": #bf573d,
+);
+
+$font-sans-serif: "Lato", sans-serif;
+$border-radius: 2rem;
+$btn-font-family: "Lato", sans-serif;
+$btn-font-size: 16px;
+$btn-font-weight: bold;
+$navbar-nav-link-padding-x: 1.2rem;
+$nav-link-font-weight: bold;
+$nav-link-font-size: 18px;
+
+.bg-image-top {
+  background: {
+    repeat: no-repeat;
+    image: url("../images/background.png");
+    position: 40vw -30vw;
+    size: 76vw;
+  }
+}
+
+.content-image {
+  width: 40vw;
+}
+
+.body-sz {
+  width: 100vw;
+  height: 100vh;
+}
+@import "/node_modules/bootstrap//scss//bootstrap";
