@@ -44,7 +44,7 @@ export default function Home() {
         </Col>
         <img className="img-fluid-50" src={thirdImage} />
       </div>
-      <Row>
+      <Row className="m-1">
         <div className="d-flex p-5">
           <img className="img-fluid-50" src={secondImage} />
           <Col>
