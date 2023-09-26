@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/images/logo.png";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 export default function NavBarComp() {
   return (
@@ -20,21 +20,21 @@ export default function NavBarComp() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-          <Container className="d-flex justify-content-between">
+          <Container className="d-flex justify-content-center">
             <Nav>
               <Nav.Link href="#Menu1">Menu 1</Nav.Link>
               <Nav.Link href="#Menu2">Menu 2</Nav.Link>
               <Nav.Link href="#Menu3">Menu 3</Nav.Link>
               <Nav.Link href="#Menu4">Menu 4</Nav.Link>
               <Nav.Link href="#Menu5">Menu 5</Nav.Link>
-            </Nav>
-            <Nav>
+            </Nav>  
+          </Container>
+          <div className="d-flex justify-content-center justify-content-lg-end mt-lg-0 mt-4">            
               <Button variant="none">Login</Button>
               <Button variant="primary" className="px-5">
                 Cadastro
-              </Button>
-            </Nav>
-          </Container>
+              </Button>            
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
