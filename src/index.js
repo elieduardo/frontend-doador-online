@@ -5,7 +5,6 @@ import NavBarComp from "./components/NavBarComp";
 import "./assets/styles/styles.scss";
 import Footer from "./components/Footer";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

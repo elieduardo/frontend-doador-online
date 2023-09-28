@@ -1,9 +1,4 @@
 import React from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import firstImage from "../../assets/images/home-1.png";
-import secondImage from "../../assets/images/home-2.png";
-import thirdImage from "../../assets/images/home-3.png";
-
 import InfoCards from "../../components/InfoCards";
 import InfoDataCards from "../../components/InfoDataCards";
 import Campanhas from "../../components/Campaigns";
@@ -18,9 +13,9 @@ export default function Home() {
   return (
     <div>      
       <MainBanner />
-      <InfoCards />
       <InfoDataCards />
       <DonationBanner />
+      <InfoCards />
       <OrgansDonationBanner />
       <Campanhas />
       <Benefits />

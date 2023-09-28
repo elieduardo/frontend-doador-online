@@ -2,7 +2,6 @@ import React from "react";
 import homeImage from "../assets/images/home-1.png";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
-
 export default function MainBanner() {
     return (
         <Container className="py-5">
@@ -18,7 +17,7 @@ export default function MainBanner() {
                     </div>
                 </Col>
                 <Col lg={6} md={12} sm={12} className="d-flex justify-content-center pt-lg-0 pt-4">
-                    <img className="img-fluid-85" src={homeImage} />
+                    <img className="img-fluid-85" src={homeImage} alt="Banner"/>
                 </Col>
             </Row>
         </Container>

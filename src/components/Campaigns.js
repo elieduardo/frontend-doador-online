@@ -22,17 +22,17 @@ export default function Campanhas() {
         <ItemCampanha />
       </div>
       <div className="mx-2 my-5 p-4 card-gradient">
-        <div className="d-flex align-items-center justify-content-between">
-          <div>
+        <Row className="d-flex align-items-center justify-content-between text-center">
+          <Col lg={8} md={12} sm={12}>
             <div className="title-white">Quer criar uma campanha?</div>
             <div className="text-white">
               Pellentesque ac bibendum tortor. Nulla eget lobortis lacus.
             </div>
-          </div>
-          <div>
+          </Col>
+          <Col lg={4} md={12} sm={12} className="py-4 py-lg-0">
             <Button className="button-white">CRIAR CAMPANHA</Button>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     </div>
   );
