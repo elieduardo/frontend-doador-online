@@ -7,11 +7,10 @@ export default function OrgansDonationBanner() {
         <Container className="py-5">
             <Row>
                 <Col lg={6} md={12} sm={12}>
-
-                    <img className="img-fluid-85" src={bannerImage} />
+                    <img className="img-fluid-85 pb-lg-0 pb-5" src={bannerImage} />
                 </Col>
                 <Col lg={6} md={12} sm={12}>
-                    <div className="title">Doação de órgãos</div>
+                    <div className="title pb-4">Doação de órgãos</div>
                     <div className="content-text">
                         Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate
                         sed. Nam sollicitudin dignissim nunc, cursus ullamcorper eros

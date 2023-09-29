@@ -12,7 +12,7 @@ export default function ItemHospital() {
   return (
     <Card className="shadow mx-2 col-6">
       <div className="d-flex ">
-        <Card.Img class="img-card-hospital m-4" src={photo} />
+        <Card.Img className="img-card-hospital m-4" src={photo} />
         <div className="d-flex flex-column justify-content-center">
           <div className="bold-card-title">Nome Hospital</div>
           <div>

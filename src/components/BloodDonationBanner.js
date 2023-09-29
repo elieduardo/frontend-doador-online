@@ -8,7 +8,7 @@ export default function DonationBanner() {
         <Container className="py-5">
             <Row>
                 <Col lg={6} md={12} sm={12}>
-                    <div className="title">Doação de sangue</div>
+                    <div className="title pb-4">Doação de sangue</div>
                     <div className="content-text">
                         Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate
                         sed. Nam sollicitudin dignissim nunc, cursus ullamcorper eros
