@@ -1,26 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import ItemCampanha from "./ItemCampaign";
+import { Carousel } from '@trendyol-js/react-carousel';
 
 export default function Campanhas() {
+  const [width, setWidth] = useState(window.innerWidth);
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
   return (
     <div className="p-5">
-      <div className="title">Campanhas</div>
-      <div className="content-text">
-        Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate sed.
+      <div className="mb-lg-5 mb-3">
+        <div className="title">Campanhas</div>
+        <div className="content-text">
+          Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate sed.
+        </div>
       </div>
-      <div className="d-flex mt-4 justify-content-around">
+      <Carousel show={width >  900 ? 3.5 :1.5} slide={width >  900 ? 3 : 2} swiping={true} responsive={true} rightArrow={<></>} leftArrow={<></>}>
         <ItemCampanha />
         <ItemCampanha />
         <ItemCampanha />
         <ItemCampanha />
-      </div>
-      <div className="d-flex mt-4 justify-content-around">
         <ItemCampanha />
         <ItemCampanha />
         <ItemCampanha />
         <ItemCampanha />
-      </div>
+        <ItemCampanha />
+      </Carousel>
       <div className="mx-2 my-5 p-4 card-gradient">
         <Row className="d-flex align-items-center justify-content-between text-center">
           <Col lg={8} md={12} sm={12}>

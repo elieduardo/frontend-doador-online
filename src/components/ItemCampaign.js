@@ -1,9 +1,10 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import photo from "../assets/images/foto.avif";
+
 export default function ItemCampanha() {
   return (
-    <Card className="text-center shadow mx-2">
+    <Card className="text-center shadow m-4">
       <Card.Img className="img-card-campaign" variant="top" src={photo} />
       <Card.Body>
         <div className="bold-card-title">Nome Sobrenome</div>
