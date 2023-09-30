@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import {
   MdOutlinePeopleOutline,
   MdCheckCircleOutline,
@@ -8,7 +8,7 @@ import {
 
 export default function InfoDataCards() {
   return (
-    <Container>
+    <div className="px-lg-5 px-3 pb-lg-6 pb-5">
       <Row>
         <Col lg={4} md={12} sm={12} className="text-center text-lg-start py-lg-0 py-3">
           <div className="d-flex align-items-center justify-content-center justify-content-lg-start">
@@ -47,6 +47,6 @@ export default function InfoDataCards() {
           </div>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }

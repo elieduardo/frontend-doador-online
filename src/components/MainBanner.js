@@ -1,10 +1,10 @@
 import React from "react";
 import homeImage from "../assets/images/home-1.png";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
 export default function MainBanner() {
     return (
-        <Container className="py-5">
+        <div className="p-lg-5 p-3 ">
             <Row>
                 <Col lg={6} md={12} sm={12} className="text-center text-lg-start">
                     <div className="title">Seja um doador</div>
@@ -20,6 +20,6 @@ export default function MainBanner() {
                     <img className="img-fluid-85" src={homeImage} alt="Banner"/>
                 </Col>
             </Row>
-        </Container>
+        </div>
     );
 }

@@ -1,20 +1,16 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import {
   MdOutlinePhoneEnabled,
   MdOutlineMail,
   MdModeOfTravel,
 } from "react-icons/md";
 
-import photo from "../assets/images/hospital.png";
-
 export default function ItemHospital() {
   return (
-    <Card className="shadow mx-2 col-6">
-      <div className="d-flex ">
-        <Card.Img className="img-card-hospital m-4" src={photo} />
-        <div className="d-flex flex-column justify-content-center">
-          <div className="bold-card-title">Nome Hospital</div>
+    <Card className="shadow m-4 prevent-select">
+        <div className="d-flex flex-column text-center justify-content-center my-4 p-2">
+          <div className="bold-card-title mb-4">Nome Hospital</div>
           <div>
             <MdOutlinePhoneEnabled /> (51) 99999.8888
           </div>
@@ -25,7 +21,8 @@ export default function ItemHospital() {
             <MdModeOfTravel /> Rua Hospital da Cidadde, 459, centro, Porto
             Alegre - RS
           </div>
-        </div>
+
+          <Button className="mx-4 mt-4">Ver localização</Button>
       </div>
     </Card>
   );
