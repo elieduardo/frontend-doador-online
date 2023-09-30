@@ -3,9 +3,9 @@ import Home from "./pages/home";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="frontend-doador-online">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index path="/" element={<Home />} />
       </Routes>
     </Router>
   );
