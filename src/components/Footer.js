@@ -3,7 +3,7 @@ import logo from "../assets/images/logo.png";
 export default function Footer() {
   return (
     <div className="container">
-      <footer className="row row-cols-5 px-6 pt-5 mt-5 border-top">
+      <footer className="row row-cols-5 px-6 py-5 mt-5 border-top">
         <div className="col">
           <a
             href="/"
