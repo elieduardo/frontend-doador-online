@@ -8,7 +8,7 @@ import {
 
 export default function ItemHospital() {
   return (
-    <Card className="shadow m-4 prevent-select">
+    <Card className="shadow mx-lg-4 mx-md-4 mx-1 my-4 prevent-select">
         <div className="d-flex flex-column text-center justify-content-center my-4 p-2">
           <div className="bold-card-title mb-4">Nome Hospital</div>
           <div>

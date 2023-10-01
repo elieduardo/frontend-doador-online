@@ -4,7 +4,7 @@ import photo from "../assets/images/foto.avif";
 
 export default function ItemCampanha() {
   return (
-    <Card className="text-center shadow m-4 prevent-select">
+    <Card className="text-center shadow mx-lg-4 mx-md-4 mx-1 my-4 prevent-select">
       <Card.Img className="img-card-campaign" variant="top" src={photo} />
       <Card.Body>
         <div className="bold-card-title">Nome Sobrenome</div>

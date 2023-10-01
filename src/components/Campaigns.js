@@ -22,7 +22,7 @@ export default function Campaigns() {
           Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate sed.
         </div>
       </div>
-      <Carousel show={width > 900 ? 3.5 : 1.5} slide={width > 900 ? 3 : 2} swiping={true} responsive={true} rightArrow={<></>} leftArrow={<></>}>
+      <Carousel show={width > 900 ? 3.5 : 1.2} slide={width > 900 ? 3 : 2} swiping={true} responsive={true} rightArrow={<></>} leftArrow={<></>}>
         <ItemCampanha />
         <ItemCampanha />
         <ItemCampanha />
