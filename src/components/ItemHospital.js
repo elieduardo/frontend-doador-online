@@ -8,7 +8,8 @@ import {
 
 export default function ItemHospital() {
   return (
-    <Card className="shadow mx-lg-4 mx-md-4 mx-1 my-4 prevent-select">
+    <div className="col-carousel-hospital">
+      <Card className="shadow mx-lg-4 mx-md-4 mx-1 my-4">
         <div className="d-flex flex-column text-center justify-content-center my-4 p-2">
           <div className="bold-card-title mb-4">Nome Hospital</div>
           <div>
@@ -23,7 +24,8 @@ export default function ItemHospital() {
           </div>
 
           <Button className="mx-4 mt-4">Ver localização</Button>
-      </div>
-    </Card>
+        </div>
+      </Card>
+    </div>
   );
 }

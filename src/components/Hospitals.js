@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Carousel } from '@trendyol-js/react-carousel';
+import { ScrollingCarousel } from '@trendyol-js/react-carousel';
 import ItemHospital from "./ItemHospital";
 
 export default function Hospitals() {
@@ -22,12 +22,12 @@ export default function Hospitals() {
                     sed.
                 </div>
             </div>
-            <Carousel show={width > 900 ? 3.5 : 1.2} slide={width > 900 ? 3 : 2} swiping={true} responsive={true} rightArrow={<></>} leftArrow={<></>}>
+            <ScrollingCarousel>
                 <ItemHospital />
                 <ItemHospital />
                 <ItemHospital />
                 <ItemHospital />
-            </Carousel>
+            </ScrollingCarousel>
         </div>
     );
 }

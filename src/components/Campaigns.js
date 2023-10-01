@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import ItemCampanha from "./ItemCampaign";
-import { Carousel } from '@trendyol-js/react-carousel';
+import { ScrollingCarousel } from '@trendyol-js/react-carousel';
 
 export default function Campaigns() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -22,7 +22,7 @@ export default function Campaigns() {
           Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate sed.
         </div>
       </div>
-      <Carousel show={width > 900 ? 3.5 : 1.2} slide={width > 900 ? 3 : 2} swiping={true} responsive={true} rightArrow={<></>} leftArrow={<></>}>
+      <ScrollingCarousel>
         <ItemCampanha />
         <ItemCampanha />
         <ItemCampanha />
@@ -32,7 +32,7 @@ export default function Campaigns() {
         <ItemCampanha />
         <ItemCampanha />
         <ItemCampanha />
-      </Carousel>
+      </ScrollingCarousel>
       <div className="mb-2 my-5 p-4 card-gradient">
         <Row className="d-flex align-items-center justify-content-between text-center">
           <Col lg={8} md={12} sm={12}>

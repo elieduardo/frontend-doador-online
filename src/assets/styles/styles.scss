@@ -168,4 +168,63 @@ $spacers: (
   6: $spacer * 4,
 );
 
+@media (min-width: 576px) {
+  .col-carousel-donation {
+    flex: 0 0 auto;
+    width: 35% !important;
+  }
+  .col-carousel-donation {
+    flex: 0 0 auto;
+    width: 75% !important;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .col-carousel-donation {
+    flex: 0 0 auto;
+    width: 35% !important;
+  }
+  .col-carousel-hospital {
+    flex: 0 0 auto;
+    width: 45% !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .col-carousel-donation {
+    flex: 0 0 auto;
+    width: 30% !important;
+  }
+
+  .col-carousel-hospital {
+    flex: 0 0 auto;
+    width: 45% !important;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .col-carousel-donation {
+    flex: 0 0 auto;
+    width: 30% !important;
+  }
+
+  .col-carousel-hospital {
+    flex: 0 0 auto;
+    width: 40% !important;
+  }
+}
+
+.col-carousel-donation {
+  flex: 0 0 auto;
+  width: 85%;
+}
+
+.col-carousel-hospital {
+  flex: 0 0 auto;
+  width: 85%;
+}
+
 @import "/node_modules/bootstrap//scss//bootstrap";
