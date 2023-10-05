@@ -1,14 +1,15 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import NotFoundPage from "./pages/notFoundPage";
 
 export default function App() {
   return (
-    <Router basename="frontend-doador-online">
+    <HashRouter>
       <Routes>
-        <Route index path="/" element={<Home />} />
+        <Route index path="" element={<Home />} />
+        <Route exact path="/cadastro" element={<>cadastro teste</>} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </Router>
+    </HashRouter>
   );
 }

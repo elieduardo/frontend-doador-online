@@ -31,7 +31,7 @@ export default function NavBarComp() {
           </Container>
           <div className="d-flex justify-content-center justify-content-lg-end mt-lg-0 mt-4">            
               <Button variant="none">Login</Button>
-              <Button variant="primary" className="px-5">
+              <Button variant="primary" className="px-5" href="#/cadastro">
                 Cadastro
               </Button>            
           </div>
