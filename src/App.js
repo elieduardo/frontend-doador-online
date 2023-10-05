@@ -6,9 +6,10 @@ export default function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route index path="" element={<Home />} />
-        <Route exact path="/cadastro" element={<>cadastro teste</>} />
+        <Route exact path="/" element={<Home />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/login" element={<>Login</>} />
+        <Route path="/cadastro" element={<>Cadastro</>} />
       </Routes>
     </HashRouter>
   );
