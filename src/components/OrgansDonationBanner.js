@@ -4,7 +4,7 @@ import { Button, Col, Row } from "react-bootstrap";
 
 export default function OrgansDonationBanner() {
     return (
-        <div className="px-lg-5 px-3 pb-lg-6 pb-5">
+        <div className="px-lg-6 px-3 pb-lg-6 pb-5">
             <Row>
                 <Col lg={6} md={12} sm={12} className="d-flex justify-content-lg-start justify-content-center">
                     <img className="img-fluid-85 pb-lg-0 pb-5" src={bannerImage} alt="banner-donation" />

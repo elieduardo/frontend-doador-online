@@ -4,7 +4,7 @@ import { Button, Col, Row } from "react-bootstrap";
 
 export default function MainBanner() {
     return (
-        <div className="p-lg-5 p-3 ">
+        <div className="p-lg-6 p-3">
             <Row>
                 <Col lg={6} md={12} sm={12} className="text-center text-lg-start">
                     <div className="title">Seja um doador</div>

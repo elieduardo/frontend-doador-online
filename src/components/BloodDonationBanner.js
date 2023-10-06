@@ -5,7 +5,7 @@ import { Col, Row } from "react-bootstrap";
 
 export default function DonationBanner() {
     return (
-        <div className="px-lg-5 px-3 pb-lg-6 pb-5">
+        <div className="px-lg-6 px-3 pb-lg-6 pb-5">
             <Row>
                 <Col lg={6} md={12} sm={12} className=" px-lg-0 px-4">
                     <div className="title pb-4">Doação de sangue</div>
