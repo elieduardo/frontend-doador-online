@@ -27,13 +27,13 @@ export default function NavBarComp() {
               <Nav.Link href="#Menu3">Menu 3</Nav.Link>
               <Nav.Link href="#Menu4">Menu 4</Nav.Link>
               <Nav.Link href="#Menu5">Menu 5</Nav.Link>
-            </Nav>  
+            </Nav>
           </Container>
-          <div className="d-flex justify-content-center justify-content-lg-end mt-lg-0 mt-4">            
-              <Button variant="none" href="#/login">Login</Button>
-              <Button variant="primary" className="px-5" href="#/cadastro">
-                Cadastro
-              </Button>            
+          <div className="d-flex justify-content-center justify-content-lg-end mt-lg-0 mt-4">
+            <Button variant="none" href="login">Login</Button>
+            <Button variant="primary" className="px-5" href="cadastro">
+              Cadastro
+            </Button>
           </div>
         </Navbar.Collapse>
       </Container>

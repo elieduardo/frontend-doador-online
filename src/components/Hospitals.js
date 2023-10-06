@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ScrollingCarousel } from '@trendyol-js/react-carousel';
 import ItemHospital from "./ItemHospital";
 
 export default function Hospitals() {
-    const [width, setWidth] = useState(window.innerWidth);
-    const updateDimensions = () => {
-        setWidth(window.innerWidth);
-    }
-
-    useEffect(() => {
-        window.addEventListener("resize", updateDimensions);
-        return () => window.removeEventListener("resize", updateDimensions);
-    }, []);
-
     return (
         <div className="px-lg-6 px-4 pb-lg-6 pb-5">
             <div className="mb-lg-5 mb-3">

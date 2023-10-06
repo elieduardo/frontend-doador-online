@@ -3,9 +3,12 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import * as formik from 'formik';
 import * as yup from 'yup';
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 export default function SingIn(props) {
     const { Formik } = formik;
+
+    const navigate = useNavigate(); 
 
     const schema = yup.object().shape({
         email: yup.string().required('É necessário preencher o campo E-mail.'),
@@ -21,7 +24,8 @@ export default function SingIn(props) {
                         autoClose: 3000,
                         hideProgressBar: true
                     }
-                )
+                );
+                navigate('/');
             }}
             validateOnChange={false}
             validateOnBlur={false}
