@@ -7,10 +7,13 @@ import MainBanner from "../../components/MainBanner";
 import DonationBanner from "../../components/BloodDonationBanner";
 import OrgansDonationBanner from "../../components/OrgansDonationBanner";
 import Hospitals from "../../components/Hospitals";
+import NavBarComp from "../../components/NavBarComp";
+import Footer from "../../components/Footer";
 
 export default function Home() {
   return (
     <div>
+      <NavBarComp />
       <MainBanner />
       <InfoDataCards />
       <DonationBanner />
@@ -19,6 +22,7 @@ export default function Home() {
       <Campaigns />
       <Benefits />
       <Hospitals />
+      <Footer />
     </div>
   );
 }

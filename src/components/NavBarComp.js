@@ -4,12 +4,30 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/images/logo.png";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
-export default function NavBarComp() {
+export default function NavBarComp({ onlyLogo = false }) {
+  const navigate = useNavigate();
+  if (onlyLogo)
+    return (
+      <Navbar expand="lg">
+        <Container className="d-flex justify-content-center">
+          <Navbar.Brand onClick={() => navigate("/")}>
+            <img
+              src={logo}
+              width="70"
+              height="70"
+              className="d-inline-block align-top"
+              alt="Doador online logo"
+            />
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+    );
   return (
     <Navbar expand="lg">
       <Container className="align-itens-center">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand onClick={() => navigate("/")}>
           <img
             src={logo}
             width="70"
@@ -30,7 +48,9 @@ export default function NavBarComp() {
             </Nav>
           </Container>
           <div className="d-flex justify-content-center justify-content-lg-end mt-lg-0 mt-4">
-            <Button variant="none" href="login">Login</Button>
+            <Button variant="none" href="login">
+              Login
+            </Button>
             <Button variant="primary" className="px-5" href="cadastro">
               Cadastro
             </Button>
