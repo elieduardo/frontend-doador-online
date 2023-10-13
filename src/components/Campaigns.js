@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import ItemCampanha from "./ItemCampaign";
 import Slider from "react-slick";
-import CustomCarrouselRows from "./CustomCarrouselRows";
+import CustomPrevCarrouselRows from "./CustomPrevCarrouselRows";
+import CustomNextCarrouselRows from "./CustomNextCarrouselRows";
 
 export default function Campaigns() {
   const [width, setWidth] = useState(window.innerWidth);
   const updateDimensions = () => {
     setWidth(window.innerWidth);
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("resize", updateDimensions);
@@ -22,8 +23,8 @@ export default function Campaigns() {
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
-    nextArrow: <CustomCarrouselRows/>,
-    prevArrow: <CustomCarrouselRows/>,
+    nextArrow: <CustomNextCarrouselRows />,
+    prevArrow: <CustomPrevCarrouselRows />,
     responsive: [
       {
         breakpoint: 1024,
@@ -32,25 +33,25 @@ export default function Campaigns() {
           slidesToScroll: 3,
           infinite: true,
           dots: true,
-          arrows: true
-        }
+          arrows: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -58,7 +59,8 @@ export default function Campaigns() {
       <div className="mb-lg-5 mb-3 ">
         <div className="title">Campanhas</div>
         <div className="content-text">
-          Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate sed.
+          Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate
+          sed.
         </div>
       </div>
       <Slider {...settings}>
