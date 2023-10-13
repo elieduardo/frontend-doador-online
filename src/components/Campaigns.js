@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import ItemCampanha from "./ItemCampaign";
-import { ScrollingCarousel } from '@trendyol-js/react-carousel';
+import Slider from "react-slick";
+import CustomCarrouselRows from "./CustomCarrouselRows";
 
 export default function Campaigns() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -14,6 +15,44 @@ export default function Campaigns() {
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    nextArrow: <CustomCarrouselRows/>,
+    prevArrow: <CustomCarrouselRows/>,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+          arrows: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
   return (
     <div className="px-lg-6 px-4 pb-lg-6 pb-5">
       <div className="mb-lg-5 mb-3 ">
@@ -22,7 +61,7 @@ export default function Campaigns() {
           Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate sed.
         </div>
       </div>
-      <ScrollingCarousel>
+      <Slider {...settings}>
         <ItemCampanha />
         <ItemCampanha />
         <ItemCampanha />
@@ -32,7 +71,7 @@ export default function Campaigns() {
         <ItemCampanha />
         <ItemCampanha />
         <ItemCampanha />
-      </ScrollingCarousel>
+      </Slider>
       <div className="mb-2 my-5 p-4 card-gradient">
         <Row className="d-flex align-items-center justify-content-between text-center">
           <Col lg={8} md={12} sm={12}>

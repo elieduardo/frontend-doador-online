@@ -5,6 +5,8 @@ import NavBarComp from "./components/NavBarComp";
 import "./assets/styles/styles.scss";
 import Footer from "./components/Footer";
 import 'react-toastify/dist/ReactToastify.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { ToastContainer } from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
