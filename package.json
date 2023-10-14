@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.5.1",
     "bootstrap": "^5.3.2",
     "env-cmd": "^10.1.0",
     "formik": "^2.4.5",
@@ -25,8 +26,8 @@
   },
   "scripts": {
     "restore": "npm install",
-    "start:localhost": "env-cmd -f ./src/environment/.env.localhost react-scripts start",
-    "start:production": "env-cmd -f ./src/environment/.env.production react-scripts start",
+    "start:localhost": "env-cmd -f ./src/services/environment/.env.localhost react-scripts start",
+    "start:production": "env-cmd -f ./src/services/environment/.env.production react-scripts start",
     "build": "react-scripts build"
   },
   "eslintConfig": {

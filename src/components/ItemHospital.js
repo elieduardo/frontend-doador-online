@@ -11,18 +11,18 @@ export default function ItemHospital() {
     <Card className="shadow mx-lg-4 mx-md-4 mx-1 my-4">
       <div className="d-flex flex-column text-center justify-content-center my-4 p-2">
         <div className="bold-card-title mb-4">Nome Hospital</div>
-        <div>
+        <div className="info-card-text-16">
           <MdOutlinePhoneEnabled /> (51) 99999.8888
         </div>
-        <div>
+        <div className="info-card-text-16">
           <MdOutlineMail /> hospital@email.com.br
         </div>
-        <div>
+        <div className="info-card-text-16">
           <MdModeOfTravel /> Rua Hospital da Cidadde, 459, centro, Porto
           Alegre - RS
         </div>
 
-        <Button className="mx-4 mt-4">Ver localização</Button>
+        <Button className="mx-lg-3 mx-2 mt-4">Localização</Button>
       </div>
     </Card>
   );

@@ -18,7 +18,7 @@ export default function InfoDataCards() {
               <div className="text-card-sub px-4">Vidas</div>
             </div>
           </div>
-          <div className="d-flex justify-content-center justify-content-lg-start info-card-text text-justify">
+          <div className="d-flex justify-content-center justify-content-lg-start info-card-text-18 text-justify">
             Interdum et malesuada fames ac ant enterdum et malesuada fames ac ant
           </div>
         </Col>
@@ -30,7 +30,7 @@ export default function InfoDataCards() {
               <div className="text-card-sub px-4">Hospitais</div>
             </div>
           </div>
-          <div className="d-flex justify-content-center justify-content-lg-start info-card-text text-justify">
+          <div className="d-flex justify-content-center justify-content-lg-start info-card-text-18 text-justify">
             Interdum et malesuada fames ac ant enterdum et malesuada fames ac ant
           </div>
         </Col>
@@ -42,7 +42,7 @@ export default function InfoDataCards() {
               <div className="text-card-sub px-4">Órgãos</div>
             </div>
           </div>
-          <div className="d-flex justify-content-center justify-content-lg-start info-card-text text-justify">
+          <div className="d-flex justify-content-center justify-content-lg-start info-card-text-18 text-justify">
             Interdum et malesuada fames ac ant enterdum et malesuada fames ac ant
           </div>
         </Col>

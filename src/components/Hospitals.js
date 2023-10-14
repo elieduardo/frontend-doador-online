@@ -26,7 +26,7 @@ export default function Hospitals() {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 840,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -47,8 +47,7 @@ export default function Hospitals() {
       <div className="mb-lg-5 mb-3">
         <div className="title">Hospitais Parceiros</div>
         <div className="text">
-          Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate
-          sed.
+          Hospitais que estão cadastrados na nossa plataforma
         </div>
       </div>
       <Slider {...settings}>

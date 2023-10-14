@@ -48,8 +48,12 @@ $theme-colors: (
   font-weight: 500;
 }
 
-.info-card-text {
+.info-card-text-18 {
   font-size: 18px;
+}
+
+.info-card-text-16 {
+  font-size: 16px;
 }
 
 .icon-card {
@@ -85,6 +89,9 @@ $theme-colors: (
 .bold-card-title {
   font-size: 16px;
   font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .age-card-campaign {
@@ -144,7 +151,7 @@ $theme-colors: (
   height: auto;
 }
 
-.arrow-carrousel-black{
+.arrow-carrousel-black {
   color: #000 !important;
 }
 
@@ -256,4 +263,9 @@ $theme-colors: (
 .pointer {
   cursor: pointer;
 }
+.dropdown-item:hover,
+.dropdown-item:focus {
+  border-radius: 1.4rem !important;
+}
+
 @import "/node_modules/bootstrap//scss//bootstrap";
