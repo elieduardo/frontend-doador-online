@@ -14,11 +14,13 @@ import CustomPrevCarrouselRows from "./CustomPrevCarrouselRows";
 export default function Partners() {
   var settings = {
     dots: true,
-    infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 2,
     initialSlide: 0,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
     nextArrow: <CustomNextCarrouselRows />,
     prevArrow: <CustomPrevCarrouselRows />,
     responsive: [
