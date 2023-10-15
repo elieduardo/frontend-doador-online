@@ -13,7 +13,7 @@ export default function OrgansDonationBanner() {
           className="d-flex justify-content-lg-start justify-content-center"
         >
           <img
-            className="img-fluid-85 pb-lg-0 pb-5"
+            className="img-fluid-85 pb-lg-0 pb-5 p-lg-0 p-6"
             src={bannerImage}
             alt="banner-donation"
           />

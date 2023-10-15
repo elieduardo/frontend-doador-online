@@ -16,7 +16,7 @@ export default function MainBanner() {
                         <Button className="ml-2">JUNTAR-SE</Button>
                     </div>
                 </Col>
-                <Col lg={6} md={12} sm={12} className="d-flex justify-content-center pt-lg-0 pt-4">
+                <Col lg={6} md={12} sm={12} className="d-flex justify-content-center pt-lg-0 pt-4 p-lg-0 p-6">
                     <img className="img-fluid-85" src={homeImage} alt="Banner"/>
                 </Col>
             </Row>
