@@ -7,7 +7,7 @@ export default function ItemCampanha({nome, idade, tipoSanguineo, photo}) {
       <Card.Img className="img-card-campaign" variant="top" src={photo} />
       <Card.Body>
         <div className="bold-card-title">{nome}</div>
-        <div className="age-card-campaign">{idade}</div>
+        <div className="age-card-campaign">{idade} anos</div>
         <div className="blood-type-card-campaign">{tipoSanguineo}</div>
       </Card.Body>
     </Card>
