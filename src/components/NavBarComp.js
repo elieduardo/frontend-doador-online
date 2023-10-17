@@ -43,11 +43,11 @@ export default function NavBarComp({ onlyLogo = false }) {
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Container className="d-flex justify-content-center">
             <Nav>
-              <Nav.Link href="#Menu1">Menu 1</Nav.Link>
-              <Nav.Link href="#Menu2">Menu 2</Nav.Link>
-              <Nav.Link href="#Menu3">Menu 3</Nav.Link>
-              <Nav.Link href="#Menu4">Menu 4</Nav.Link>
-              <Nav.Link href="#Menu5">Menu 5</Nav.Link>
+              <Nav.Link href="#Campanhas" className="text-center">Campanhas</Nav.Link>
+              <Nav.Link href="#Doacoes" className="text-center">Doações</Nav.Link>
+              <Nav.Link href="#RedeApoio" className="text-center">Rede de Apoio</Nav.Link>
+              <Nav.Link href="#Parceiros" className="text-center">Parceiros</Nav.Link>
+              <Nav.Link href="#SobreNos" className="text-center">Sobre nós</Nav.Link>
             </Nav>
           </Container>
           {isAuthenticated() ? (

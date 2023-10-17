@@ -4,12 +4,12 @@ import * as yup from "yup";
 import { Col, Form, Row } from "react-bootstrap";
 
 export const validationSchemaSecondStep = yup.object().shape({
-  postalCode: yup
-    .string()
-    .required("É necessário preencher o campo Cep."),
-  street: yup
-    .string()
-    .required("É necessário preencher o campo Rua"),
+  zipCode: yup.string().required("É necessário preencher o campo Cep."),
+  street: yup.string().required("É necessário preencher o campo Rua."),
+  district: yup.string().required("É necessário preencher o campo Bairro."),
+  number: yup.string().required("É necessário preencher o campo Número."),
+  city: yup.string().required("É necessário preencher o campo Cidade."),
+  state: yup.string().required("É necessário preencher o campo Estado."),
 });
 
 export default function SecondStep({ errors, values, handleChange }) {
@@ -25,14 +25,14 @@ export default function SecondStep({ errors, values, handleChange }) {
                   <Form.Label>Cep</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Nome Completo"
-                    name="postalCode"
-                    value={values.postalCode}
+                    placeholder="Cep"
+                    name="zipCode"
+                    value={values.zipCode}
                     onChange={handleChange}
-                    isInvalid={!!errors.postalCode}
+                    isInvalid={!!errors.zipCode}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors.postalCode}
+                    {errors.zipCode}
                   </Form.Control.Feedback>
                 </Form.Group>
               </Row>
@@ -49,6 +49,70 @@ export default function SecondStep({ errors, values, handleChange }) {
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.street}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col}>
+                  <Form.Label>Bairro</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Bairro"
+                    name="district"
+                    value={values.district}
+                    onChange={handleChange}
+                    isInvalid={!!errors.district}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.district}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col}>
+                  <Form.Label>Número</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Número"
+                    name="number"
+                    value={values.number}
+                    onChange={handleChange}
+                    isInvalid={!!errors.number}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.number}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col}>
+                  <Form.Label>Cidade</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Cidade"
+                    name="city"
+                    value={values.city}
+                    onChange={handleChange}
+                    isInvalid={!!errors.city}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.city}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col}>
+                  <Form.Label>Estado</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Estado"
+                    name="state"
+                    value={values.state}
+                    onChange={handleChange}
+                    isInvalid={!!errors.state}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.state}
                   </Form.Control.Feedback>
                 </Form.Group>
               </Row>

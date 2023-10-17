@@ -276,4 +276,18 @@ $theme-colors: (
   border-radius: 1.4rem !important;
 }
 
+.forget-password {
+  text-decoration: none !important;
+  color: $gray-800;
+  font-size: 14px !important;
+  padding-left: calc(var(--bs-gutter-x) * 0.2);
+}
+
+.alert-success {
+  color: $success-color !important;
+  background-color: rgba($success-color, 0.2) !important;
+  border-color: rgba($success-color, 0.1) !important;
+  border-radius: 0.5rem !important;
+}
+
 @import "/node_modules/bootstrap//scss//bootstrap";

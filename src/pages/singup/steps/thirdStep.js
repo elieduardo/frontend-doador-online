@@ -143,7 +143,7 @@ export default function thirdStep({ errors, values, handleChange }) {
                     isInvalid={!!errors.terms}
                     feedback={errors.terms}
                     feedbackType="invalid"
-                    id="validationFormik0"
+                    id="validationTerms"
                   />
                 </Form.Group>
               </Row>

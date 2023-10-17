@@ -1,14 +1,14 @@
 import React from "react";
 import logo from "../assets/images/logo.png";
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
 export default function Footer() {
   const navigate = useNavigate();
   return (
     <div className="container">
-      <footer className="px-6 py-5 mt-5 border-top">
-        <div className="d-flex justify-content-center pointer">
+      <footer className="px-3 py-4 mt-5 border-top">
+      <div className="d-flex justify-content-center pointer">
           <img
             width={70}
             height={70}
@@ -17,36 +17,36 @@ export default function Footer() {
             onClick={() => navigate("/")}
           />
         </div>
-        <div className="d-flex justify-content-center my-4">
-          <Col className="text-center" lg={1} md={2} sm={3} xs={3}>
+        <Row className="d-flex justify-content-center my-4">
+          <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
             <a href="#" className="nav-link p-0 text-muted">
-              menu
+              Campanhas
             </a>
           </Col>
-          <Col className="text-center" lg={1} md={2} sm={3} xs={3}>
+          <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
             <a href="#" className="nav-link p-0 text-muted">
-              menu
+              Doações
             </a>
           </Col>
-          <Col className="text-center" lg={1} md={2} sm={3} xs={3}>
+          <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
             <a href="#" className="nav-link p-0 text-muted">
-              menu
+              Rede de Apoio
             </a>
           </Col>
-          <Col className="text-center" lg={1} md={2} sm={3} xs={3}>
+          <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
             <a href="#" className="nav-link p-0 text-muted">
-              menu
+              Parceiros
             </a>
           </Col>
-          <Col className="text-center" lg={1} md={2} sm={3} xs={3}>
+          <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
             <a href="#" className="nav-link p-0 text-muted">
-              menu
+              Sobre nós
             </a>
           </Col>
-        </div>
-        <div className="d-flex justify-content-center">
+        </Row>
+        <Row className="d-flex justify-content-center">
           <p className="text-muted">© 2023</p>
-        </div>
+        </Row>
       </footer>
     </div>
   );

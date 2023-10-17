@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { FormikWizard } from "formik-wizard-form";
 import NavBarComp from "../../components/NavBarComp";
@@ -6,20 +6,41 @@ import FirstStep, { validationSchemaFirstStep } from "./steps/firstStep";
 import SecondStep, { validationSchemaSecondStep } from "./steps/secondStep";
 import thirdStep, { validationSchemaThirdStep } from "./steps/thirdStep";
 import Footer from "../../components/Footer";
+import { createUser } from "../../services/userServices";
+import { toast } from "react-toastify";
 
 export default function SingUp() {
+  const [isLoading, setIsLoading] = useState(false);
+  const handlerCreateUser = async (values) => {
+    setIsLoading(true);
+    await createUser(values)
+      .then(() => {
+        toast.success("Conta criada com sucesso!", {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .catch((e) => {
+        toast.error(`${e.status} - ${e.messages}`, {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .finally(() => setIsLoading(false));
+  };
+
   return (
     <div>
       <NavBarComp onlyLogo={true} />
       <FormikWizard
         validateOnChange={false}
         initialValues={{
-          completeName: "",
+          name: "",
           cpf: "",
-          bornDate: "",
+          birthDate: "",
           email: "",
           password: "",
-          postalCode: "",
+          zipcode: "",
           street: "",
           bloodType: "",
           bloodFactor: "",
@@ -28,7 +49,7 @@ export default function SingUp() {
           marrowDonator: false,
           terms: false,
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => handlerCreateUser(values)}
         validateOnNext
         activeStepIndex={0}
         steps={[
@@ -99,7 +120,7 @@ export default function SingUp() {
               >
                 Anterior
               </Button>
-              <Button className="px-4" type="submit" onClick={handleNext}>
+              <Button className="px-4" type="submit" onClick={handleNext} disabled={isLoading}>
                 {isLastStep ? "Cadastrar" : "Próximo"}
               </Button>
             </div>

@@ -4,17 +4,20 @@ import * as yup from "yup";
 import { Col, Form, Row } from "react-bootstrap";
 
 export const validationSchemaFirstStep = yup.object().shape({
-  completeName: yup.string().required("É necessário preencher o campo Nome."),
+  name: yup.string().required("É necessário preencher o campo Nome."),
   cpf: yup.string().required("É necessário preencher o campo Cpf."),
-  bornDate: yup
+  gender: yup.string().required("É necessário selecionar o campo Gênero."),
+  birthDate: yup
     .string()
     .required("É necessário preencher o campo Data de Nascimento"),
+  phoneNumber: yup.string().required("É necessário preencher o campo Celular."),
   email: yup.string().required("É necessário preencher o campo E-mail."),
   password: yup.string().required("É necessário preencher o campo Senha."),
 });
 
-export default function FirstStep({ errors, values, handleChange }) {
+export default function FirstStep({ errors, values, handleChange }, isLoading) {
   const { Formik } = formik;
+  console.log(isLoading)
   return (
     <Formik initialValues={values}>
       {({ handleSubmit }) => (
@@ -27,13 +30,13 @@ export default function FirstStep({ errors, values, handleChange }) {
                   <Form.Control
                     type="text"
                     placeholder="Nome Completo"
-                    name="completeName"
-                    value={values.completeName}
+                    name="name"
+                    value={values.name}
                     onChange={handleChange}
-                    isInvalid={!!errors.completeName}
+                    isInvalid={!!errors.name}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors.completeName}
+                    {errors.name}
                   </Form.Control.Feedback>
                 </Form.Group>
               </Row>
@@ -50,6 +53,45 @@ export default function FirstStep({ errors, values, handleChange }) {
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.cpf}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col} controlId="validationGender">
+                  <Form.Label>Gênero</Form.Label>
+                  <Form.Group as={Col} controlId="validationGender">
+                    <Form.Select
+                      aria-label="Selecione"
+                      name="gender"
+                      value={values.gender}
+                      id="gender"
+                      onChange={handleChange}
+                      isInvalid={!!errors.gender}
+                    >
+                      <option value="">Selecione</option>
+                      <option value="1">Maculino</option>
+                      <option value="2">Feminino</option>
+                      <option value="3">Não informar</option>
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.gender}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col}>
+                  <Form.Label>Celular</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Celular"
+                    name="phoneNumber"
+                    value={values.phoneNumber}
+                    onChange={handleChange}
+                    isInvalid={!!errors.phoneNumber}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.phoneNumber}
                   </Form.Control.Feedback>
                 </Form.Group>
               </Row>
@@ -90,14 +132,14 @@ export default function FirstStep({ errors, values, handleChange }) {
                   <Form.Label>Data de Nascimento</Form.Label>
                   <Form.Control
                     type="date"
-                    placeholder="bornDate"
-                    name="bornDate"
-                    value={values.bornDate}
+                    placeholder="birthDate"
+                    name="birthDate"
+                    value={values.birthDate}
                     onChange={handleChange}
-                    isInvalid={!!errors.bornDate}
+                    isInvalid={!!errors.birthDate}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors.bornDate}
+                    {errors.birthDate}
                   </Form.Control.Feedback>
                 </Form.Group>
               </Row>
