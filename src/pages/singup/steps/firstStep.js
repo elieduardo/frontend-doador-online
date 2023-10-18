@@ -2,6 +2,7 @@ import React from "react";
 import * as formik from "formik";
 import * as yup from "yup";
 import { Col, Form, Row } from "react-bootstrap";
+import MaskedFormControl from 'react-bootstrap-maskedinput'
 
 export const validationSchemaFirstStep = yup.object().shape({
   name: yup.string().required("É necessário preencher o campo Nome."),
@@ -21,7 +22,7 @@ export default function FirstStep({ errors, values, handleChange }, isLoading) {
   return (
     <Formik initialValues={values}>
       {({ handleSubmit }) => (
-        <Row className="my-5 px-2 justify-content-center">
+        <div className="my-5 px-2 justify-content-center d-flex">
           <Col lg={5} md={6} sm={12} xs={12}>
             <Form noValidate onSubmit={handleSubmit}>
               <Row className="mb-3">
@@ -43,13 +44,14 @@ export default function FirstStep({ errors, values, handleChange }, isLoading) {
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="validationFormik03">
                   <Form.Label>Cpf</Form.Label>
-                  <Form.Control
+                  <MaskedFormControl
                     type="text"
                     placeholder="Cpf"
                     name="cpf"
                     value={values.cpf}
                     onChange={handleChange}
                     isInvalid={!!errors.cpf}
+                    mask='111.111.111-11'
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.cpf}
@@ -82,13 +84,14 @@ export default function FirstStep({ errors, values, handleChange }, isLoading) {
               <Row className="mb-3">
                 <Form.Group as={Col}>
                   <Form.Label>Celular</Form.Label>
-                  <Form.Control
+                  <MaskedFormControl
                     type="text"
                     placeholder="Celular"
                     name="phoneNumber"
                     value={values.phoneNumber}
                     onChange={handleChange}
                     isInvalid={!!errors.phoneNumber}
+                    mask="(11) 1 1111-1111"
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.phoneNumber}
@@ -145,7 +148,7 @@ export default function FirstStep({ errors, values, handleChange }, isLoading) {
               </Row>
             </Form>
           </Col>
-        </Row>
+        </div>
       )}
     </Formik>
   );

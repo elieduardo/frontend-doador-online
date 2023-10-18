@@ -19,7 +19,7 @@ export default function UserRecovery() {
     return (
       <div>
         <NavBarComp onlyLogo={true} />
-        <div className="py-6 mx-3 d-flex justify-content-center  align-items-center">
+        <div className="py-6 mx-3 d-flex justify-content-center align-items-center">
           <div class="alert alert-success" role="alert">
             Em breve você receberá em seu e-mail um link para realizar a
             alteração da senha.
@@ -52,8 +52,8 @@ export default function UserRecovery() {
           email: "",
         }}
       >
-        {({ handleSubmit, handleChange, values, touched, errors }) => (
-          <Row className="p-6 justify-content-center">
+        {({ handleSubmit, handleChange, values, errors }) => (
+          <div className="p-6 justify-content-center d-flex">
             <Col lg={5}>
               <Form noValidate onSubmit={handleSubmit}>
                 <Row className="mb-3">
@@ -79,7 +79,7 @@ export default function UserRecovery() {
                 </div>
               </Form>
             </Col>
-          </Row>
+          </div>
         )}
       </Formik>
       <Footer />

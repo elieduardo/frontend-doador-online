@@ -277,10 +277,14 @@ $theme-colors: (
 }
 
 .forget-password {
-  text-decoration: none !important;
   color: $gray-800;
   font-size: 14px !important;
   padding-left: calc(var(--bs-gutter-x) * 0.2);
+}
+
+.terms-link{
+  color: $gray-800;
+  font-size: 14px !important;
 }
 
 .alert-success {

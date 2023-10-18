@@ -44,9 +44,9 @@ export default function Footer() {
             </a>
           </Col>
         </Row>
-        <Row className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <p className="text-muted">© 2023</p>
-        </Row>
+        </div>
       </footer>
     </div>
   );

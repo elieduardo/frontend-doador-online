@@ -1,3 +1,4 @@
+import { removeMask } from "../helpers/Strings";
 import baseAxiosPublic from "./config/baseAxiosPublic";
 
 const createUser = async ({
@@ -33,10 +34,10 @@ const createUser = async ({
 
   const payload = {
     name,
-    cpf,
+    cpf: removeMask(cpf),
     password,
     email,
-    phoneNumber,
+    phoneNumber: removeMask(phoneNumber),
     birthDate,
     gender: parseInt(gender),
     bloodType: 1,
@@ -47,7 +48,7 @@ const createUser = async ({
       number,
       city,
       state,
-      zipCode,
+      zipCode: removeMask(zipCode),
       country: "Brasil",
     },
   };

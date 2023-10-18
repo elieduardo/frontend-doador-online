@@ -2,6 +2,7 @@ import React from "react";
 import * as formik from "formik";
 import * as yup from "yup";
 import { Col, Form, Row } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 export const validationSchemaThirdStep = yup.object().shape({
   bloodType: yup.string().when("bloodDonator", {
@@ -27,11 +28,12 @@ export const validationSchemaThirdStep = yup.object().shape({
 });
 
 export default function thirdStep({ errors, values, handleChange }) {
+  window.scroll(0, 0);
   const { Formik } = formik;
   return (
     <Formik initialValues={values}>
       {({ handleSubmit }) => (
-        <Row className="my-5 px-2 justify-content-center">
+        <div className="my-5 px-2 justify-content-center d-flex">
           <Col lg={5} md={6} sm={12} xs={12}>
             <Form noValidate onSubmit={handleSubmit}>
               <Row>
@@ -145,11 +147,14 @@ export default function thirdStep({ errors, values, handleChange }) {
                     feedbackType="invalid"
                     id="validationTerms"
                   />
+                  <NavLink className="terms-link" to="/termos-condicoes">
+                    Termos e condições
+                  </NavLink>
                 </Form.Group>
               </Row>
             </Form>
           </Col>
-        </Row>
+        </div>
       )}
     </Formik>
   );

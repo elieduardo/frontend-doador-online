@@ -40,8 +40,8 @@ export default function SingIn() {
           password: "",
         }}
       >
-        {({ handleSubmit, handleChange, values, touched, errors }) => (
-          <Row className="p-6 justify-content-center">
+        {({ handleSubmit, handleChange, values, errors }) => (
+          <div className="p-6 justify-content-center d-flex">
             <Col lg={5}>
               <Form noValidate onSubmit={handleSubmit}>
                 <Row className="mb-3">
@@ -86,7 +86,7 @@ export default function SingIn() {
                 </div>
               </Form>
             </Col>
-          </Row>
+          </div>
         )}
       </Formik>
       <Footer />
