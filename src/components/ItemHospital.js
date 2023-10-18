@@ -8,7 +8,7 @@ import {
 
 export default function ItemHospital({nome, telefone, email, endereco, latitude, longitude}) {
   return (
-    <Card className="card-hospital-width shadow mx-lg-4 mx-md-4 mx-1 my-4">
+    <Card className="shadow mx-lg-4 mx-md-4 mx-1 my-4">
       <div className="d-flex flex-column text-center justify-content-center my-4 p-2 card-hospital-height">
         <div className="bold-card-title mb-4">{nome}</div>
         <div className="info-card-text-16">

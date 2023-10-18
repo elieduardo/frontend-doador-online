@@ -27,7 +27,7 @@ export default function DonationBanner() {
           sm={12}
           className="d-flex justify-content-lg-end justify-content-center"
         >
-          <img className="img-fluid-85 p-lg-0 p-6" src={bannerImage} />
+          <img className="img-fluid-85 p-lg-0 p-4" src={bannerImage} alt="banner-image"/>
         </Col>
       </Row>
     </div>
