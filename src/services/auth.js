@@ -1,4 +1,3 @@
-
 import { userStorageKey } from "../constants/values";
 import baseAxiosPublic from "./config/baseAxiosPublic";
 
@@ -14,12 +13,12 @@ const postAuthentication = async (usuario, senha) => {
 function decodeToken({ data: jwt }) {
   const payload = jwt.split(".")[1];
   const decode = decodeURIComponent(escape(window.atob(payload)));
-  const { nome, email, exp } = JSON.parse(decode);
+  const { sub, role, jti, exp } = JSON.parse(decode);
 
   const userApp = {
-    accessToken: jwt,
-    nome,
-    email,
+    sub,
+    role,
+    jti,
     exp,
   };
   return { user: userApp };

@@ -6,28 +6,41 @@ import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import { passwordChange } from "../../services/userServices";
 
 export default function PasswordRecovery() {
   const { Formik } = formik;
   const navigate = useNavigate();
-  let { idRecovery } = useParams();
+  let { token, email } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   const schema = yup.object().shape({
     password: yup.string().required("A senha nova deve ser preenchida."),
-    passwordConfirmation: yup
+    confirmPassword: yup
       .string()
       .required("A confirmação da senha nova deve ser preenchida.")
       .oneOf([yup.ref("password"), null], "As senhas devem ser iguais."),
   });
 
-  const handleAlterPassword = async (password) => {
-    toast.success(
-      "Senha alterada com sucesso.\n Realize o login com a nova senha."
-    );
-    navigate("/singin");
+  const handleAlterPassword = async ({ password, confirmPassword }) => {
+    setIsLoading(true);
+    await passwordChange(email, token, password, confirmPassword)
+      .then(() => {
+        toast.success(
+          "Senha alterada com sucesso.\n Realize o login com a nova senha."
+        );
+        navigate("/singin");
+      })
+      .catch((e) => {
+        toast.error(`${e.status} - ${e.messages}`, {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -35,13 +48,14 @@ export default function PasswordRecovery() {
       <NavBarComp onlyLogo={true} />
       <Formik
         validationSchema={schema}
-        onSubmit={() => {
-          handleAlterPassword();
+        onSubmit={(values) => {
+          handleAlterPassword(values);
         }}
         validateOnChange={false}
         validateOnBlur={false}
         initialValues={{
-          email: "",
+          password: "",
+          confirmPassword: "",
         }}
       >
         {({ handleSubmit, handleChange, values, errors }) => (
@@ -55,6 +69,7 @@ export default function PasswordRecovery() {
                       type="password"
                       placeholder="Digite uma nova senha"
                       name="password"
+                      disabled={isLoading}
                       value={values.password}
                       onChange={handleChange}
                       isInvalid={!!errors.password}
@@ -70,19 +85,31 @@ export default function PasswordRecovery() {
                     <Form.Control
                       type="password"
                       placeholder="Repita a nova senha"
-                      name="passwordConfirmation"
-                      value={values.passwordConfirmation}
+                      name="confirmPassword"
+                      disabled={isLoading}
+                      value={values.confirmPassword}
                       onChange={handleChange}
-                      isInvalid={!!errors.passwordConfirmation}
+                      isInvalid={!!errors.confirmPassword}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {errors.passwordConfirmation}
+                      {errors.confirmPassword}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Row>
                 <div className="pt-3 d-flex justify-content-center">
                   <Button type="submit" disabled={isLoading}>
-                    Alterar senha
+                    {isLoading ? (
+                      <>
+                        Aguarde
+                        <span
+                          class="ms-1 spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      </>
+                    ) : (
+                      "Alterar senha"
+                    )}
                   </Button>
                 </div>
               </Form>

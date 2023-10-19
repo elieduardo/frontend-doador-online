@@ -43,11 +43,21 @@ export default function NavBarComp({ onlyLogo = false }) {
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Container className="d-flex justify-content-center">
             <Nav>
-              <Nav.Link href="#Campanhas" className="text-center">Campanhas</Nav.Link>
-              <Nav.Link href="#Doacoes" className="text-center">Doações</Nav.Link>
-              <Nav.Link href="#RedeApoio" className="text-center">Rede de Apoio</Nav.Link>
-              <Nav.Link href="#Parceiros" className="text-center">Parceiros</Nav.Link>
-              <Nav.Link href="#SobreNos" className="text-center">Sobre nós</Nav.Link>
+              <Nav.Link href="#Campanhas" className="text-center">
+                Campanhas
+              </Nav.Link>
+              <Nav.Link href="#Doacoes" className="text-center">
+                Doações
+              </Nav.Link>
+              <Nav.Link href="#RedeApoio" className="text-center">
+                Rede de Apoio
+              </Nav.Link>
+              <Nav.Link href="#Parceiros" className="text-center">
+                Parceiros
+              </Nav.Link>
+              <Nav.Link href="#SobreNos" className="text-center">
+                Sobre nós
+              </Nav.Link>
             </Nav>
           </Container>
           {isAuthenticated() ? (
@@ -58,7 +68,11 @@ export default function NavBarComp({ onlyLogo = false }) {
                   id="dropdown-basic"
                   className="d-flex align-items-center"
                 >
-                  <FaUserCircle className="me-2" /> usuario
+                  <FaUserCircle className="me-2" />
+                  <div className="mx-2">
+                    <div>Usuário</div>
+                    <div className="points-text">150 pontos</div>
+                  </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => {}}>Minha Conta</Dropdown.Item>

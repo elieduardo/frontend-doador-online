@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { toast } from "react-toastify";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
+import { passwordForget } from "../../services/userServices";
 
 export default function PasswordForget() {
   const { Formik } = formik;
@@ -14,6 +15,30 @@ export default function PasswordForget() {
   const schema = yup.object().shape({
     email: yup.string().required("É necessário preencher o campo E-mail."),
   });
+
+  const handlerPasswordForget = async (values) => {
+    setIsLoading(true);
+    await passwordForget(values)
+      .then(() => {
+        toast.success(
+          "Solicitação de recuperação de senha realizada com sucesso!",
+          {
+            autoClose: 3000,
+            hideProgressBar: true,
+          }
+        );
+        setSuccess(true);
+      })
+      .catch((e) => {
+        toast.error(`${e.status} - ${e.messages}`, {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   if (success) {
     return (
@@ -34,17 +59,8 @@ export default function PasswordForget() {
       <NavBarComp onlyLogo={true} />
       <Formik
         validationSchema={schema}
-        onSubmit={() => {
-          setIsLoading(true);
-          toast.success(
-            "Solicitação de alteração de senha realizada com sucesso.",
-            {
-              autoClose: 3000,
-              hideProgressBar: true,
-            }
-          );
-          setIsLoading(false);
-          setSuccess(true);
+        onSubmit={(value) => {
+          handlerPasswordForget(value);
         }}
         validateOnChange={false}
         validateOnBlur={false}
@@ -66,6 +82,7 @@ export default function PasswordForget() {
                       value={values.email}
                       onChange={handleChange}
                       isInvalid={!!errors.email}
+                      disabled={isLoading}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.email}
@@ -74,7 +91,18 @@ export default function PasswordForget() {
                 </Row>
                 <div className="pt-3 d-flex justify-content-center">
                   <Button type="submit" disabled={isLoading}>
-                    Prosseguir
+                    {isLoading ? (
+                      <>
+                        Aguarde
+                        <span
+                          class="ms-1 spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      </>
+                    ) : (
+                      "Prosseguir"
+                    )}
                   </Button>
                 </div>
               </Form>

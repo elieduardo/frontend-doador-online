@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as formik from "formik";
 import * as yup from "yup";
 import { Col, Form, Row } from "react-bootstrap";
@@ -21,7 +21,10 @@ export default function SecondStep({
   handleChange,
   setFieldValue,
 }) {
-  window.scroll(0, 0);
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   const { Formik } = formik;
   const [zipCode, setZipCode] = useState(values.zipCode);
   const [editingDisabled, setEditingDisabled] = useState(true);

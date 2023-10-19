@@ -6,7 +6,7 @@ const createUser = async ({
   cpf,
   birthDate,
   bloodDonator,
-  bloodFactor,
+  rhFactor,
   bloodType,
   city,
   district,
@@ -21,15 +21,15 @@ const createUser = async ({
   street,
   zipCode,
 }) => {
-  let userType = [];
+  let donationType = [];
   if (bloodDonator) {
-    userType.push(1);
+    donationType.push(1);
   }
   if (marrowDonator) {
-    userType.push(2);
+    donationType.push(2);
   }
   if (organsDonator) {
-    userType.push(3);
+    donationType.push(3);
   }
 
   const payload = {
@@ -40,8 +40,10 @@ const createUser = async ({
     phoneNumber: removeMask(phoneNumber),
     birthDate,
     gender: parseInt(gender),
-    bloodType: 1,
-    userType: parseInt(userType),
+    bloodType: parseInt(bloodType),
+    RhesusFactor: parseInt(rhFactor),
+    userType: 3,
+    donationType,
     Address: {
       street,
       district,
@@ -52,8 +54,37 @@ const createUser = async ({
       country: "Brasil",
     },
   };
-  
+
   return await baseAxiosPublic.post("/api/v1/users", payload);
 };
 
-export { createUser };
+const passwordForget = async ({ email }) => {
+  const payload = {
+    email,
+  };
+
+  return await baseAxiosPublic.post("/api/v1/users/password-recovery", payload);
+};
+
+const passwordChange = async (email, token, password, confirmPassword) => {
+  const payload = {
+    email,
+    token,
+    password,
+    confirmPassword,
+  };
+
+  return await baseAxiosPublic.post("/api/v1/users/change-password", payload);
+};
+
+
+const authenticate = async ({email, password}) => {
+  const payload = {
+    email,
+    password
+  };
+
+  return await baseAxiosPublic.post("/api/v1/users/authenticate", payload);
+};
+
+export { createUser, passwordForget, passwordChange, authenticate };

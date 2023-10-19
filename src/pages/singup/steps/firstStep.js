@@ -16,9 +16,8 @@ export const validationSchemaFirstStep = yup.object().shape({
   password: yup.string().required("É necessário preencher o campo Senha."),
 });
 
-export default function FirstStep({ errors, values, handleChange }, isLoading) {
+export default function FirstStep({ errors, values, handleChange }) {
   const { Formik } = formik;
-  console.log(isLoading)
   return (
     <Formik initialValues={values}>
       {({ handleSubmit }) => (

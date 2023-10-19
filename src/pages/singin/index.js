@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 import { NavLink } from "react-router-dom";
+import { authenticate } from "../../services/userServices";
 
 export default function SingIn() {
   const { Formik } = formik;
@@ -19,19 +20,34 @@ export default function SingIn() {
     password: yup.string().required("É necessário preencher o campo Senha."),
   });
 
+  const handleSingIn = async (values) => {
+    setIsLoading(true);
+    await authenticate(values)
+      .then(() => {
+        toast.success("Login realizado com sucesso!", {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+        navigate("/");
+      })
+      .catch((e) => {
+        toast.error(`${e.status} - ${e.messages}`, {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <div>
       <NavBarComp onlyLogo={true} />
       <Formik
         validationSchema={schema}
-        onSubmit={() => {
-          setIsLoading(true);
-          toast.success("Login realizado com sucesso!", {
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
-          setIsLoading(false);
-          navigate("/");
+        onSubmit={(values) => {
+          handleSingIn(values);
         }}
         validateOnChange={false}
         validateOnBlur={false}
@@ -51,6 +67,7 @@ export default function SingIn() {
                       type="email"
                       placeholder="E-mail"
                       name="email"
+                      disabled={isLoading}
                       value={values.email}
                       onChange={handleChange}
                       isInvalid={!!errors.email}
@@ -67,6 +84,7 @@ export default function SingIn() {
                       type="password"
                       placeholder="Senha"
                       name="password"
+                      disabled={isLoading}
                       value={values.password}
                       onChange={handleChange}
                       isInvalid={!!errors.password}
@@ -81,7 +99,18 @@ export default function SingIn() {
                 </NavLink>
                 <div className="pt-3 d-flex justify-content-center">
                   <Button type="submit" disabled={isLoading}>
-                    Logar
+                    {isLoading ? (
+                      <>
+                        Aguarde
+                        <span
+                          class="ms-1 spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      </>
+                    ) : (
+                      "Logar"
+                    )}
                   </Button>
                 </div>
               </Form>

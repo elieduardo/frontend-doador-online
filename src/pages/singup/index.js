@@ -4,7 +4,7 @@ import { FormikWizard } from "formik-wizard-form";
 import NavBarComp from "../../components/NavBarComp";
 import FirstStep, { validationSchemaFirstStep } from "./steps/firstStep";
 import SecondStep, { validationSchemaSecondStep } from "./steps/secondStep";
-import thirdStep, { validationSchemaThirdStep } from "./steps/thirdStep";
+import ThirdStep, { validationSchemaThirdStep } from "./steps/thirdStep";
 import Footer from "../../components/Footer";
 import { createUser } from "../../services/userServices";
 import { toast } from "react-toastify";
@@ -48,7 +48,7 @@ export default function SingUp() {
           city: "",
           state: "",
           bloodType: "",
-          bloodFactor: "",
+          rhFactor: "",
           organsDonator: false,
           bloodDonator: false,
           marrowDonator: false,
@@ -67,7 +67,7 @@ export default function SingUp() {
             validationSchema: validationSchemaSecondStep,
           },
           {
-            component: thirdStep,
+            component: ThirdStep,
             validationSchema: validationSchemaThirdStep,
           },
         ]}
@@ -119,7 +119,7 @@ export default function SingUp() {
               <Button
                 className="me-2 px-4"
                 variant="outline-primary"
-                disabled={isPrevDisabled}
+                disabled={isPrevDisabled || isLoading}
                 type="button"
                 onClick={handlePrev}
               >
@@ -131,7 +131,20 @@ export default function SingUp() {
                 onClick={handleNext}
                 disabled={isLoading}
               >
-                {isLastStep ? "Cadastrar" : "Próximo"}
+                {isLoading ? (
+                  <>
+                    Aguarde
+                    <span
+                      class="ms-1 spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  </>
+                ) : isLastStep ? (
+                  "Cadastrar"
+                ) : (
+                  "Próximo"
+                )}
               </Button>
             </div>
           </div>

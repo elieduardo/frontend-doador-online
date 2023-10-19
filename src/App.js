@@ -4,7 +4,7 @@ import NotFoundPage from "./pages/notFoundPage";
 import SingUp from "./pages/singup";
 import SingIn from "./pages/singin";
 import PasswordForget from "./pages/password-forget";
-import PasswordRecovery from "./pages/password-forget/recoveryPassword";
+import PasswordRecovery from "./pages/password-recovery";
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/singin" element={<SingIn />} />
         <Route path="/singup" element={<SingUp />} />
         <Route path="/password-forget" element={<PasswordForget />} />
-        <Route path="/password-recovery/:idRecovery" element={<PasswordRecovery />} />
+        <Route path="/password-recovery/:email/:token" element={<PasswordRecovery />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as formik from "formik";
 import * as yup from "yup";
 import { Col, Form, Row } from "react-bootstrap";
@@ -11,7 +11,7 @@ export const validationSchemaThirdStep = yup.object().shape({
       return schema.required("É necessário preencher o campo Tipo Sanguíneo.");
     },
   }),
-  bloodFactor: yup.string().when("bloodDonator", {
+  rhFactor: yup.string().when("bloodDonator", {
     is: true,
     then(schema) {
       return schema.required("É necessário preencher o campo Fator Rh.");
@@ -27,9 +27,12 @@ export const validationSchemaThirdStep = yup.object().shape({
     ),
 });
 
-export default function thirdStep({ errors, values, handleChange }) {
-  window.scroll(0, 0);
+export default function ThirdStep({ errors, values, handleChange }) {
   const { Formik } = formik;
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+  
   return (
     <Formik initialValues={values}>
       {({ handleSubmit }) => (
@@ -87,8 +90,8 @@ export default function thirdStep({ errors, values, handleChange }) {
                           <option value="">Selecione</option>
                           <option value="1">A</option>
                           <option value="2">B</option>
-                          <option value="3">A</option>
-                          <option value="3">O</option>
+                          <option value="3">AB</option>
+                          <option value="4">O</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                           {errors.bloodType}
@@ -97,23 +100,23 @@ export default function thirdStep({ errors, values, handleChange }) {
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
-                    <Form.Group as={Col} controlId="validationBloodFactor">
+                    <Form.Group as={Col} controlId="validationRhFactor">
                       <Form.Label>Fator Rh</Form.Label>
-                      <Form.Group as={Col} controlId="validationBloodFactor">
+                      <Form.Group as={Col} controlId="validationRhFactor">
                         <Form.Select
                           aria-label="Selecione"
-                          name="bloodFactor"
-                          value={values.bloodFactor}
-                          id="bloodFactor"
+                          name="rhFactor"
+                          value={values.rhFactor}
+                          id="rhFactor"
                           onChange={handleChange}
-                          isInvalid={!!errors.bloodFactor}
+                          isInvalid={!!errors.rhFactor}
                         >
                           <option value="">Selecione</option>
                           <option value="1">+</option>
                           <option value="2">-</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
-                          {errors.bloodFactor}
+                          {errors.rhFactor}
                         </Form.Control.Feedback>
                       </Form.Group>
                     </Form.Group>
