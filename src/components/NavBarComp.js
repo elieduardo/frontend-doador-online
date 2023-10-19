@@ -68,10 +68,10 @@ export default function NavBarComp({ onlyLogo = false }) {
             </div>
           ) : (
             <div className="d-flex justify-content-center justify-content-lg-end mt-lg-0 mt-4">
-              <Button variant="none" href="login">
+              <Button variant="none" href="singin">
                 Login
               </Button>
-              <Button variant="primary" className="px-5" href="cadastro">
+              <Button variant="primary" className="px-5" href="singup">
                 Cadastro
               </Button>
             </div>

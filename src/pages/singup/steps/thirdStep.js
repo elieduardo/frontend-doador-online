@@ -147,7 +147,7 @@ export default function thirdStep({ errors, values, handleChange }) {
                     feedbackType="invalid"
                     id="validationTerms"
                   />
-                  <NavLink className="terms-link" to="/termos-condicoes">
+                  <NavLink className="terms-link" to="/terms-conditions">
                     Termos e condições
                   </NavLink>
                 </Form.Group>

@@ -2,22 +2,33 @@ import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import * as formik from "formik";
 import * as yup from "yup";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
-import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function SingIn() {
+export default function PasswordRecovery() {
   const { Formik } = formik;
-  const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
+  let { idRecovery } = useParams();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const schema = yup.object().shape({
-    email: yup.string().required("É necessário preencher o campo E-mail."),
-    password: yup.string().required("É necessário preencher o campo Senha."),
+    password: yup.string().required("A senha nova deve ser preenchida."),
+    passwordConfirmation: yup
+      .string()
+      .required("A confirmação da senha nova deve ser preenchida.")
+      .oneOf([yup.ref("password"), null], "As senhas devem ser iguais."),
   });
+
+  const handleAlterPassword = async (password) => {
+    toast.success(
+      "Senha alterada com sucesso.\n Realize o login com a nova senha."
+    );
+    navigate("/singin");
+  };
 
   return (
     <div>
@@ -25,19 +36,12 @@ export default function SingIn() {
       <Formik
         validationSchema={schema}
         onSubmit={() => {
-          setIsLoading(true);
-          toast.success("Login realizado com sucesso!", {
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
-          setIsLoading(false);
-          navigate("/");
+          handleAlterPassword();
         }}
         validateOnChange={false}
         validateOnBlur={false}
         initialValues={{
           email: "",
-          password: "",
         }}
       >
         {({ handleSubmit, handleChange, values, errors }) => (
@@ -46,26 +50,10 @@ export default function SingIn() {
               <Form noValidate onSubmit={handleSubmit}>
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="E-mail"
-                      name="email"
-                      value={values.email}
-                      onChange={handleChange}
-                      isInvalid={!!errors.email}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.email}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                  <Form.Group as={Col}>
                     <Form.Label>Senha</Form.Label>
                     <Form.Control
                       type="password"
-                      placeholder="Senha"
+                      placeholder="Digite uma nova senha"
                       name="password"
                       value={values.password}
                       onChange={handleChange}
@@ -76,12 +64,25 @@ export default function SingIn() {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Row>
-                <NavLink className="forget-password" to="/password-forget">
-                  Esqueceu sua senha?
-                </NavLink>
+                <Row className="mb-3">
+                  <Form.Group as={Col}>
+                    <Form.Label>Confirmação da Senha</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Repita a nova senha"
+                      name="passwordConfirmation"
+                      value={values.passwordConfirmation}
+                      onChange={handleChange}
+                      isInvalid={!!errors.passwordConfirmation}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.passwordConfirmation}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
                 <div className="pt-3 d-flex justify-content-center">
                   <Button type="submit" disabled={isLoading}>
-                    Logar
+                    Alterar senha
                   </Button>
                 </div>
               </Form>

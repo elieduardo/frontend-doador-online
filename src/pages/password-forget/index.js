@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 
-export default function UserRecovery() {
+export default function PasswordForget() {
   const { Formik } = formik;
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -74,7 +74,7 @@ export default function UserRecovery() {
                 </Row>
                 <div className="pt-3 d-flex justify-content-center">
                   <Button type="submit" disabled={isLoading}>
-                    Alterar senha
+                    Prosseguir
                   </Button>
                 </div>
               </Form>

@@ -42,6 +42,11 @@ export default function SingUp() {
           password: "",
           zipcode: "",
           street: "",
+          district: "",
+          complement: "",
+          number: "",
+          city: "",
+          state: "",
           bloodType: "",
           bloodFactor: "",
           organsDonator: false,
@@ -120,7 +125,12 @@ export default function SingUp() {
               >
                 Anterior
               </Button>
-              <Button className="px-4" type="submit" onClick={handleNext} disabled={isLoading}>
+              <Button
+                className="px-4"
+                type="submit"
+                onClick={handleNext}
+                disabled={isLoading}
+              >
                 {isLastStep ? "Cadastrar" : "Próximo"}
               </Button>
             </div>

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import * as formik from "formik";
 import * as yup from "yup";
 import { Col, Form, Row } from "react-bootstrap";
-import MaskedFormControl from 'react-bootstrap-maskedinput'
+import MaskedFormControl from "react-bootstrap-maskedinput";
+import { getAddress } from "../../../services/addressServices";
+import { toast } from "react-toastify";
 
 export const validationSchemaSecondStep = yup.object().shape({
   zipCode: yup.string().required("É necessário preencher o campo Cep."),
@@ -13,9 +15,42 @@ export const validationSchemaSecondStep = yup.object().shape({
   state: yup.string().required("É necessário preencher o campo Estado."),
 });
 
-export default function SecondStep({ errors, values, handleChange }) {
+export default function SecondStep({
+  errors,
+  values,
+  handleChange,
+  setFieldValue,
+}) {
   window.scroll(0, 0);
   const { Formik } = formik;
+  const [zipCode, setZipCode] = useState(values.zipCode);
+  const [editingDisabled, setEditingDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleGetAddressByCEP = async ({ target }) => {
+    if (!target.value) return;
+
+    setIsLoading(true);
+    await getAddress(target.value)
+      .then(({ data }) => {
+        const { state, city, neighborhood, street } = data;
+        setFieldValue("street", street);
+        setFieldValue("district", neighborhood);
+        setFieldValue("city", city);
+        setFieldValue("state", state);
+        setEditingDisabled(true);
+      })
+      .catch(() => {
+        setEditingDisabled(false);
+        toast.warning(
+          "Não foi possível encontrar o CEP. Por favor, informe seu endereço nos campos abaixo."
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <Formik initialValues={values}>
       {({ handleSubmit }) => (
@@ -29,8 +64,12 @@ export default function SecondStep({ errors, values, handleChange }) {
                     type="text"
                     placeholder="Cep"
                     name="zipCode"
-                    value={values.zipCode}
-                    onChange={handleChange}
+                    value={zipCode}
+                    onBlur={handleGetAddressByCEP}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setZipCode(e.target.value);
+                    }}
                     isInvalid={!!errors.zipCode}
                     mask="11111-111"
                   />
@@ -44,8 +83,9 @@ export default function SecondStep({ errors, values, handleChange }) {
                   <Form.Label>Rua</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Rua"
+                    placeholder={isLoading ? "Carregando ..." : "Rua"}
                     name="street"
+                    disabled={editingDisabled}
                     value={values.street}
                     onChange={handleChange}
                     isInvalid={!!errors.street}
@@ -60,8 +100,9 @@ export default function SecondStep({ errors, values, handleChange }) {
                   <Form.Label>Bairro</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Bairro"
+                    placeholder={isLoading ? "Carregando ..." : "Bairro"}
                     name="district"
+                    disabled={editingDisabled}
                     value={values.district}
                     onChange={handleChange}
                     isInvalid={!!errors.district}
@@ -89,11 +130,28 @@ export default function SecondStep({ errors, values, handleChange }) {
               </Row>
               <Row className="mb-3">
                 <Form.Group as={Col}>
+                  <Form.Label>Complemento</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Complemento"
+                    name="complement"
+                    value={values.complement}
+                    onChange={handleChange}
+                    isInvalid={!!errors.complement}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.number}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col}>
                   <Form.Label>Cidade</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Cidade"
+                    placeholder={isLoading ? "Carregando ..." : "Cidade"}
                     name="city"
+                    disabled={editingDisabled}
                     value={values.city}
                     onChange={handleChange}
                     isInvalid={!!errors.city}
@@ -108,8 +166,9 @@ export default function SecondStep({ errors, values, handleChange }) {
                   <Form.Label>Estado</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Estado"
+                    placeholder={isLoading ? "Carregando ..." : "Estado"}
                     name="state"
+                    disabled={editingDisabled}
                     value={values.state}
                     onChange={handleChange}
                     isInvalid={!!errors.state}
