@@ -8,9 +8,12 @@ import ThirdStep, { validationSchemaThirdStep } from "./steps/thirdStep";
 import Footer from "../../components/Footer";
 import { createUser } from "../../services/userServices";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function SingUp() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);  
+  const navigate = useNavigate();
+
   const handlerCreateUser = async (values) => {
     setIsLoading(true);
     await createUser(values)
@@ -19,6 +22,7 @@ export default function SingUp() {
           autoClose: 3000,
           hideProgressBar: true,
         });
+        navigate("/singin");
       })
       .catch((e) => {
         toast.error(`${e.status} - ${e.messages}`, {

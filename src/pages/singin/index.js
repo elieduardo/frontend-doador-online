@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 import { NavLink } from "react-router-dom";
-import { authenticate } from "../../services/userServices";
+import { postAuthentication } from "../../services/auth";
 
 export default function SingIn() {
   const { Formik } = formik;
@@ -22,7 +22,7 @@ export default function SingIn() {
 
   const handleSingIn = async (values) => {
     setIsLoading(true);
-    await authenticate(values)
+    await postAuthentication(values)
       .then(() => {
         toast.success("Login realizado com sucesso!", {
           autoClose: 3000,

@@ -6,7 +6,7 @@ import logo from "../assets/images/logo.png";
 import { Button, Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
-import { isAuthenticated } from "../services/auth";
+import { getFirstName, isAuthenticated, logout } from "../services/auth";
 
 //fa FaUserCircle
 export default function NavBarComp({ onlyLogo = false }) {
@@ -70,13 +70,19 @@ export default function NavBarComp({ onlyLogo = false }) {
                 >
                   <FaUserCircle className="me-2" />
                   <div className="mx-2">
-                    <div>Usuário</div>
+                    <div>{getFirstName()}</div>
                     <div className="points-text">150 pontos</div>
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => {}}>Minha Conta</Dropdown.Item>
-                  <Dropdown.Item onClick={() => {}}>Sair</Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      logout();
+                    }}
+                  >
+                    Sair
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>

@@ -73,18 +73,8 @@ const passwordChange = async (email, token, password, confirmPassword) => {
     password,
     confirmPassword,
   };
-
+  
   return await baseAxiosPublic.post("/api/v1/users/change-password", payload);
 };
 
-
-const authenticate = async ({email, password}) => {
-  const payload = {
-    email,
-    password
-  };
-
-  return await baseAxiosPublic.post("/api/v1/users/authenticate", payload);
-};
-
-export { createUser, passwordForget, passwordChange, authenticate };
+export { createUser, passwordForget, passwordChange };

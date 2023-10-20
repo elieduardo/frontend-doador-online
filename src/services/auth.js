@@ -1,17 +1,21 @@
 import { userStorageKey } from "../constants/values";
 import baseAxiosPublic from "./config/baseAxiosPublic";
 
-const postAuthentication = async (usuario, senha) => {
-  const payload = { usuario, senha };
+const postAuthentication = async ({ email, password }) => {
+  const payload = {
+    email,
+    password,
+  };
   var auth = await baseAxiosPublic
-    .post("/api/v1/auth", payload)
+    .post("/api/v1/users/authenticate", payload)
     .then((response) => decodeToken(response));
+
   localStorage.setItem(userStorageKey, JSON.stringify(auth));
   return auth;
 };
 
 function decodeToken({ data: jwt }) {
-  const payload = jwt.split(".")[1];
+  const payload = jwt.jwt.split(".")[1];
   const decode = decodeURIComponent(escape(window.atob(payload)));
   const { sub, role, jti, exp } = JSON.parse(decode);
 
@@ -44,4 +48,18 @@ function logout() {
   localStorage.clear();
 }
 
-export { postAuthentication, isAuthenticated, logout };
+function getFirstName() {
+  try {
+    const token = localStorage.getItem(userStorageKey);
+    const { user } = JSON.parse(token);
+    if (user) {
+      return user.sub.split(" ")[0];
+    } else {
+      return "Usuário";
+    }
+  } catch {
+    return "Usuário";
+  }
+}
+
+export { postAuthentication, isAuthenticated, logout, getFirstName };
