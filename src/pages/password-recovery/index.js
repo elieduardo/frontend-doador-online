@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import * as formik from "formik";
 import * as yup from "yup";
 import NavBarComp from "../../components/NavBarComp";
@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { passwordChange } from "../../services/userServices";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function PasswordRecovery() {
   const { Formik } = formik;
@@ -14,9 +15,16 @@ export default function PasswordRecovery() {
   let { token, email } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const schema = yup.object().shape({
-    password: yup.string().required("A senha nova deve ser preenchida."),
+    password: yup
+      .string()
+      .required("A senha nova deve ser preenchida.")
+      .matches(
+        /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{6,})/,
+        "A senha deve conter no mínimo um caractere maiúsculo, um caractere especial e ter no mínimo 6 caracteres."
+      ),
     confirmPassword: yup
       .string()
       .required("A confirmação da senha nova deve ser preenchida.")
@@ -65,35 +73,51 @@ export default function PasswordRecovery() {
                 <Row className="mb-3">
                   <Form.Group as={Col}>
                     <Form.Label>Senha</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Digite uma nova senha"
-                      name="password"
-                      disabled={isLoading}
-                      value={values.password}
-                      onChange={handleChange}
-                      isInvalid={!!errors.password}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.password}
-                    </Form.Control.Feedback>
+                    <InputGroup hasValidation>
+                      <Form.Control
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Senha"
+                        name="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        isInvalid={!!errors.password}
+                      />
+                      <Button onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? (
+                          <FiEyeOff color="black" />
+                        ) : (
+                          <FiEye color="black" />
+                        )}
+                      </Button>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.password}
+                      </Form.Control.Feedback>
+                    </InputGroup>
                   </Form.Group>
                 </Row>
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>Confirmação da Senha</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Repita a nova senha"
-                      name="confirmPassword"
-                      disabled={isLoading}
-                      value={values.confirmPassword}
-                      onChange={handleChange}
-                      isInvalid={!!errors.confirmPassword}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.confirmPassword}
-                    </Form.Control.Feedback>
+                    <Form.Label>Senha</Form.Label>
+                    <InputGroup hasValidation>
+                      <Form.Control
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Senha"
+                        name="confirmPassword"
+                        value={values.confirmPassword}
+                        onChange={handleChange}
+                        isInvalid={!!errors.confirmPassword}
+                      />
+                      <Button onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? (
+                          <FiEyeOff color="black" />
+                        ) : (
+                          <FiEye color="black" />
+                        )}
+                      </Button>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.confirmPassword}
+                      </Form.Control.Feedback>
+                    </InputGroup>
                   </Form.Group>
                 </Row>
                 <div className="pt-3 d-flex justify-content-center">

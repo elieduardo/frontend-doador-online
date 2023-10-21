@@ -1,23 +1,46 @@
 import React from "react";
 import * as formik from "formik";
 import * as yup from "yup";
-import { Col, Form, Row } from "react-bootstrap";
-import MaskedFormControl from 'react-bootstrap-maskedinput'
+import { Col, Form, Row, InputGroup, Button } from "react-bootstrap";
+import MaskedFormControl from "../../../components/MaskedFormControl";
+import { removeMask } from "../../../helpers/Strings";
+import { cpf as cpfValidator } from "cpf-cnpj-validator";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useState } from "react";
 
 export const validationSchemaFirstStep = yup.object().shape({
   name: yup.string().required("É necessário preencher o campo Nome."),
-  cpf: yup.string().required("É necessário preencher o campo Cpf."),
+  cpf: yup
+    .string()
+    .transform((value) => (value ? removeMask(value) : value))
+    .required("É necessário preencher o campo Cpf.")
+    .min(11, "O CPF deve ter no mínimo 11 dígitos.")
+    .test("valid-cpf", "CPF inválido", (value) => {
+      return cpfValidator.isValid(value);
+    }),
   gender: yup.string().required("É necessário selecionar o campo Gênero."),
   birthDate: yup
     .string()
     .required("É necessário preencher o campo Data de Nascimento"),
-  phoneNumber: yup.string().required("É necessário preencher o campo Celular."),
+  phoneNumber: yup
+    .string()
+    .transform((value) => (value ? removeMask(value) : value))
+    .required("É necessário preencher o campo Celular.")
+    .min(11, "O número de celular deve ter no mínimo 11 dígitos."),
   email: yup.string().required("É necessário preencher o campo E-mail."),
-  password: yup.string().required("É necessário preencher o campo Senha."),
+  password: yup
+    .string()
+    .required("É necessário preencher o campo Senha.")
+    .matches(
+      /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{6,})/,
+      "A senha deve conter no mínimo um caractere maiúsculo, um caractere especial e ter no mínimo 6 caracteres."
+    ),
 });
 
 export default function FirstStep({ errors, values, handleChange }) {
   const { Formik } = formik;
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <Formik initialValues={values}>
       {({ handleSubmit }) => (
@@ -50,7 +73,7 @@ export default function FirstStep({ errors, values, handleChange }) {
                     value={values.cpf}
                     onChange={handleChange}
                     isInvalid={!!errors.cpf}
-                    mask='111.111.111-11'
+                    mask="999.999.999-99"
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.cpf}
@@ -90,7 +113,7 @@ export default function FirstStep({ errors, values, handleChange }) {
                     value={values.phoneNumber}
                     onChange={handleChange}
                     isInvalid={!!errors.phoneNumber}
-                    mask="(11) 1 1111-1111"
+                    mask="(99) 99999-9999"
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.phoneNumber}
@@ -116,17 +139,26 @@ export default function FirstStep({ errors, values, handleChange }) {
               <Row className="mb-3">
                 <Form.Group as={Col}>
                   <Form.Label>Senha</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Senha"
-                    name="password"
-                    value={values.password}
-                    onChange={handleChange}
-                    isInvalid={!!errors.password}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.password}
-                  </Form.Control.Feedback>
+                  <InputGroup hasValidation>
+                    <Form.Control
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Senha"
+                      name="password"
+                      value={values.password}
+                      onChange={handleChange}
+                      isInvalid={!!errors.password}
+                    />
+                    <Button onClick={() => setShowPassword(!showPassword)}>
+                      {showPassword ? (
+                        <FiEyeOff color="black" />
+                      ) : (
+                        <FiEye color="black" />
+                      )}
+                    </Button>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.password}
+                    </Form.Control.Feedback>
+                  </InputGroup>
                 </Form.Group>
               </Row>
               <Row className="mb-3">

@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import * as formik from "formik";
 import * as yup from "yup";
 import { Col, Form, Row } from "react-bootstrap";
-import MaskedFormControl from "react-bootstrap-maskedinput";
 import { getAddress } from "../../../services/addressServices";
 import { toast } from "react-toastify";
+import { removeMask } from "../../../helpers/Strings";
+import MaskedFormControl from "../../../components/MaskedFormControl";
 
 export const validationSchemaSecondStep = yup.object().shape({
-  zipCode: yup.string().required("É necessário preencher o campo Cep."),
+  zipCode: yup
+    .string()
+    .transform((value) => (value ? removeMask(value) : value))
+    .required("É necessário preencher o campo Cep.")
+    .min(8, "O CEP deve ter no mínimo 8 dígitos."),
   street: yup.string().required("É necessário preencher o campo Rua."),
   district: yup.string().required("É necessário preencher o campo Bairro."),
   number: yup.string().required("É necessário preencher o campo Número."),
@@ -74,7 +79,7 @@ export default function SecondStep({
                       setZipCode(e.target.value);
                     }}
                     isInvalid={!!errors.zipCode}
-                    mask="11111-111"
+                    mask="99999-999"
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.zipCode}
