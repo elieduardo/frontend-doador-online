@@ -89,6 +89,7 @@ export default function SingIn() {
                         name="password"
                         value={values.password}
                         onChange={handleChange}
+                        disabled={isLoading}
                         isInvalid={!!errors.password}
                       />
                       <Button onClick={() => setShowPassword(!showPassword)}>

@@ -75,7 +75,7 @@ export default function NavBarComp({ onlyLogo = false }) {
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => {}}>Minha Conta</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate("/profile")}>Minha Conta</Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
                       logout();

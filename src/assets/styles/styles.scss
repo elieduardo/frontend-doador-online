@@ -34,6 +34,11 @@ $theme-colors: (
   font-weight: 600;
 }
 
+.title-md {
+  font-size: 25px;
+  font-weight: 600;
+}
+
 .content-text-opacity {
   font-size: 24px;
   opacity: 54%;
@@ -297,6 +302,13 @@ $theme-colors: (
 .points-text {
   font-size: 12px;
   font-weight: 400;
+}
+
+.img-user-profile {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 @import "/node_modules/bootstrap//scss//bootstrap";

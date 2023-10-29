@@ -22,6 +22,10 @@ $spacers: (
   4: $spacer * 1.5,
   5: $spacer * 3,
   6: $spacer * 4,
+  7: $spacer * 5.5,
+  8: $spacer * 7,
+  9: $spacer * 8,
+  10: $spacer * 10
 );
 
 $gray-500: #adb5bd;
@@ -56,3 +60,8 @@ $step-success-circle-color: $success !default;
 $step-success-circle-bg-color: $white !default;
 $step-success-circle-border-color: $success !default;
 $step-success-text-color: $success !default;
+$enable-negative-margins: true;
+
+$nav-pills-link-active-bg: $primary-color;
+$nav-link-color: $secondary-color;
+$nav-link-hover-color: $primary-color;
