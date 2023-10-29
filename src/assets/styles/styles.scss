@@ -39,6 +39,11 @@ $theme-colors: (
   font-weight: 600;
 }
 
+.title-sm {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 .content-text-opacity {
   font-size: 24px;
   opacity: 54%;
@@ -174,10 +179,12 @@ $theme-colors: (
   list-style: none;
   overflow-x: auto;
   justify-content: center !important;
+
   .step {
     &:first-child {
       margin-left: auto;
     }
+
     &:last-child {
       margin-right: auto;
     }
@@ -232,10 +239,12 @@ $theme-colors: (
     color: $step-active-circle-color;
     background-color: $step-active-circle-bg-color;
     border-color: $step-active-circle-border-color;
+
     &::before {
       color: $step-active-circle-border-color;
     }
   }
+
   .step-text {
     color: $step-active-text-color;
   }
@@ -246,10 +255,12 @@ $theme-colors: (
     color: $step-error-circle-color;
     background-color: $step-error-circle-bg-color;
     border-color: $step-error-circle-border-color;
+
     &::before {
       color: $step-error-circle-border-color;
     }
   }
+
   .step-text {
     color: $step-error-text-color;
   }
@@ -260,10 +271,12 @@ $theme-colors: (
     color: $step-success-circle-color;
     background-color: $step-success-circle-bg-color;
     border-color: $step-success-circle-border-color;
+
     &::before {
       color: $step-success-circle-border-color;
     }
   }
+
   .step-text {
     color: $step-success-text-color;
   }
@@ -276,6 +289,7 @@ $theme-colors: (
 .pointer {
   cursor: pointer;
 }
+
 .dropdown-item:hover,
 .dropdown-item:focus {
   border-radius: 1.4rem !important;
@@ -307,8 +321,30 @@ $theme-colors: (
 .img-user-profile {
   width: 150px;
   height: 150px;
-  border-radius: 50%;
   object-fit: cover;
+}
+
+.img-user-profile-content {
+  position: relative;
+  display: inline-block 
+}
+
+.user-profile-content {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 150px;
+  display: inline-block
+}
+
+.user-strip-alter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 0;
+  cursor: pointer;
 }
 
 @import "/node_modules/bootstrap//scss//bootstrap";

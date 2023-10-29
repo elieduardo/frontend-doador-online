@@ -2,45 +2,31 @@ import React, { useRef, useState } from "react";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 import { Col, Nav, Row, Tab } from "react-bootstrap";
-import defaultImage from "../../assets/images/user.jpg";
 import PersonalInformation from "./Tabs/personaInformation";
 import AddressInformation from "./Tabs/addressInformation";
+import UserProfileImage from "../../components/UserProfileImage";
+import CustomBreadCrumb from "../../components/CustomBreadCrumb";
 
 export default function Profile() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
 
-  const handleGetProfileData = async () => {};
+  const handleGetProfileData = async () => { };
   const inputFile = useRef(null);
   return (
     <>
       <NavBarComp />
+      <CustomBreadCrumb title={"Minha Conta"} />
       <div className="d-flex px-5 py-2">
         <Col>
           <Col sm={3} className="text-center">
-            <img
-              className="img-user-profile"
-              alt="profile-image"
-              src={defaultImage}
-              onClick={() => {
-                inputFile.current.click();
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.cursor = "pointer";
-              }}
-            />
-            <input
-              type="file"
-              id="file"
-              ref={inputFile}
-              style={{ display: "none" }}
-            />
-            <div className="bold-card-title mb-4">Eduardo de Ramos Eli</div>
+            <UserProfileImage />
+            <div className="bold-card-title mb-4 mt-2">Eduardo de Ramos Eli</div>
           </Col>
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
               <Col sm={3}>
-                <Nav variant="pills" className="flex-column">
+                <Nav variant="pills" className="flex-column mb-4">
                   <Nav.Item>
                     <Nav.Link eventKey="first">Informações Pessoais</Nav.Link>
                   </Nav.Item>

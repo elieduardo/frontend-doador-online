@@ -60,7 +60,7 @@ export default function PersonalInformation() {
           </Form.Group>
         </Col>
         <Row>
-          <Col className="mb-3">
+          <Col md={6} sm={12} className="mb-3">
             <Form.Group as={Col} controlId="validationFormik03">
               <Form.Label>Cpf</Form.Label>
               <MaskedFormControl
@@ -112,7 +112,7 @@ export default function PersonalInformation() {
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col className="mb-3">
+          <Col md={12} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Celular</Form.Label>
               <MaskedFormControl

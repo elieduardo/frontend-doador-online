@@ -70,7 +70,6 @@ export default function AddressInformation() {
   return (
     <div className="mx-5">
       <div className="title-md mb-4">Dados Residenciais</div>
-
       <Form noValidate onSubmit={handleSubmit}>
         <Col lg={3} className="mb-3">
           <Form.Group as={Col} controlId="validationFormik03">
