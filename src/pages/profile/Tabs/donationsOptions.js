@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 export default function DonationsOptions() {
     const [isLoading, setIsLoading] = useState(false);
@@ -142,6 +142,22 @@ export default function DonationsOptions() {
                         />
                     </Form.Group>
                 </Row>
+                <div className="pt-3 d-flex justify-content-center">
+                    <Button className="px-4" type="submit" disabled={isLoading}>
+                        {isLoading ? (
+                            <>
+                                Aguarde
+                                <span
+                                    class="ms-1 spinner-border spinner-border-sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
+                            </>
+                        ) : (
+                            "Salvar"
+                        )}
+                    </Button>
+                </div>
             </Form>
         </div>
     );
