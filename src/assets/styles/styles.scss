@@ -347,4 +347,10 @@ $theme-colors: (
   cursor: pointer;
 }
 
+.img-details-campaign {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
 @import "/node_modules/bootstrap//scss//bootstrap";
