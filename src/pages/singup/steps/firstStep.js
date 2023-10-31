@@ -44,8 +44,8 @@ export default function FirstStep({ errors, values, handleChange }) {
   return (
     <Formik initialValues={values}>
       {({ handleSubmit }) => (
-        <div className="px-2 justify-content-center d-flex">
-          
+        <div className="my-5 px-2 justify-content-center d-flex">
+          <Col lg={5} md={6} sm={12} xs={12}>
             <Form noValidate onSubmit={handleSubmit}>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="validationFormik03">
@@ -178,6 +178,7 @@ export default function FirstStep({ errors, values, handleChange }) {
                 </Form.Group>
               </Row>
             </Form>
+          </Col>
         </div>
       )}
     </Formik>

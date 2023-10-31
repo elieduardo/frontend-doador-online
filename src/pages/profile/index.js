@@ -6,6 +6,7 @@ import PersonalInformation from "./Tabs/personaInformation";
 import AddressInformation from "./Tabs/addressInformation";
 import UserProfileImage from "../../components/UserProfileImage";
 import CustomBreadCrumb from "../../components/CustomBreadCrumb";
+import DonationsOptions from "./Tabs/donationsOptions";
 
 export default function Profile() {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,17 +35,23 @@ export default function Profile() {
                     <Nav.Link eventKey="second">Dados Residenciais</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="third">Histórico de Doações</Nav.Link>
+                    <Nav.Link eventKey="third">Opções de Doações</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="fourth">Histórico de Doações</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Col>
               <Col>
-                <Tab.Content className="mt-lg-n10">
+                <Tab.Content className="mt-lg-n13">
                   <Tab.Pane eventKey="first">
                     <PersonalInformation />
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
                     <AddressInformation />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="third">
+                    <DonationsOptions />
                   </Tab.Pane>
                 </Tab.Content>
               </Col>

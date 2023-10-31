@@ -43,7 +43,7 @@ export default function PersonalInformation() {
     <div className="mx-5">
       <div className="title-md mb-4">Informações Pessoais</div>
       <Form noValidate onSubmit={handleSubmit}>
-        <Col className="mb-3">
+        <Col lg={12} md={12} sm={12} className="mb-3">
           <Form.Group as={Col} controlId="validationFormik03">
             <Form.Label>Nome Completo</Form.Label>
             <Form.Control
@@ -60,7 +60,7 @@ export default function PersonalInformation() {
           </Form.Group>
         </Col>
         <Row>
-          <Col md={6} sm={12} className="mb-3">
+          <Col lg={6} md={6} sm={12} className="mb-3">
             <Form.Group as={Col} controlId="validationFormik03">
               <Form.Label>Cpf</Form.Label>
               <MaskedFormControl
@@ -71,7 +71,7 @@ export default function PersonalInformation() {
               />
             </Form.Group>
           </Col>
-          <Col className="mb-3">
+          <Col lg={3} md={3} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Data de Nascimento</Form.Label>
               <Form.Control
@@ -87,7 +87,7 @@ export default function PersonalInformation() {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
-          <Col className="mb-3">
+          <Col lg={3} md={3} sm={12} className="mb-3">
             <Form.Group as={Col} controlId="validationGender">
               <Form.Label>Gênero</Form.Label>
               <Form.Group as={Col} controlId="validationGender">
@@ -112,7 +112,7 @@ export default function PersonalInformation() {
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col md={12} sm={12} className="mb-3">
+          <Col lg={12} md={12} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Celular</Form.Label>
               <MaskedFormControl
@@ -129,7 +129,7 @@ export default function PersonalInformation() {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
-          <Col className="mb-3">
+          <Col lg={12} md={12} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Email</Form.Label>
               <Form.Control

@@ -71,7 +71,7 @@ export default function AddressInformation() {
     <div className="mx-5">
       <div className="title-md mb-4">Dados Residenciais</div>
       <Form noValidate onSubmit={handleSubmit}>
-        <Col lg={3} className="mb-3">
+        <Col lg={3} md={3} sm={12} className="mb-3">
           <Form.Group as={Col} controlId="validationFormik03">
             <Form.Label>Cep</Form.Label>
             <MaskedFormControl
@@ -94,7 +94,7 @@ export default function AddressInformation() {
           </Form.Group>
         </Col>
         <Row>
-          <Col className="mb-3">
+          <Col lg={7} md={12} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Rua</Form.Label>
               <Form.Control
@@ -111,7 +111,7 @@ export default function AddressInformation() {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
-          <Col lg={5} className="mb-3">
+          <Col lg={5} md={12} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Bairro</Form.Label>
               <Form.Control
@@ -130,7 +130,7 @@ export default function AddressInformation() {
           </Col>
         </Row>
         <Row>
-          <Col lg={3} className="mb-3">
+          <Col lg={3} md={12} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Número</Form.Label>
               <Form.Control
@@ -147,7 +147,7 @@ export default function AddressInformation() {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
-          <Col className="mb-3">
+          <Col lg={9} md={12} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Complemento</Form.Label>
               <Form.Control
@@ -166,7 +166,7 @@ export default function AddressInformation() {
           </Col>
         </Row>
         <Row>
-          <Col lg={6} className="mb-3">
+          <Col lg={6} md={12} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Cidade</Form.Label>
               <Form.Control
@@ -183,7 +183,7 @@ export default function AddressInformation() {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
-          <Col className="mb-3">
+          <Col lg={6} md={12} sm={12} className="mb-3">
             <Form.Group as={Col}>
               <Form.Label>Estado</Form.Label>
               <Form.Control
