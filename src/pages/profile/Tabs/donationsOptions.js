@@ -40,7 +40,7 @@ export default function DonationsOptions() {
     const { handleChange, values, errors, handleSubmit } = formik;
 
     return (
-        <div className="mx-5">
+        <div className="mx-lg-5 px-2">
             <div className="title-md mb-4">Informações Pessoais</div>
             <Form noValidate onSubmit={handleSubmit}>
                 <Row>

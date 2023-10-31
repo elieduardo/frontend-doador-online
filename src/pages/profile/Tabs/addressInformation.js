@@ -68,7 +68,7 @@ export default function AddressInformation() {
   };
 
   return (
-    <div className="mx-5">
+    <div className="mx-lg-5 px-2">
       <div className="title-md mb-4">Dados Residenciais</div>
       <Form noValidate onSubmit={handleSubmit}>
         <Col lg={3} md={3} sm={12} className="mb-3">

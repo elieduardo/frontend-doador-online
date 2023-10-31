@@ -40,7 +40,7 @@ export default function PersonalInformation() {
   const { handleChange, values, errors, setFieldValue, handleSubmit } = formik;
 
   return (
-    <div className="mx-5">
+    <div className="mx-lg-5 px-2">
       <div className="title-md mb-4">Informações Pessoais</div>
       <Form noValidate onSubmit={handleSubmit}>
         <Col lg={12} md={12} sm={12} className="mb-3">
