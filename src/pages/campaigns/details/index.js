@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import NavBarComp from "../../../components/NavBarComp";
 import CustomBreadCrumb from "../../../components/CustomBreadCrumb";
@@ -6,6 +6,11 @@ import Footer from "../../../components/Footer";
 import FirstImage from "../../../assets/images/foto-1.avif"
 export default function CampaignDetails() {
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <>
             <NavBarComp />
