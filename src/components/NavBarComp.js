@@ -43,7 +43,7 @@ export default function NavBarComp({ onlyLogo = false }) {
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Container className="d-flex justify-content-center">
             <Nav>
-              <Nav.Link href="#Campanhas" className="text-center">
+              <Nav.Link className="text-center" onClick={() => navigate("/campaigns")}>
                 Campanhas
               </Nav.Link>
               <Nav.Link href="#Doacoes" className="text-center">

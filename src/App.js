@@ -7,6 +7,7 @@ import PasswordForget from "./pages/password-forget";
 import PasswordRecovery from "./pages/password-recovery";
 import QrCode from "./pages/qrcode";
 import Profile from "./pages/profile";
+import Campaigns from "./pages/campaigns";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/password-forget" element={<PasswordForget />} />
         <Route path="/password-recovery/:email/:token" element={<PasswordRecovery />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/campaigns" element={<Campaigns />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
