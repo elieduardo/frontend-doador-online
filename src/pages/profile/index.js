@@ -7,6 +7,7 @@ import AddressInformation from "./Tabs/addressInformation";
 import UserProfileImage from "../../components/UserProfileImage";
 import CustomBreadCrumb from "../../components/CustomBreadCrumb";
 import DonationsOptions from "./Tabs/donationsOptions";
+import HistoryDonations from "./Tabs/historyDonations";
 
 export default function Profile() {
   const [isLoading, setIsLoading] = useState(false);
@@ -52,6 +53,9 @@ export default function Profile() {
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
                     <DonationsOptions />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="fourth">
+                    <HistoryDonations />
                   </Tab.Pane>
                 </Tab.Content>
               </Col>
