@@ -19,13 +19,13 @@ export default function Profile() {
     <>
       <NavBarComp />
       <CustomBreadCrumb title={"Minha Conta"} />
-      <div className="d-flex px-5 py-2">
+      <div className="px-5 py-2">
         <Col>
           <Col sm={3} className="text-center">
             <UserProfileImage />
             <div className="bold-card-title mb-4 mt-2">Eduardo de Ramos Eli</div>
           </Col>
-          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+          <Tab.Container id="left-tabs" defaultActiveKey="first">
             <Row>
               <Col sm={3}>
                 <Nav variant="pills" className="flex-column mb-4">

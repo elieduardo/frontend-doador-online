@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBarComp from "../../../components/NavBarComp";
 import Footer from "../../../components/Footer";
 import CustomBreadCrumb from "../../../components/CustomBreadCrumb";
@@ -32,6 +32,10 @@ export default function Donator() {
         selectAllRowsItem: true,
         selectAllRowsItemText: 'Todas',
     };
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     return (
         <>
