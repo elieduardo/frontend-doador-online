@@ -293,6 +293,7 @@ export default function Donators() {
                         pagination
                         onRowClicked={(row) => navigate(`${row.id}`)}
                         paginationComponentOptions={paginationComponentOptions}
+                        className="pointer"
                     />
                 </div>
                 <Footer />
