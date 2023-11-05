@@ -41,12 +41,14 @@ export default function Donator() {
         <>
             <NavBarComp />
             <CustomBreadCrumb title={"Histórico"} whithPb={false} />
-            <Row className="mb-4 px-5">
-                <Col sm={12} md={12} lg={6} className="title-sm text-lg-start text-center">Joana Cardoso Vieira</Col>
-                <Col sm={12} md={12} lg={6} className="text-lg-end text-center mt-4 mt-lg-0">
-                    <ModalDonation />
-                </Col>
-            </Row>
+            <div className="mb-4 px-5">
+                <Row>
+                    <Col sm={12} md={12} lg={6} className="title-sm text-lg-start text-center">Joana Cardoso Vieira</Col>
+                    <Col sm={12} md={12} lg={6} className="text-lg-end text-center mt-4 mt-lg-0">
+                        <ModalDonation />
+                    </Col>
+                </Row>
+            </div>
             <div className="px-5 pb-2">
                 <div className="pt-3">
                     <DataTable

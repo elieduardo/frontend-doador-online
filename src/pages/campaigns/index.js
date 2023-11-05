@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
-import CustomBreadCrumb from "../../components/CustomBreadCrumb";
 import ItemCampanha from "../../components/ItemCampaign";
 
 import FirstImage from "../../assets/images/foto-1.avif";
@@ -12,13 +11,22 @@ import FifthImage from "../../assets/images/foto-5.avif";
 import SixthImage from "../../assets/images/foto-6.avif";
 import SeventhImage from "../../assets/images/foto-7.avif";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import ModalCampaign from "./modalCampaign";
 
 export default function Campaigns() {
     const [isLoading, setIsLoading] = useState(false);
     return (
         <>
             <NavBarComp />
-            <CustomBreadCrumb title={"Campanhas"} />
+            <div className={`px-5 pt-3`}>
+                <Row>
+                    <Col sm={12} md={12} lg={6} className="title-sm text-lg-start text-center">Campanhas</Col>
+                    <Col sm={12} md={12} lg={6} className="text-lg-end text-center mt-4 mt-lg-0">
+                        <ModalCampaign />
+                    </Col>
+                </Row>
+                <div className="pb-3 pb-4 mt-3 border-top" />
+            </div>
             <div className="px-5 py-2">
                 <Row className="mb-4">
                     <Col lg={7} sm={12} className="mt-lg-0 mt-3">
