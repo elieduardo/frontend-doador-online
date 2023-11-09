@@ -112,6 +112,14 @@ $theme-colors: (
   text-overflow: ellipsis;
 }
 
+.bold-card-title-lg {
+  font-size: 20px;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .age-card-campaign {
   font-weight: 300;
   opacity: 70%;
@@ -144,6 +152,18 @@ $theme-colors: (
   background-color: white !important;
   border-color: white !important;
   padding: 0.5rem 4rem !important;
+}
+
+.img-card-promotion {
+  height: 38vh !important;
+  object-fit: contain;
+  border-radius: 20px 20px 0 0;
+}
+
+.description-card-promotion {
+  height: 100px;
+  font-size: 14px;
+  text-overflow: ellipsis;
 }
 
 .img-card-hospital {
@@ -326,14 +346,14 @@ $theme-colors: (
 
 .img-user-profile-content {
   position: relative;
-  display: inline-block 
+  display: inline-block;
 }
 
 .user-profile-content {
   border-radius: 50%;
   overflow: hidden;
   width: 150px;
-  display: inline-block
+  display: inline-block;
 }
 
 .user-strip-alter {

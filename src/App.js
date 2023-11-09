@@ -11,6 +11,7 @@ import Campaigns from "./pages/campaigns";
 import CampaignDetails from "./pages/campaigns/details";
 import Donators from "./pages/donators";
 import Donator from "./pages/donators/details";
+import Promotions from "./pages/promotions";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/campaigns/:id" element={<CampaignDetails />} />
         <Route path="/donators" element={<Donators />} />
         <Route path="/donators/:id" element={<Donator />} />
+        <Route path="/promotions" element={<Promotions />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
