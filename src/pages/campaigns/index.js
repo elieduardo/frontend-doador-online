@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 import ItemCampanha from "../../components/ItemCampaign";
@@ -15,6 +15,10 @@ import ModalCampaign from "./modalCampaign";
 
 export default function Campaigns() {
     const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        window.scroll(0, 0);
+      }, []);
+    
     return (
         <>
             <NavBarComp />

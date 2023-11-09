@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <div className="container">
       <footer className="px-3 py-4 mt-5 border-top">
-      <div className="d-flex justify-content-center pointer">
+        <div className="d-flex justify-content-center pointer">
           <img
             width={70}
             height={70}
@@ -19,27 +19,34 @@ export default function Footer() {
         </div>
         <Row className="d-flex justify-content-center my-4">
           <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
-            <a href="#" className="nav-link p-0 text-muted">
+            <a
+              className="nav-link p-0 text-muted pointer"
+              onClick={() => navigate("/campaigns")}
+            >
               Campanhas
             </a>
           </Col>
           <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
-            <a href="#" className="nav-link p-0 text-muted">
-              Doações
+            <a
+              className="nav-link p-0 text-muted pointer"
+              onClick={() => navigate("/promotions")}
+            >
+              Promoções
             </a>
           </Col>
           <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
-            <a href="#" className="nav-link p-0 text-muted">
-              Rede de Apoio
+            <a
+              className="nav-link p-0 text-muted pointer"
+              onClick={() => navigate("/contact")}
+            >
+              Contato
             </a>
           </Col>
           <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
-            <a href="#" className="nav-link p-0 text-muted">
-              Parceiros
-            </a>
-          </Col>
-          <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
-            <a href="#" className="nav-link p-0 text-muted">
+            <a
+              className="nav-link p-0 text-muted pointer"
+              onClick={() => navigate("/about-us")}
+            >
               Sobre nós
             </a>
           </Col>

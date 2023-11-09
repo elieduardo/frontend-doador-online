@@ -1,8 +1,10 @@
 import React from "react";
 import bannerImage from "../assets/images/home-2.png";
 import { Button, Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
 export default function OrgansDonationBanner() {
+  const navigate = useNavigate();
   return (
     <div className="px-lg-6 px-3 pb-lg-6 pb-5">
       <Row>
@@ -36,8 +38,8 @@ export default function OrgansDonationBanner() {
           </div>
         </Col>
         <Col className="pt-3 pt-lg-5 px-5 d-flex justify-content-center">
-          <Button variant="outline-primary">LER MAIS</Button>
-          <Button className="ml-2">JUNTAR-SE</Button>
+          <Button variant="outline-primary"  onClick={() => {navigate("organs-donation")}}>LER MAIS</Button>
+          <Button className="ml-2" onClick={() => {navigate("singup")}} >JUNTAR-SE</Button>
         </Col>
       </Row>
     </div>

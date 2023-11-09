@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { FormikWizard } from "formik-wizard-form";
 import NavBarComp from "../../components/NavBarComp";
@@ -11,8 +11,12 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export default function SingUp() {
-  const [isLoading, setIsLoading] = useState(false);  
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   const handlerCreateUser = async (values) => {
     setIsLoading(true);

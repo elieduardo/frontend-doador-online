@@ -182,11 +182,13 @@ $theme-colors: (
 .img-fluid-85 {
   max-width: 85%;
   height: auto;
+  object-fit: contain;
 }
 
 .img-fluid-45 {
   max-width: 50%;
   height: auto;
+  object-fit: contain;
 }
 
 .arrow-carrousel-black {

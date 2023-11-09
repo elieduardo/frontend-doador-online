@@ -8,7 +8,6 @@ import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
 import { getFirstName, isAuthenticated, logout } from "../services/auth";
 
-//fa FaUserCircle
 export default function NavBarComp({ onlyLogo = false }) {
   const navigate = useNavigate();
   if (onlyLogo)
@@ -43,19 +42,28 @@ export default function NavBarComp({ onlyLogo = false }) {
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Container className="d-flex justify-content-center">
             <Nav>
-              <Nav.Link className="text-center" onClick={() => navigate("/campaigns")}>
+              <Nav.Link
+                className="text-center"
+                onClick={() => navigate("/campaigns")}
+              >
                 Campanhas
               </Nav.Link>
-              <Nav.Link href="#Doacoes" className="text-center">
-                Doações
+              <Nav.Link
+                className="text-center"
+                onClick={() => navigate("/promotions")}
+              >
+                Promoções
               </Nav.Link>
-              <Nav.Link href="#RedeApoio" className="text-center">
-                Rede de Apoio
+              <Nav.Link
+                className="text-center"
+                onClick={() => navigate("/contact")}
+              >
+                Contato
               </Nav.Link>
-              <Nav.Link href="#Parceiros" className="text-center">
-                Parceiros
-              </Nav.Link>
-              <Nav.Link href="#SobreNos" className="text-center">
+              <Nav.Link
+                className="text-center"
+                onClick={() => navigate("/about-us")}
+              >
                 Sobre nós
               </Nav.Link>
             </Nav>
@@ -75,7 +83,9 @@ export default function NavBarComp({ onlyLogo = false }) {
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => navigate("/profile")}>Minha Conta</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate("/profile")}>
+                    Minha Conta
+                  </Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
                       logout();
