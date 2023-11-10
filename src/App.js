@@ -14,6 +14,7 @@ import Donator from "./pages/donators/details";
 import Promotions from "./pages/promotions";
 import AboutUs from "./pages/about-us";
 import OrgansDonations from "./pages/organs-donation";
+import Contact from "./pages/contact";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/organs-donation" element={<OrgansDonations />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

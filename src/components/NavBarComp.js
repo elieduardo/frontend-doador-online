@@ -56,6 +56,12 @@ export default function NavBarComp({ onlyLogo = false }) {
               </Nav.Link>
               <Nav.Link
                 className="text-center"
+                onClick={() => navigate("/donators")}
+              >
+                Doadores
+              </Nav.Link>
+              <Nav.Link
+                className="text-center"
                 onClick={() => navigate("/contact")}
               >
                 Contato
