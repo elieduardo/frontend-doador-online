@@ -39,6 +39,7 @@ export default function AddressInformation() {
     onSubmit: (values) => {
       console.log(values);
     },
+    validateOnChange: false
   });
 
   const { handleChange, values, errors, setFieldValue, handleSubmit } = formik;

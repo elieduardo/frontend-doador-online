@@ -15,14 +15,21 @@ import Promotions from "./pages/promotions";
 import AboutUs from "./pages/about-us";
 import OrgansDonations from "./pages/organs-donation";
 import Contact from "./pages/contact";
-
+import PrivateRoutes from "./helpers/PrivateRoutes";
 export default function App() {
   return (
     <Router>
       <Routes>
+        <Route
+          path="/qrcode"
+          element={
+            <PrivateRoutes>
+              <Route element={<QrCode />} />
+            </PrivateRoutes>
+          }
+        />
         <Route exact path="/" element={<Home />} />
         <Route path="/singin" element={<SingIn />} />
-        <Route path="/qrcode" element={<QrCode />} />
         <Route path="/singup" element={<SingUp />} />
         <Route path="/password-forget" element={<PasswordForget />} />
         <Route path="/password-recovery/:email/:token" element={<PasswordRecovery />} />

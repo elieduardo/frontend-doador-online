@@ -5,19 +5,8 @@ import { Col, Form, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export const validationSchemaThirdStep = yup.object().shape({
-  bloodType: yup.string().when("bloodDonator", {
-    is: true,
-    then(schema) {
-      return schema.required("É necessário preencher o campo Tipo Sanguíneo.");
-    },
-  }),
-  rhFactor: yup.string().when("bloodDonator", {
-    is: true,
-    then(schema) {
-      return schema.required("É necessário preencher o campo Fator Rh.");
-    },
-  }),
-
+  bloodType: yup.string().required("É necessário preencher o campo Tipo Sanguíneo."),
+  rhFactor: yup.string().required("É necessário preencher o campo Fator Rh."),
   terms: yup
     .bool()
     .required()
@@ -32,7 +21,7 @@ export default function ThirdStep({ errors, values, handleChange }) {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
-  
+
   return (
     <Formik initialValues={values}>
       {({ handleSubmit }) => (
@@ -73,56 +62,6 @@ export default function ThirdStep({ errors, values, handleChange }) {
                   {errors.bloodDonator}
                 </Form.Control.Feedback>
               </Row>
-              {values.bloodDonator && (
-                <>
-                  <Row className="mb-3">
-                    <Form.Group as={Col} controlId="validationBloodType">
-                      <Form.Label>Tipo Sanguíneo</Form.Label>
-                      <Form.Group as={Col} controlId="validationBloodType">
-                        <Form.Select
-                          aria-label="Selecione"
-                          name="bloodType"
-                          value={values.bloodType}
-                          id="bloodType"
-                          onChange={handleChange}
-                          isInvalid={!!errors.bloodType}
-                        >
-                          <option value="">Selecione</option>
-                          <option value="1">A</option>
-                          <option value="2">B</option>
-                          <option value="3">AB</option>
-                          <option value="4">O</option>
-                        </Form.Select>
-                        <Form.Control.Feedback type="invalid">
-                          {errors.bloodType}
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group as={Col} controlId="validationRhFactor">
-                      <Form.Label>Fator Rh</Form.Label>
-                      <Form.Group as={Col} controlId="validationRhFactor">
-                        <Form.Select
-                          aria-label="Selecione"
-                          name="rhFactor"
-                          value={values.rhFactor}
-                          id="rhFactor"
-                          onChange={handleChange}
-                          isInvalid={!!errors.rhFactor}
-                        >
-                          <option value="">Selecione</option>
-                          <option value="1">+</option>
-                          <option value="2">-</option>
-                        </Form.Select>
-                        <Form.Control.Feedback type="invalid">
-                          {errors.rhFactor}
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                    </Form.Group>
-                  </Row>
-                </>
-              )}
               <Row>
                 <Form.Group className="mb-3">
                   <Form.Check
@@ -136,6 +75,52 @@ export default function ThirdStep({ errors, values, handleChange }) {
                     feedbackType="invalid"
                     id="marrowDonator"
                   />
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col} controlId="validationBloodType">
+                  <Form.Label>Tipo Sanguíneo</Form.Label>
+                  <Form.Group as={Col} controlId="validationBloodType">
+                    <Form.Select
+                      aria-label="Selecione"
+                      name="bloodType"
+                      value={values.bloodType}
+                      id="bloodType"
+                      onChange={handleChange}
+                      isInvalid={!!errors.bloodType}
+                    >
+                      <option value="">Selecione</option>
+                      <option value="1">A</option>
+                      <option value="2">B</option>
+                      <option value="3">AB</option>
+                      <option value="4">O</option>
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.bloodType}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col} controlId="validationRhFactor">
+                  <Form.Label>Fator Rh</Form.Label>
+                  <Form.Group as={Col} controlId="validationRhFactor">
+                    <Form.Select
+                      aria-label="Selecione"
+                      name="rhFactor"
+                      value={values.rhFactor}
+                      id="rhFactor"
+                      onChange={handleChange}
+                      isInvalid={!!errors.rhFactor}
+                    >
+                      <option value="">Selecione</option>
+                      <option value="1">+</option>
+                      <option value="2">-</option>
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.rhFactor}
+                    </Form.Control.Feedback>
+                  </Form.Group>
                 </Form.Group>
               </Row>
               <Row className="mb-3">

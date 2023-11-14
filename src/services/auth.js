@@ -43,6 +43,15 @@ function isAuthenticated() {
   }
 }
 
+
+function isHospital() {
+  return false;
+}
+
+function isPartner() {
+  return false;
+}
+
 function logout() {
   window.location.reload();
   localStorage.clear();
@@ -62,4 +71,4 @@ function getFirstName() {
   }
 }
 
-export { postAuthentication, isAuthenticated, logout, getFirstName };
+export { postAuthentication, isAuthenticated, isHospital, isPartner, logout, getFirstName };

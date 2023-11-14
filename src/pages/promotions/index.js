@@ -9,6 +9,7 @@ import FourthImage from "../../assets/images/logo-goole.png";
 import { Button, Col, Row } from "react-bootstrap";
 import ModalPromotion from "./modalPromotion";
 import ItemPromotion from "../../components/ItemPromotion";
+import { isAuthenticated, isPartner } from "../../services/auth";
 
 export default function Promotions() {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,14 +26,15 @@ export default function Promotions() {
           >
             Promoções
           </Col>
-          <Col
-            sm={12}
-            md={12}
-            lg={6}
-            className="text-lg-end text-center mt-4 mt-lg-0"
-          >
-            <ModalPromotion />
-          </Col>
+          {(isAuthenticated() && isPartner()) &&
+            <Col
+              sm={12}
+              md={12}
+              lg={6}
+              className="text-lg-end text-center mt-4 mt-lg-0"
+            >
+              <ModalPromotion />
+            </Col>}
         </Row>
         <div className="pb-3 pb-4 mt-3 border-top" />
       </div>

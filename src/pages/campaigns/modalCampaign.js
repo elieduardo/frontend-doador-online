@@ -6,7 +6,8 @@ import {
 } from "react-icons/md";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Alert, Col, Form } from 'react-bootstrap';
+import { Alert, Col, Form, Row } from 'react-bootstrap';
+import { isAuthenticated } from '../../services/auth';
 
 export default function ModalCampaign() {
     const [show, setShow] = useState(false);
@@ -36,6 +37,28 @@ export default function ModalCampaign() {
     });
 
     const { handleChange, values, errors, handleSubmit } = formik;
+
+    if (!isAuthenticated()) {
+        return (
+            <>
+                <Button variant="primary" onClick={handleShow}>
+                    Nova Campanha <MdAddCircleOutline />
+                </Button>
+                <Modal show={show} onHide={handleClose} animation={false}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Adicionar Nova Campanha</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Alert>É necessário ter uma conta e estar logado para criar uma campanha.</Alert>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="outline-secondary" onClick={handleClose}>
+                            Fechar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>)
+    }
 
     return (
         <>

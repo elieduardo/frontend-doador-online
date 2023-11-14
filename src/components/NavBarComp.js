@@ -6,7 +6,7 @@ import logo from "../assets/images/logo.png";
 import { Button, Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
-import { getFirstName, isAuthenticated, logout } from "../services/auth";
+import { getFirstName, isAuthenticated, isHospital, logout } from "../services/auth";
 
 export default function NavBarComp({ onlyLogo = false }) {
   const navigate = useNavigate();
@@ -54,12 +54,13 @@ export default function NavBarComp({ onlyLogo = false }) {
               >
                 Promoções
               </Nav.Link>
-              <Nav.Link
-                className="text-center"
-                onClick={() => navigate("/donators")}
-              >
-                Doadores
-              </Nav.Link>
+              {(isAuthenticated() && isHospital()) &&
+                <Nav.Link
+                  className="text-center"
+                  onClick={() => navigate("/donators")}
+                >
+                  Doadores
+                </Nav.Link>}
               <Nav.Link
                 className="text-center"
                 onClick={() => navigate("/contact")}

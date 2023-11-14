@@ -1,6 +1,5 @@
-import { isAuthenticated } from "services/auth";
-
-const { Outlet, Navigate } = require("react-router-dom");
+import { Outlet, Navigate } from "react-router-dom";
+import { isAuthenticated } from "../services/auth";
 
 const PrivateRoutes = () => {
   const user = isAuthenticated();

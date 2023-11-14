@@ -12,13 +12,14 @@ import SixthImage from "../../assets/images/foto-6.avif";
 import SeventhImage from "../../assets/images/foto-7.avif";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import ModalCampaign from "./modalCampaign";
+import { isAuthenticated, isPartner } from "../../services/auth";
 
 export default function Campaigns() {
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         window.scroll(0, 0);
-      }, []);
-    
+    }, []);
+
     return (
         <>
             <NavBarComp />
