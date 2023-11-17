@@ -6,18 +6,22 @@ import {
 } from "react-icons/md";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Alert, Col, Form, Row } from 'react-bootstrap';
+import { Alert, Col, Form } from 'react-bootstrap';
 import { isAuthenticated } from '../../services/auth';
+import { toast } from 'react-toastify';
+import { createCampaign } from '../../services/campaignServices';
 
-export default function ModalCampaign() {
+export default function ModalCampaign({ handleGetCampaigns }) {
     const [show, setShow] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const schema = yup.object().shape({
         name: yup.string().required("É necessário preencher o campo Nome."),
-        hospital: yup.string().required("É necessário preencher o campo Hospital."),
+        birthDate: yup.string().required("É necessário preencher o campo Data de Nascimento."),
+        donationPlace: yup.string().required("É necessário preencher o campo Hospital."),
         bloodType: yup.string().required("É necessário preencher o campo Tipo Sanguíneo."),
         rhFactor: yup.string().required("É necessário preencher o campo Fator Rh."),
     });
@@ -25,18 +29,39 @@ export default function ModalCampaign() {
     const formik = useFormik({
         initialValues: {
             name: "",
-            hospital: "",
+            birthDate: "",
+            donationPlace: "",
             image: "",
             bloodType: "",
             rhFactor: ""
         },
         validationSchema: schema,
         onSubmit: (values) => {
-            console.log(values);
+            handleCreateCampaign(values);
         },
     });
 
     const { handleChange, values, errors, handleSubmit } = formik;
+
+    const handleCreateCampaign = async (values) => {
+        setIsLoading(true);
+        await createCampaign(values)
+            .then(() => {
+                toast.success("Campanha criada com sucesso!", {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                });
+                handleGetCampaigns();
+                handleClose();
+            })
+            .catch((e) => {
+                toast.error(`${e.status} - ${e.messages}`, {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                });
+            })
+            .finally(() => setIsLoading(false));
+    }
 
     if (!isAuthenticated()) {
         return (
@@ -88,6 +113,22 @@ export default function ModalCampaign() {
                             </Form.Group>
                         </Col>
                         <Col className="mb-3">
+                            <Form.Group as={Col}>
+                                <Form.Label>Data de Nascimento</Form.Label>
+                                <Form.Control
+                                    type="date"
+                                    placeholder="birthDate"
+                                    name="birthDate"
+                                    value={values.birthDate}
+                                    onChange={handleChange}
+                                    isInvalid={!!errors.birthDate}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.birthDate}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                        <Col className="mb-3">
                             <Form.Group as={Col} controlId="validationFormik03">
                                 <Form.Label>Imagem</Form.Label>
                                 <Form.Control
@@ -105,13 +146,13 @@ export default function ModalCampaign() {
                                 <Form.Control
                                     type="text"
                                     placeholder="Hospital"
-                                    name="hospital"
-                                    value={values.hospital}
+                                    name="donationPlace"
+                                    value={values.donationPlace}
                                     onChange={handleChange}
-                                    isInvalid={!!errors.hospital}
+                                    isInvalid={!!errors.donationPlace}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.hospital}
+                                    {errors.donationPlace}
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Col>
@@ -162,16 +203,27 @@ export default function ModalCampaign() {
                             </Form.Group>
                         </Col>
                         <Alert>A pontuação será creditada automaticamente, de acordo com o valor regente.</Alert>
+                        <Modal.Footer>
+                            <Button variant="outline-secondary" disabled={isLoading} onClick={handleClose}>
+                                Fechar
+                            </Button>
+                            <Button variant="primary" type='submit' disabled={isLoading}>
+                                {isLoading ? (
+                                    <>
+                                        Aguarde
+                                        <span
+                                            class="ms-1 spinner-border spinner-border-sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        />
+                                    </>
+                                ) : (
+                                    "Salvar"
+                                )}
+                            </Button>
+                        </Modal.Footer>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="outline-secondary" onClick={handleClose}>
-                        Fechar
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Salvar
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </>
     );

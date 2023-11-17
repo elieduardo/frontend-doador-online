@@ -6,7 +6,7 @@ import logo from "../assets/images/logo.png";
 import { Button, Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
-import { getFirstName, isAuthenticated, isHospital, logout } from "../services/auth";
+import { getFirstName, isAuthenticated, isDonator, isHospital, logout } from "../services/auth";
 
 export default function NavBarComp({ onlyLogo = false }) {
   const navigate = useNavigate();
@@ -84,9 +84,12 @@ export default function NavBarComp({ onlyLogo = false }) {
                   className="d-flex align-items-center"
                 >
                   <FaUserCircle className="me-2" />
+
                   <div className="mx-2">
                     <div>{getFirstName()}</div>
-                    <div className="points-text">150 pontos</div>
+                    {isDonator() &&
+                      <div className="points-text">150 pontos</div>
+                    }
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -105,10 +108,10 @@ export default function NavBarComp({ onlyLogo = false }) {
             </div>
           ) : (
             <div className="d-flex justify-content-center justify-content-lg-end mt-lg-0 mt-4">
-              <Button variant="none" href="singin">
+              <Button variant="none" onClick={() => navigate("/singin")}>
                 Login
               </Button>
-              <Button variant="primary" className="px-5" href="singup">
+              <Button variant="primary" className="px-5" onClick={() => navigate("/singup")}>
                 Cadastro
               </Button>
             </div>

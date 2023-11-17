@@ -1,3 +1,4 @@
+import { FaAngleDoubleRight } from "react-icons/fa";
 import { userStorageKey } from "../constants/values";
 import baseAxiosPublic from "./config/baseAxiosPublic";
 
@@ -43,13 +44,36 @@ function isAuthenticated() {
   }
 }
 
-
 function isHospital() {
-  return false;
+  try {
+    const token = localStorage.getItem(userStorageKey);
+    const { user } = JSON.parse(token);
+    if (user.role) {
+      return user.role === "Hospital";
+    } else {
+      return false;
+    }
+  } catch {
+    return false;
+  }
 }
 
 function isPartner() {
   return false;
+}
+
+function isDonator() {
+  try {
+    const token = localStorage.getItem(userStorageKey);
+    const { user } = JSON.parse(token);
+    if (user.role) {
+      return user.role === "Donator";
+    } else {
+      return false;
+    }
+  } catch {
+    return false;
+  }
 }
 
 function logout() {
@@ -71,4 +95,19 @@ function getFirstName() {
   }
 }
 
-export { postAuthentication, isAuthenticated, isHospital, isPartner, logout, getFirstName };
+function getUserId() {
+  try {
+    const token = localStorage.getItem(userStorageKey);
+    const { user } = JSON.parse(token);
+    if (user.jti) {
+      return user.jti;
+    } else {
+      return "";
+    }
+  } catch {
+    return "";
+  }
+}
+
+
+export { postAuthentication, isAuthenticated, isDonator, isHospital, isPartner, logout, getFirstName, getUserId };

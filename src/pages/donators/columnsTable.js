@@ -12,7 +12,7 @@ function getIconDonatorRow(value) {
 export const columns = [
     {
         name: 'Nome',
-        selector: row => row.nome,
+        selector: row => row.name,
         sortable: true,
     },
     {
@@ -22,27 +22,27 @@ export const columns = [
     },
     {
         name: 'Data Nascimento',
-        selector: row => row.dataNascimento,
+        selector: row => row.birthDate,
         sortable: true,
     },
     {
         name: 'Tipo Sanguíneo',
-        selector: row => row.tipoSanguineo,
+        selector: row => row.bloodType,
         center: true
     },
     {
         name: 'Doador Sangue',
-        selector: row => getIconDonatorRow(row.ehDoadorSangue),
+        selector: row => getIconDonatorRow(row.isBloodDonator),
         center: true
     },
     {
         name: 'Doador Medula',
-        selector: row => getIconDonatorRow(row.ehDoadorMedula),
+        selector: row => getIconDonatorRow(row.isMarrowDonator),
         center: true
     },
     {
         name: 'Doador Órgão',
-        selector: row => getIconDonatorRow(row.ehDoadorOrgao),
+        selector: row => getIconDonatorRow(row.isOrganDonator),
         center: true
     }
 ];

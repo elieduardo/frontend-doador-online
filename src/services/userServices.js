@@ -77,4 +77,14 @@ const passwordChange = async (email, token, password, confirmPassword) => {
   return await baseAxiosPublic.post("/api/v1/users/change-password", payload);
 };
 
-export { createUser, passwordForget, passwordChange };
+const getUsers = async ({ name, donationType, bloodType, rhFactor }) => {
+  const queryParams = new URLSearchParams({
+      name,
+      donationType,
+      bloodType,
+      rhFactor
+  });
+  return await baseAxiosPublic.get(`/api/v1/users?${queryParams.toString()}`);
+};
+
+export { createUser, passwordForget, passwordChange, getUsers };

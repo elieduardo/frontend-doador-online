@@ -1,6 +1,6 @@
 import axios from "axios";
-import { userStorageKey } from "constants/values";
 import { responseError } from "../../helpers/ResponseApi";
+import { userStorageKey } from "../../constants/values";
 
 const baseAxiosAuth = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_ENDPOINT,
