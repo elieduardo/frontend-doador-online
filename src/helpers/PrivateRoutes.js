@@ -1,9 +1,17 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { isAuthenticated } from "../services/auth";
+import { isAuthenticated, roleIsEqual } from "../services/auth";
 
-const PrivateRoutes = () => {
+const PrivateRoutes = ({ expectedRole }) => {
   const user = isAuthenticated();
-  return user ? <Outlet /> : <Navigate to="/auth" replace />;
+  const validateRole = (expectedRole) => {
+    if (!expectedRole) {
+      return true;
+    }
+
+    return roleIsEqual(expectedRole);
+  };
+
+  return user && validateRole(expectedRole) ? <Outlet /> : <Navigate to="/not-found" replace />;
 };
 
 export default PrivateRoutes;

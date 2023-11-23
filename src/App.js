@@ -16,24 +16,16 @@ import AboutUs from "./pages/about-us";
 import OrgansDonations from "./pages/organs-donation";
 import Contact from "./pages/contact";
 import PrivateRoutes from "./helpers/PrivateRoutes";
+
 export default function App() {
   return (
     <Router>
-      <Routes>
-        <Route
-          path="/qrcode"
-          element={
-            <PrivateRoutes>
-              <Route element={<QrCode />} />
-            </PrivateRoutes>
-          }
-        />
+      <Routes>        
         <Route exact path="/" element={<Home />} />
         <Route path="/singin" element={<SingIn />} />
         <Route path="/singup" element={<SingUp />} />
         <Route path="/password-forget" element={<PasswordForget />} />
         <Route path="/password-recovery/:email/:token" element={<PasswordRecovery />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/campaigns" element={<Campaigns />} />
         <Route path="/campaigns/:id" element={<CampaignDetails />} />
         <Route path="/donators" element={<Donators />} />
@@ -42,6 +34,10 @@ export default function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/organs-donation" element={<OrgansDonations />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/qrcode" element={<QrCode />} />
+        <Route path="/profile" element={<PrivateRoutes />}>
+          <Route index element={<Profile />} />
+        </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

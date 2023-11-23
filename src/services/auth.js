@@ -44,30 +44,12 @@ function isAuthenticated() {
   }
 }
 
-function isHospital() {
+function roleIsEqual(role) {
   try {
     const token = localStorage.getItem(userStorageKey);
     const { user } = JSON.parse(token);
     if (user.role) {
-      return user.role === "Hospital";
-    } else {
-      return false;
-    }
-  } catch {
-    return false;
-  }
-}
-
-function isPartner() {
-  return false;
-}
-
-function isDonator() {
-  try {
-    const token = localStorage.getItem(userStorageKey);
-    const { user } = JSON.parse(token);
-    if (user.role) {
-      return user.role === "Donator";
+      return user.role === role;
     } else {
       return false;
     }
@@ -110,4 +92,4 @@ function getUserId() {
 }
 
 
-export { postAuthentication, isAuthenticated, isDonator, isHospital, isPartner, logout, getFirstName, getUserId };
+export { postAuthentication, isAuthenticated, roleIsEqual, logout, getFirstName, getUserId };

@@ -2,6 +2,7 @@ import {
     AiOutlineCheckCircle,
     AiOutlineCloseCircle,
 } from "react-icons/ai";
+import { cpfFormatter, dateStringFormatter } from "../../helpers/Strings";
 
 function getIconDonatorRow(value) {
     return value
@@ -17,12 +18,12 @@ export const columns = [
     },
     {
         name: 'Cpf',
-        selector: row => row.cpf,
+        selector: row => cpfFormatter(row.cpf),
         sortable: true,
     },
     {
         name: 'Data Nascimento',
-        selector: row => row.birthDate,
+        selector: row => dateStringFormatter(row.birthDate),
         sortable: true,
     },
     {

@@ -9,7 +9,8 @@ import FourthImage from "../../assets/images/logo-goole.png";
 import { Button, Col, Row } from "react-bootstrap";
 import ModalPromotion from "./modalPromotion";
 import ItemPromotion from "../../components/ItemPromotion";
-import { isAuthenticated, isPartner } from "../../services/auth";
+import { isAuthenticated, roleIsEqual } from "../../services/auth";
+import { Roles } from "../../helpers/Constant";
 
 export default function Promotions() {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +27,7 @@ export default function Promotions() {
           >
             Promoções
           </Col>
-          {(isAuthenticated() && isPartner()) &&
+          {(isAuthenticated() && roleIsEqual(Roles.Partner)) &&
             <Col
               sm={12}
               md={12}

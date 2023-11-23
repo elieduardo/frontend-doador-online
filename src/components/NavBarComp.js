@@ -6,7 +6,8 @@ import logo from "../assets/images/logo.png";
 import { Button, Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
-import { getFirstName, isAuthenticated, isDonator, isHospital, logout } from "../services/auth";
+import { getFirstName, isAuthenticated, roleIsEqual, logout } from "../services/auth";
+import { Roles } from "../helpers/Constant";
 
 export default function NavBarComp({ onlyLogo = false }) {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ export default function NavBarComp({ onlyLogo = false }) {
               >
                 Promoções
               </Nav.Link>
-              {(isAuthenticated() && isHospital()) &&
+              {(isAuthenticated() && roleIsEqual(Roles.Hospital)) &&
                 <Nav.Link
                   className="text-center"
                   onClick={() => navigate("/donators")}
@@ -87,7 +88,7 @@ export default function NavBarComp({ onlyLogo = false }) {
 
                   <div className="mx-2">
                     <div>{getFirstName()}</div>
-                    {isDonator() &&
+                    {roleIsEqual(Roles.Donator) &&
                       <div className="points-text">150 pontos</div>
                     }
                   </div>
