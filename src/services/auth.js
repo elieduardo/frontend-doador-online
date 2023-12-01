@@ -58,7 +58,7 @@ function roleIsEqual(role) {
 }
 
 function logout() {
-  window.location.replace("");
+  window.location.replace("/");
   localStorage.clear();
 }
 
