@@ -16,6 +16,7 @@ import AboutUs from "./pages/about-us";
 import OrgansDonations from "./pages/organs-donation";
 import Contact from "./pages/contact";
 import PrivateRoutes from "./helpers/PrivateRoutes";
+import { Roles } from "./helpers/Constant";
 
 export default function App() {
   return (
@@ -28,13 +29,17 @@ export default function App() {
         <Route path="/password-recovery/:email/:token" element={<PasswordRecovery />} />
         <Route path="/campaigns" element={<Campaigns />} />
         <Route path="/campaigns/:id" element={<CampaignDetails />} />
-        <Route path="/donators" element={<Donators />} />
-        <Route path="/donators/:id" element={<Donator />} />
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/organs-donation" element={<OrgansDonations />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/qrcode" element={<QrCode />} />
+        <Route path="/donators/:id" element={<PrivateRoutes expectedRole={Roles.Hospital} />}>
+          <Route index element={<Donator />} />
+        </Route>
+        <Route path="/donators" element={<PrivateRoutes expectedRole={Roles.Hospital} />}>
+          <Route index element={<Donators />} />
+        </Route>
         <Route path="/profile" element={<PrivateRoutes />}>
           <Route index element={<Profile />} />
         </Route>

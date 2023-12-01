@@ -70,7 +70,7 @@ export default function Profile() {
                   }
                 </Nav>
               </Col>
-              {(isLoading || data.length == 0)
+              {(isLoading || data.length === 0)
                 ?
                 <Col>
                   <Tab.Content className="mt-lg-n13">

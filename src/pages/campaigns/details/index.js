@@ -82,7 +82,7 @@ export default function CampaignDetails() {
                                             className="mx-2"
                                             url={shareUrl}
                                             title={title}
-                                            separator=":: "
+                                            separator=": "
                                         >
                                             <WhatsappIcon size={32} round />
                                         </WhatsappShareButton>

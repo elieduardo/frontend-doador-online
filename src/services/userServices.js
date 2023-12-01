@@ -1,6 +1,5 @@
-import { getNumbers, removeMask } from "../helpers/Strings";
-import { getFirstName, getFullName, getUserId } from "./auth";
-import baseAxiosAuth from "./config/baseAxiosAuth";
+import { removeMask } from "../helpers/Strings";
+import { getFullName, getUserId } from "./auth";
 import baseAxiosPublic from "./config/baseAxiosPublic";
 
 const createUser = async ({
@@ -98,7 +97,7 @@ const getDonations = async (userId) => {
   return await baseAxiosPublic.get(`/api/v1/users/${userId}/donations`);
 }
 
-const postDonation = async (idUsuario, donationType) => {  
+const postDonation = async (idUsuario, donationType) => {
   const payload = {
     donationType: parseInt(donationType),
     donationPlace: getFullName()
@@ -109,6 +108,7 @@ const postDonation = async (idUsuario, donationType) => {
 
 const putPersonalData = async (data) => {
   const { name, email, phoneNumber, birthDate, gender } = data;
+  const userId = await getUserId();
   const payload = {
     name: name,
     email: email,
@@ -117,7 +117,7 @@ const putPersonalData = async (data) => {
     gender: gender
   };
 
-  return await baseAxiosAuth.put(`api/v1/users/${getUserId()}/personal-data`, payload);
+  return await baseAxiosPublic.put(`api/v1/users/${userId}/personal-data`, payload);
 };
 
 export { createUser, passwordForget, passwordChange, getUser, getUsers, getDonations, postDonation, putPersonalData };

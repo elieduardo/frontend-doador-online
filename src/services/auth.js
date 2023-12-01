@@ -1,4 +1,3 @@
-import { FaAngleDoubleRight } from "react-icons/fa";
 import { userStorageKey } from "../constants/values";
 import baseAxiosPublic from "./config/baseAxiosPublic";
 
@@ -59,7 +58,7 @@ function roleIsEqual(role) {
 }
 
 function logout() {
-  window.location.reload();
+  window.location.replace("");
   localStorage.clear();
 }
 

@@ -60,7 +60,7 @@ export default function PersonalInformation({ personalData }) {
     validateOnBlur: false,
   });
 
-  const { handleChange, values, errors, setFieldValue, handleSubmit } = formik;
+  const { handleChange, values, errors, handleSubmit } = formik;
 
   return (
     <div className="mx-lg-5 px-2">
@@ -76,6 +76,7 @@ export default function PersonalInformation({ personalData }) {
               value={values.name}
               onChange={handleChange}
               isInvalid={!!errors.name}
+              disabled={isLoading}
             />
             <Form.Control.Feedback type="invalid">
               {errors.name}
@@ -90,7 +91,7 @@ export default function PersonalInformation({ personalData }) {
                 type="text"
                 placeholder="Cpf"
                 value={values.cpf}
-                disabled={true}
+                disabled
                 mask="999.999.999-99"
               />
             </Form.Group>
@@ -105,6 +106,7 @@ export default function PersonalInformation({ personalData }) {
                 value={values.birthDate}
                 onChange={handleChange}
                 isInvalid={!!errors.birthDate}
+                disabled={isLoading}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.birthDate}
@@ -122,6 +124,7 @@ export default function PersonalInformation({ personalData }) {
                   id="gender"
                   onChange={handleChange}
                   isInvalid={!!errors.gender}
+                  disabled={isLoading}
                 >
                   <option value="">Selecione</option>
                   <option value="1">Maculino</option>
@@ -147,6 +150,7 @@ export default function PersonalInformation({ personalData }) {
                 onChange={handleChange}
                 isInvalid={!!errors.phoneNumber}
                 mask="(99) 99999-9999"
+                disabled={isLoading}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.phoneNumber}
@@ -163,6 +167,7 @@ export default function PersonalInformation({ personalData }) {
                 value={values.email}
                 onChange={handleChange}
                 isInvalid={!!errors.email}
+                disabled
               />
               <Form.Control.Feedback type="invalid">
                 {errors.email}
