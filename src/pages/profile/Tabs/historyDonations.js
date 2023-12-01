@@ -1,13 +1,8 @@
-import React, { useState } from "react";
-import NavBarComp from "../../../components/NavBarComp";
-import CustomBreadCrumb from "../../../components/CustomBreadCrumb";
+import React from "react";
 import DataTable from "react-data-table-component";
 import { columns } from "../../donators/details/columnsTable";
-import Footer from "../../../components/Footer";
 
-export default function HistoryDonations() {
-    const [isLoading, setIsLoading] = useState(false);
-
+export default function HistoryDonations({ donationsHistory }) {    
     const data = [
         {
             id: 1,
@@ -34,11 +29,12 @@ export default function HistoryDonations() {
 
     return (
         <div className="mx-lg-5 px-2">
-            <div className="title-md mb-4">Histórico de Doações</div>
+            <div className="title-md mb-4">Histórico de Doações</div>            
             <div className="pt-3">
                 <DataTable
                     columns={columns}
-                    data={data}
+                    data={donationsHistory}
+                    noDataComponent="Não existem registros de doações."
                     pagination
                     paginationComponentOptions={paginationComponentOptions}
                 />

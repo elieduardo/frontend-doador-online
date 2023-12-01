@@ -6,25 +6,31 @@ import { Col, Row } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import { columns } from "./columnsTable";
 import ModalDonation from "./modalDonation";
+import { getDonations } from "../../../services/userServices";
+import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 export default function Donator() {
     const [isLoading, setIsLoading] = useState(false);
-    const data = [
-        {
-            id: 1,
-            tipoDoacao: "Sangue",
-            local: "Hospital Padre Jeremias",
-            data: "09/10/2022 10:57",
-            pontuacao: "+ 150"
-        },
-        {
-            id: 2,
-            tipoDoacao: "Sangue",
-            local: "Hospital Padre Jeremias",
-            data: "26/05/2023 16:09",
-            pontuacao: "+ 100"
-        }
-    ];
+    const [data, setData] = useState([]);
+    let { id } = useParams();
+
+    const handleGetDonationsHistory = async () => {
+        setIsLoading(true);
+        await getDonations(id)
+            .then(({ data }) => {
+                setData(data);
+            })
+            .catch((e) => {
+                toast.error(`${e.status} - ${e.messages}`, {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                });
+            })
+            .finally(() => setIsLoading(false));
+    }
+
+    useEffect(() => { handleGetDonationsHistory(); }, [])
 
     const paginationComponentOptions = {
         rowsPerPageText: 'Linhas por página',
@@ -45,18 +51,29 @@ export default function Donator() {
                 <Row>
                     <Col sm={12} md={12} lg={6} className="title-sm text-lg-start text-center">Joana Cardoso Vieira</Col>
                     <Col sm={12} md={12} lg={6} className="text-lg-end text-center mt-4 mt-lg-0">
-                        <ModalDonation />
+                        <ModalDonation userId={id} handleReload={handleGetDonationsHistory}/>
                     </Col>
                 </Row>
             </div>
             <div className="px-5 pb-2">
                 <div className="pt-3">
-                    <DataTable
-                        columns={columns}
-                        data={data}
-                        pagination
-                        paginationComponentOptions={paginationComponentOptions}
-                    />
+                    {isLoading
+                        ?
+                        <Row className="justify-content-center align-items-center my-7">
+                            <Col className="text-center">
+                                Aguarde
+                                <span className="ms-1 spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+                            </Col>
+                        </Row>
+                        :
+                        <DataTable
+                            columns={columns}
+                            data={data}
+                            noDataComponent={"Nenhuma doação para exibir no momento."}
+                            pagination
+                            paginationComponentOptions={paginationComponentOptions}
+                        />
+                    }
                 </div>
                 <Footer />
             </div>

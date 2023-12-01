@@ -3,9 +3,11 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import MaskedFormControl from "../../../components/MaskedFormControl";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { removeMask } from "../../../helpers/Strings";
+import { dateStringInputFormatter, removeMask } from "../../../helpers/Strings";
+import { toast } from "react-toastify";
+import { putPersonalData } from "../../../services/userServices";
 
-export default function PersonalInformation() {
+export default function PersonalInformation({ personalData }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const schema = yup.object().shape({
@@ -22,16 +24,37 @@ export default function PersonalInformation() {
     email: yup.string().required("É necessário preencher o campo E-mail."),
   });
 
+  const handlePutPersonalData = async (values) => {
+    setIsLoading(true);
+
+    await putPersonalData(values)
+      .then(() => {
+        toast.success('Alteração realizada com sucesso.', {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .catch((e) => {
+        toast.error(`${e.status} - ${e.messages}`, {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .finally(() => setIsLoading(false));
+  }
+
   const formik = useFormik({
     initialValues: {
-      name: "",
-      gender: "",
-      birthDate: "",
-      email: "",
+      cpf: personalData.cpf ?? "",
+      name: personalData.name ?? "",
+      gender: personalData.gender ?? "",
+      birthDate: personalData.birthDate ? dateStringInputFormatter(personalData.birthDate) : "",
+      email: personalData.email ?? "",
+      phoneNumber: personalData.phoneNumber ?? ""
     },
     validationSchema: schema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      await handlePutPersonalData(values);
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -66,6 +89,7 @@ export default function PersonalInformation() {
               <MaskedFormControl
                 type="text"
                 placeholder="Cpf"
+                value={values.cpf}
                 disabled={true}
                 mask="999.999.999-99"
               />

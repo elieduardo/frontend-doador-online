@@ -138,7 +138,7 @@ export default function Campaigns() {
                     <Row>
                         {data.map(x =>
                         (<Col lg={3} md={4}>
-                            <ItemCampanha campaignId={x.campaignId} doneeName={x.doneeName} doneeAge={x.doneeAge} bloodType={x.bloodType} photo={FirstImage} />
+                            <ItemCampanha data={x} />
                         </Col>))}
                         {data.length === 0 && <Alert className="mx-3 my-7 text-center">Nenhuma campanha foi encontrada.</Alert>}
                     </Row>

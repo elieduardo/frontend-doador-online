@@ -77,6 +77,21 @@ function getFirstName() {
   }
 }
 
+function getFullName() {
+  try {
+    const token = localStorage.getItem(userStorageKey);
+    const { user } = JSON.parse(token);
+    if (user) {
+      return user.sub;
+    } else {
+      return "Usuário";
+    }
+  } catch {
+    return "Usuário";
+  }
+}
+
+
 function getUserId() {
   try {
     const token = localStorage.getItem(userStorageKey);
@@ -92,4 +107,4 @@ function getUserId() {
 }
 
 
-export { postAuthentication, isAuthenticated, roleIsEqual, logout, getFirstName, getUserId };
+export { postAuthentication, isAuthenticated, roleIsEqual, logout, getFirstName, getFullName, getUserId };

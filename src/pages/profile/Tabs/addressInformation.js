@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import MaskedFormControl from "../../../components/MaskedFormControl";
 import { useFormik } from "formik";
@@ -7,7 +7,7 @@ import { removeMask } from "../../../helpers/Strings";
 import { getAddress } from "../../../services/addressServices";
 import { toast } from "react-toastify";
 
-export default function AddressInformation() {
+export default function AddressInformation({ addresses }) {
   const [zipCode, setZipCode] = useState("");
   const [editingDisabled, setEditingDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,13 +27,13 @@ export default function AddressInformation() {
 
   const formik = useFormik({
     initialValues: {
-      zipCode: "",
-      street: "",
-      district: "",
-      number: "",
+      zipCode: addresses[0].zipCode ?? "",
+      street: addresses[0].street ?? "",
+      district: addresses[0].district ?? "",
+      number: addresses[0].number ?? "",
       complement: "",
-      city: "",
-      state: "",
+      city: addresses[0].city ?? "",
+      state: addresses[0].state ?? "",
     },
     validationSchema: schema,
     onSubmit: (values) => {
@@ -41,6 +41,10 @@ export default function AddressInformation() {
     },
     validateOnChange: false
   });
+
+  useEffect(() => {
+    setZipCode(addresses[0].zipCode);
+  }, []);
 
   const { handleChange, values, errors, setFieldValue, handleSubmit } = formik;
 

@@ -1,4 +1,6 @@
-import { removeMask } from "../helpers/Strings";
+import { getNumbers, removeMask } from "../helpers/Strings";
+import { getFirstName, getFullName, getUserId } from "./auth";
+import baseAxiosAuth from "./config/baseAxiosAuth";
 import baseAxiosPublic from "./config/baseAxiosPublic";
 
 const createUser = async ({
@@ -73,18 +75,49 @@ const passwordChange = async (email, token, password, confirmPassword) => {
     password,
     confirmPassword,
   };
-  
+
   return await baseAxiosPublic.post("/api/v1/users/change-password", payload);
 };
 
 const getUsers = async ({ name, donationType, bloodType, rhFactor }) => {
   const queryParams = new URLSearchParams({
-      name,
-      donationType,
-      bloodType,
-      rhFactor
+    name,
+    donationType,
+    bloodType,
+    rhFactor
   });
+
   return await baseAxiosPublic.get(`/api/v1/users?${queryParams.toString()}`);
 };
 
-export { createUser, passwordForget, passwordChange, getUsers };
+const getUser = async () => {
+  return await baseAxiosPublic.get(`/api/v1/users/${getUserId()}`);
+}
+
+const getDonations = async (userId) => {
+  return await baseAxiosPublic.get(`/api/v1/users/${userId}/donations`);
+}
+
+const postDonation = async (idUsuario, donationType) => {  
+  const payload = {
+    donationType: parseInt(donationType),
+    donationPlace: getFullName()
+  };
+
+  return await baseAxiosPublic.post(`/api/v1/users/${idUsuario}/donation`, payload);
+};
+
+const putPersonalData = async (data) => {
+  const { name, email, phoneNumber, birthDate, gender } = data;
+  const payload = {
+    name: name,
+    email: email,
+    phoneNumber: phoneNumber,
+    birthDate: birthDate,
+    gender: gender
+  };
+
+  return await baseAxiosAuth.put(`api/v1/users/${getUserId()}/personal-data`, payload);
+};
+
+export { createUser, passwordForget, passwordChange, getUser, getUsers, getDonations, postDonation, putPersonalData };

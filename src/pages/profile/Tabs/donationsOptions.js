@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, Col, Form, Row } from "react-bootstrap";
 
-export default function DonationsOptions() {
+export default function DonationsOptions({ donationOptions }) {
     const [isLoading, setIsLoading] = useState(false);
 
     const schema = yup.object().shape({
@@ -13,11 +13,11 @@ export default function DonationsOptions() {
 
     const formik = useFormik({
         initialValues: {
-            organsDonator: false,
-            bloodDonator: false,
-            marrowDonator: false,
-            bloodType: "",
-            rhFactor: "",
+            organsDonator: donationOptions.isOrganDonator,
+            bloodDonator: donationOptions.isBloodDonator,
+            marrowDonator: donationOptions.isBoneMarrowDonator,
+            bloodType: donationOptions.bloodType ?? "",
+            rhFactor: donationOptions.rhFactorType ?? "",
         },
         validationSchema: schema,
         onSubmit: (values) => {
@@ -41,6 +41,7 @@ export default function DonationsOptions() {
                             name="organsDonator"
                             type="switch"
                             label="Doador de Órgãos"
+                            checked={values.organsDonator}
                             onChange={handleChange}
                             isInvalid={!!errors.organsDonator}
                             feedback={errors.organsDonator}
@@ -57,6 +58,7 @@ export default function DonationsOptions() {
                             type="switch"
                             label="Doador de Sangue"
                             onChange={handleChange}
+                            checked={values.bloodDonator}
                             isInvalid={!!errors.bloodDonator}
                             feedback={errors.bloodDonator}
                             feedbackType="invalid"
@@ -121,6 +123,7 @@ export default function DonationsOptions() {
                             type="switch"
                             label="Doador de Medula"
                             onChange={handleChange}
+                            checked={values.marrowDonator}
                             isInvalid={!!errors.marrowDonator}
                             feedback={errors.marrowDonator}
                             feedbackType="invalid"

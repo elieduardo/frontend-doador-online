@@ -42,5 +42,8 @@ const getCampaign = async (campaignId) => {
     return await baseAxiosPublic.get(`/api/v1/campaigns/${campaignId}`);
 };
 
+const getCampaignCarrousel = async () =>{
+    return await baseAxiosPublic.get('/api/v1/campaigns/carrousel');
+}
 
-export { createCampaign, getCampaign, getCampaigns };
+export { createCampaign, getCampaign, getCampaigns, getCampaignCarrousel };

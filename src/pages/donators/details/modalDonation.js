@@ -7,9 +7,12 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Alert, Col, Form } from 'react-bootstrap';
+import { postDonation } from '../../../services/userServices';
+import { toast } from 'react-toastify';
 
-export default function ModalDonation() {
+export default function ModalDonation({ userId, handleReload }) {
     const [show, setShow] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -18,13 +21,32 @@ export default function ModalDonation() {
         donationType: yup.string().required("É necessário selecionar o tipo de doação."),
     });
 
+    const handlePostDonation = async (values) => {
+        setIsLoading(true);
+        await postDonation(userId, values.donationType)
+            .then(() => {
+                toast.success('Doação incluída com sucesso!', {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                });
+                handleReload();
+            })
+            .catch((e) => {
+                toast.error(`${e.status} - ${e.messages}`, {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                });
+            })
+            .finally(() => setIsLoading(false), setShow(false));
+    }
+
     const formik = useFormik({
         initialValues: {
             donationType: ""
         },
         validationSchema: schema,
-        onSubmit: (values) => {
-            console.log(values);
+        onSubmit: async (values) => {
+            await handlePostDonation(values);
         },
     });
 
@@ -51,6 +73,7 @@ export default function ModalDonation() {
                                     id="donationType"
                                     onChange={handleChange}
                                     isInvalid={!!errors.donationType}
+                                    disabled={isLoading}
                                 >
                                     <option value="">Selecione</option>
                                     <option value="1">Doação de Sangue</option>
@@ -63,16 +86,17 @@ export default function ModalDonation() {
                             </Form.Group>
                         </Col>
                         <Alert>A pontuação será creditada automaticamente, de acordo com o valor regente.</Alert>
+                        <Modal.Footer>
+                            <Button variant="outline-secondary" onClick={handleClose} disabled={isLoading}>
+                                Fechar
+                            </Button>
+                            <Button variant="primary" type='submit' disabled={isLoading}>
+                                Salvar
+                            </Button>
+                        </Modal.Footer>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="outline-secondary" onClick={handleClose}>
-                        Fechar
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Salvar
-                    </Button>
-                </Modal.Footer>
+
             </Modal>
         </>
     );
