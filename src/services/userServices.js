@@ -120,4 +120,29 @@ const putPersonalData = async (data) => {
   return await baseAxiosPublic.put(`api/v1/users/${userId}/personal-data`, payload);
 };
 
-export { createUser, passwordForget, passwordChange, getUser, getUsers, getDonations, postDonation, putPersonalData };
+const putDonationOptions = async (data) => {
+  const { bloodDonator, bloodType, marrowDonator, organsDonator, rhFactor } = data;
+  const userId = await getUserId();
+  
+  const payload = {
+    isBloodDonator: bloodDonator,
+    isBoneMarrowDonator: marrowDonator,
+    isOrganDonator: organsDonator,
+    rHFactor: parseInt(rhFactor),
+    bloodType: parseInt(bloodType)
+  };
+
+  return await baseAxiosPublic.put(`api/v1/users/${userId}/donation-options`, payload);
+};
+
+export {
+  createUser,
+  passwordForget,
+  passwordChange,
+  getUser,
+  getUsers,
+  getDonations,
+  postDonation,
+  putPersonalData,
+  putDonationOptions
+};

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { putDonationOptions } from "../../../services/userServices";
+import { toast } from "react-toastify";
 
 export default function DonationsOptions({ donationOptions }) {
     const [isLoading, setIsLoading] = useState(false);
@@ -10,6 +12,25 @@ export default function DonationsOptions({ donationOptions }) {
         bloodType: yup.string().required("É necessário preencher o campo Tipo Sanguíneo."),
         rhFactor: yup.string().required("É necessário preencher o campo Fator Rh."),
     });
+
+    const handlePutDonationsOptions = async (values) => {
+        setIsLoading(true);
+
+        await putDonationOptions(values)
+            .then(() => {
+                toast.success('Alteração realizada com sucesso.', {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                });
+            })
+            .catch((e) => {
+                toast.error(`${e.status} - ${e.messages}`, {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                });
+            })
+            .finally(() => setIsLoading(false));
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -20,8 +41,8 @@ export default function DonationsOptions({ donationOptions }) {
             rhFactor: donationOptions.rhFactorType ?? "",
         },
         validationSchema: schema,
-        onSubmit: (values) => {
-            console.log(values);
+        onSubmit: async (values) => {
+            await handlePutDonationsOptions(values);
         },
         validateOnChange: false,
         validateOnBlur: false,
@@ -47,6 +68,22 @@ export default function DonationsOptions({ donationOptions }) {
                             feedback={errors.organsDonator}
                             feedbackType="invalid"
                             id="organsDonator"
+                        />
+                    </Form.Group>
+                </Row>
+                <Row>
+                    <Form.Group className="mb-3">
+                        <Form.Check
+                            required
+                            name="marrowDonator"
+                            type="switch"
+                            label="Doador de Medula"
+                            onChange={handleChange}
+                            checked={values.marrowDonator}
+                            isInvalid={!!errors.marrowDonator}
+                            feedback={errors.marrowDonator}
+                            feedbackType="invalid"
+                            id="marrowDonator"
                         />
                     </Form.Group>
                 </Row>
@@ -113,22 +150,6 @@ export default function DonationsOptions({ donationOptions }) {
                                 {errors.rhFactor}
                             </Form.Control.Feedback>
                         </Form.Group>
-                    </Form.Group>
-                </Row>
-                <Row>
-                    <Form.Group className="mb-3">
-                        <Form.Check
-                            required
-                            name="marrowDonator"
-                            type="switch"
-                            label="Doador de Medula"
-                            onChange={handleChange}
-                            checked={values.marrowDonator}
-                            isInvalid={!!errors.marrowDonator}
-                            feedback={errors.marrowDonator}
-                            feedbackType="invalid"
-                            id="marrowDonator"
-                        />
                     </Form.Group>
                 </Row>
                 <div className="pt-3 d-flex justify-content-center">
