@@ -13,10 +13,12 @@ import Donators from "./pages/donators";
 import Donator from "./pages/donators/details";
 import Promotions from "./pages/promotions";
 import AboutUs from "./pages/about-us";
-import OrgansDonations from "./pages/organs-donation";
 import Contact from "./pages/contact";
 import PrivateRoutes from "./helpers/PrivateRoutes";
 import { Roles } from "./helpers/Constant";
+import BloodDonation from "./pages/donations/bloodDonation";
+import MarrowBoneDonation from "./pages/donations/marrowBoneDonation";
+import OrgansDonation from "./pages/donations/organsDonation";
 
 export default function App() {
   return (
@@ -31,9 +33,11 @@ export default function App() {
         <Route path="/campaigns/:id" element={<CampaignDetails />} />
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/organs-donation" element={<OrgansDonations />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/qrcode" element={<QrCode />} />
+        <Route path="/blood-donation" element={<BloodDonation />} />
+        <Route path="/organs-donation" element={<OrgansDonation />} />
+        <Route path="/marrow-bone-donation" element={<MarrowBoneDonation />} />
         <Route path="/donators/:id" element={<PrivateRoutes expectedRole={Roles.Hospital} />}>
           <Route index element={<Donator />} />
         </Route>

@@ -22,6 +22,7 @@ export default function Footer() {
             <a
               className="nav-link p-0 text-muted pointer"
               onClick={() => navigate("/campaigns")}
+              href="Campanhas"
             >
               Campanhas
             </a>
@@ -30,6 +31,7 @@ export default function Footer() {
             <a
               className="nav-link p-0 text-muted pointer"
               onClick={() => navigate("/promotions")}
+              href="Promoções"
             >
               Promoções
             </a>
@@ -38,6 +40,7 @@ export default function Footer() {
             <a
               className="nav-link p-0 text-muted pointer"
               onClick={() => navigate("/contact")}
+              href="Contato"
             >
               Contato
             </a>
@@ -46,6 +49,7 @@ export default function Footer() {
             <a
               className="nav-link p-0 text-muted pointer"
               onClick={() => navigate("/about-us")}
+              href="Sobre nós"
             >
               Sobre nós
             </a>

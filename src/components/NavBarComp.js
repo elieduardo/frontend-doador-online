@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/images/logo.png";
-import { Button, Dropdown } from "react-bootstrap";
+import { Button, Dropdown, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
 import { getFirstName, isAuthenticated, roleIsEqual, logout } from "../services/auth";
@@ -62,6 +62,20 @@ export default function NavBarComp({ onlyLogo = false }) {
                 >
                   Doadores
                 </Nav.Link>}
+              <NavDropdown title="Doações" id="basic-nav-dropdown" className="text-center">
+                <NavDropdown.Item className="text-center"
+                  onClick={() => navigate("/blood-donation")}>
+                  Sangue
+                </NavDropdown.Item>
+                <NavDropdown.Item className="text-center"
+                  onClick={() => navigate("/organs-donation")}>
+                  Órgãos
+                </NavDropdown.Item>
+                <NavDropdown.Item className="text-center"
+                  onClick={() => navigate("/marrow-bone-donation")}>
+                  Medula Óssea
+                </NavDropdown.Item>
+              </NavDropdown>
               <Nav.Link
                 className="text-center"
                 onClick={() => navigate("/contact")}
