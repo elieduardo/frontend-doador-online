@@ -39,7 +39,7 @@ export default function OrgansDonationBanner() {
         </Col>
         <Col className="pt-3 pt-lg-5 px-5 d-flex justify-content-center">
           <Button variant="outline-primary"  onClick={() => {navigate("organs-donation")}}>LER MAIS</Button>
-          <Button className="ml-2" onClick={() => {navigate("singup")}} >JUNTAR-SE</Button>
+          <Button className="ml-2" onClick={() => {navigate("signup")}} >JUNTAR-SE</Button>
         </Col>
       </Row>
     </div>

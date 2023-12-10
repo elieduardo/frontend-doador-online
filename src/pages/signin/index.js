@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import { postAuthentication } from "../../services/auth";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
-export default function SingIn() {
+export default function Signin() {
   const { Formik } = formik;
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +22,7 @@ export default function SingIn() {
     password: yup.string().required("É necessário preencher o campo Senha."),
   });
 
-  const handleSingIn = async (values) => {
+  const handleSignin = async (values) => {
     setIsLoading(true);
     await postAuthentication(values)
       .then(() => {
@@ -49,7 +49,7 @@ export default function SingIn() {
       <Formik
         validationSchema={schema}
         onSubmit={(values) => {
-          handleSingIn(values);
+          handleSignin(values);
         }}
         validateOnChange={false}
         validateOnBlur={false}

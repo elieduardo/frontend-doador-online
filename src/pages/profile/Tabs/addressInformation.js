@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { removeMask } from "../../../helpers/Strings";
 import { getAddress } from "../../../services/addressServices";
 import { toast } from "react-toastify";
+import { putAddress } from "../../../services/userServices";
 
 export default function AddressInformation({ addresses }) {
   const [zipCode, setZipCode] = useState("");
@@ -36,15 +37,15 @@ export default function AddressInformation({ addresses }) {
       state: addresses[0].state ?? "",
     },
     validationSchema: schema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      await handlePutAddress(values);
     },
     validateOnChange: false
   });
 
   useEffect(() => {
     setZipCode(addresses[0].zipCode);
-  }, []);
+  }, [addresses]);
 
   const { handleChange, values, errors, setFieldValue, handleSubmit } = formik;
 
@@ -71,6 +72,25 @@ export default function AddressInformation({ addresses }) {
         setIsLoading(false);
       });
   };
+
+  const handlePutAddress = async (values) => {
+    setIsLoading(true);
+
+    await putAddress(values)
+      .then(() => {
+        toast.success('Alteração realizada com sucesso.', {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .catch((e) => {
+        toast.error(`${e.status} - ${e.messages}`, {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .finally(() => setIsLoading(false));
+  }
 
   return (
     <div className="mx-lg-5 px-2">

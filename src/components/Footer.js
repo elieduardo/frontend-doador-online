@@ -30,7 +30,7 @@ export default function Footer() {
           <Col className="text-center" lg={2} md={3} sm={4} xs={6}>
             <a
               className="nav-link p-0 text-muted pointer"
-              onClick={() => navigate("/promotions")}
+              onClick={() => navigate("/sales")}
               href="Promoções"
             >
               Promoções

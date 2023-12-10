@@ -1,8 +1,11 @@
 import React from "react";
 import bannerImage from "../assets/images/home-3.png";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
-export default function DonationBanner() {
+export default function BloodDonationBanner() {
+  const navigate = useNavigate();
+
   return (
     <div className="px-lg-6 px-3 pb-lg-6 pb-5">
       <Row>
@@ -20,6 +23,9 @@ export default function DonationBanner() {
             movimento de doadores comprometidos em oferecer esperança e conforto
             a pacientes que lutam pela recuperação.
           </div>
+          <Col className="pt-3 pt-lg-5 px-5 d-flex justify-content-center">
+            <Button variant="outline-primary" onClick={() => { navigate("blood-donation") }}>LER MAIS</Button>
+          </Col>
         </Col>
         <Col
           lg={6}
@@ -27,7 +33,7 @@ export default function DonationBanner() {
           sm={12}
           className="d-flex justify-content-lg-end justify-content-center"
         >
-          <img className="img-fluid-85 p-lg-0 p-4" src={bannerImage} alt="banner-image"/>
+          <img className="img-fluid-85 p-lg-0 p-4" src={bannerImage} alt="banner-image" />
         </Col>
       </Row>
     </div>

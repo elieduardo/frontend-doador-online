@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import ItemCampanha from "./ItemCampaign";
+import ItemCampaign from "./ItemCampaign";
 import Slider from "react-slick";
 import CustomPrevCarrouselRows from "./CustomPrevCarrouselRows";
 import CustomNextCarrouselRows from "./CustomNextCarrouselRows";
@@ -71,6 +71,10 @@ export default function Campaigns() {
     ],
   };
 
+  if(data.length === 0 || isLoading){
+    return (<></>);
+  }
+
   return (
     <div className="px-lg-6 px-4 pb-lg-6 pb-5">
       <div className="mb-lg-5 mb-3 ">
@@ -81,7 +85,7 @@ export default function Campaigns() {
       </div>
       <Slider {...settings}>
         {data.map(x =>
-        (<ItemCampanha
+        (<ItemCampaign
           data={x} />))}
 
       </Slider>

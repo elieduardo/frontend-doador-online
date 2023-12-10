@@ -10,7 +10,7 @@ import { createUser } from "../../services/userServices";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export default function SingUp() {
+export default function Signup() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ export default function SingUp() {
           autoClose: 3000,
           hideProgressBar: true,
         });
-        navigate("/singin");
+        navigate("/signin");
       })
       .catch((e) => {
         toast.error(`${e.status} - ${e.messages}`, {
@@ -92,9 +92,8 @@ export default function SingUp() {
             <Row className="steps px-2">
               <Col lg={2} md={4} sm={4} xs={4}>
                 <div
-                  class={`step-content ${
-                    currentStepIndex === 0 ? "step-active" : ""
-                  } ${currentStepIndex > 0 ? "step-success" : ""}`}
+                  class={`step-content ${currentStepIndex === 0 ? "step-active" : ""
+                    } ${currentStepIndex > 0 ? "step-success" : ""}`}
                 >
                   <span class="step-circle">1</span>
                   <span class="step-text">Dados Pessoais</span>
@@ -102,9 +101,8 @@ export default function SingUp() {
               </Col>
               <Col lg={2} md={4} sm={4} xs={4}>
                 <div
-                  class={`step-content ${
-                    currentStepIndex === 1 ? "step-active" : ""
-                  } ${currentStepIndex > 1 ? "step-success" : ""}`}
+                  class={`step-content ${currentStepIndex === 1 ? "step-active" : ""
+                    } ${currentStepIndex > 1 ? "step-success" : ""}`}
                 >
                   <span class="step-circle">2</span>
                   <span class="step-text">Endereço</span>
@@ -112,9 +110,8 @@ export default function SingUp() {
               </Col>
               <Col lg={2} md={4} sm={4} xs={4}>
                 <div
-                  class={`step-content ${
-                    currentStepIndex === 2 ? "step-active" : ""
-                  } ${currentStepIndex > 2 ? "step-success" : ""}`}
+                  class={`step-content ${currentStepIndex === 2 ? "step-active" : ""
+                    } ${currentStepIndex > 2 ? "step-success" : ""}`}
                 >
                   <span class="step-circle">3</span>
                   <span class="step-text">Opções de Doação</span>

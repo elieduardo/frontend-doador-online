@@ -20,6 +20,7 @@ const createUser = async ({
   phoneNumber,
   state,
   street,
+  complement,
   zipCode,
 }) => {
   let donationType = [];
@@ -48,6 +49,7 @@ const createUser = async ({
     Address: {
       street,
       district,
+      addressline2: complement,
       number,
       city,
       state,
@@ -97,6 +99,10 @@ const getDonations = async (userId) => {
   return await baseAxiosPublic.get(`/api/v1/users/${userId}/donations`);
 }
 
+const getPoints = async () => {
+  return await baseAxiosPublic.get(`/api/v1/users/${getUserId()}/points`);
+}
+
 const postDonation = async (idUsuario, donationType) => {
   const payload = {
     donationType: parseInt(donationType),
@@ -123,7 +129,7 @@ const putPersonalData = async (data) => {
 const putDonationOptions = async (data) => {
   const { bloodDonator, bloodType, marrowDonator, organsDonator, rhFactor } = data;
   const userId = await getUserId();
-  
+
   const payload = {
     isBloodDonator: bloodDonator,
     isBoneMarrowDonator: marrowDonator,
@@ -135,6 +141,23 @@ const putDonationOptions = async (data) => {
   return await baseAxiosPublic.put(`api/v1/users/${userId}/donation-options`, payload);
 };
 
+const putAddress = async (data) => {
+  const { zipCode, street, number, addressline2, district, city, state } = data;
+  const userId = await getUserId();
+
+  const payload = {
+    zipCode: zipCode,
+    street: street,
+    number: parseInt(number),
+    addressline2: addressline2,
+    district: district,
+    city: city,
+    state: state
+  };
+
+  return await baseAxiosPublic.put(`api/v1/users/${userId}/address`, payload);
+};
+
 export {
   createUser,
   passwordForget,
@@ -142,7 +165,9 @@ export {
   getUser,
   getUsers,
   getDonations,
+  getPoints,
   postDonation,
   putPersonalData,
-  putDonationOptions
+  putDonationOptions,
+  putAddress
 };

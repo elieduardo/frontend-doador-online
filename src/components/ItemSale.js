@@ -2,19 +2,38 @@ import React, { useState } from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import { FaTrashCan } from "react-icons/fa6";
 import ConfirmationModal from "./ConfirmationModal";
-import ModalDialog from "react-bootstrap/ModalDialog";
-export default function ItemPromotion({
-  empresa,
-  descricao,
-  pontos,
-  banner,
-  podeExcluir,
+import { postUsePoints } from "../services/saleServices";
+import { toast } from "react-toastify";
+import { usePointsContext } from "./usePoints";
+
+export default function ItemSale({
+  data
 }) {
+  const { userPoints, updatePoints } = usePointsContext();
+
   const [showModalConfirmExcludeItem, setShowModalConfirmExcludeItem] =
     useState(false);
   const [showModalConfirmUsePoints, setShowModalConfirmUsePoints] =
     useState(false);
+  const { saleId, name, description, points, base64Logo, podeExcluir } = data;
 
+  const handleUsePoints = async () => {
+    await postUsePoints(saleId)
+      .then(() => {
+        toast.success('Resgate realizado com sucesso! Em breve você receberá um e-mail com maiores informações!', {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+        updatePoints();
+      })
+      .catch((e) => {
+        toast.error(`${e.status} - ${e.messages}`, {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .finally(() => { });
+  }
   return (
     <>
       <ConfirmationModal
@@ -30,7 +49,8 @@ export default function ItemPromotion({
       <ConfirmationModal
         show={showModalConfirmUsePoints}
         message="Confirma o uso dos pontos?"
-        onConfirm={() => {
+        onConfirm={async () => {
+          await handleUsePoints();
           setShowModalConfirmUsePoints(!showModalConfirmUsePoints);
         }}
         onCancel={() => {
@@ -51,19 +71,20 @@ export default function ItemPromotion({
             </Button>
           )}
           <Card.Img
-            className="img-card-promotion px-4 pt-4"
+            className="img-card-sales px-4 pt-4"
             variant="top"
-            src={banner}
+            src={`data:image/jpeg;base64,${base64Logo}`}
           />
           <Card.Body>
-            <div className="bold-card-title-lg mb-1">{empresa}</div>
-            <div className="description-card-promotion">{descricao}</div>
-            <div className="bold-card-title my-4">{pontos} pontos</div>
+            <div className="bold-card-title-lg mb-1">{name}</div>
+            <div className="description-card-sales">{description}</div>
+            <div className="bold-card-title my-4">{points} pontos</div>
             <Button
               className="mb-2"
               onClick={() => {
                 setShowModalConfirmUsePoints(!showModalConfirmExcludeItem);
               }}
+              disabled={userPoints < points}
             >
               Usar Pontos
             </Button>

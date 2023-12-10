@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
-import ItemCampanha from "../../components/ItemCampaign";
-
-import FirstImage from "../../assets/images/foto-1.avif";
+import ItemCampaign from "../../components/ItemCampaign";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import ModalCampaign from "./modalCampaign";
 import { getCampaigns } from "../../services/campaignServices";
@@ -23,24 +21,24 @@ export default function Campaigns() {
         window.scroll(0, 0);
     }, []);
 
+    const handleGetCampaigns = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const response = await getCampaigns(filterValues);
+            setData(response.data);
+        } catch (error) {
+            toast.error(`${error.status} - ${error.messages}`, {
+                autoClose: 3000,
+                hideProgressBar: true,
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    }, [filterValues]);
+
     useEffect(() => {
         handleGetCampaigns();
-    }, []);
-
-    const handleGetCampaigns = async () => {
-        setIsLoading(true);
-        await getCampaigns(filterValues)
-            .then(({ data }) => {
-                setData(data);
-            })
-            .catch((e) => {
-                toast.error(`${e.status} - ${e.messages}`, {
-                    autoClose: 3000,
-                    hideProgressBar: true,
-                });
-            })
-            .finally(() => setIsLoading(false));
-    }
+    }, [handleGetCampaigns]);
 
     const handleBloodTypeChange = (event) => {
         setFilterValues({
@@ -138,7 +136,7 @@ export default function Campaigns() {
                     <Row>
                         {data.map(x =>
                         (<Col lg={3} md={4}>
-                            <ItemCampanha data={x} />
+                            <ItemCampaign data={x} />
                         </Col>))}
                         {data.length === 0 && <Alert className="mx-3 my-7 text-center">Nenhuma campanha foi encontrada.</Alert>}
                     </Row>

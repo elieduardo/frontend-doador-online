@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,9 +8,18 @@ import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
 import { getFirstName, isAuthenticated, roleIsEqual, logout } from "../services/auth";
 import { Roles } from "../helpers/Constant";
+import { getPoints } from "../services/userServices";
+import { usePointsContext } from "./usePoints";
 
 export default function NavBarComp({ onlyLogo = false }) {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const { userPoints, updatePoints } = usePointsContext();
+
+  useEffect(() => {
+    updatePoints();
+  }, []);
+
   if (onlyLogo)
     return (
       <Navbar expand="lg">
@@ -51,7 +60,7 @@ export default function NavBarComp({ onlyLogo = false }) {
               </Nav.Link>
               <Nav.Link
                 className="text-center"
-                onClick={() => navigate("/promotions")}
+                onClick={() => navigate("/sales")}
               >
                 Promoções
               </Nav.Link>
@@ -103,7 +112,7 @@ export default function NavBarComp({ onlyLogo = false }) {
                   <div className="mx-2">
                     <div>{getFirstName()}</div>
                     {roleIsEqual(Roles.Donator) &&
-                      <div className="points-text">150 pontos</div>
+                      <div className="points-text">{userPoints} pontos</div>
                     }
                   </div>
                 </Dropdown.Toggle>
@@ -123,10 +132,10 @@ export default function NavBarComp({ onlyLogo = false }) {
             </div>
           ) : (
             <div className="d-flex justify-content-center justify-content-lg-end mt-lg-0 mt-4">
-              <Button variant="none" onClick={() => navigate("/singin")}>
+              <Button variant="none" onClick={() => navigate("/signin")}>
                 Login
               </Button>
-              <Button variant="primary" className="px-5" onClick={() => navigate("/singup")}>
+              <Button variant="primary" className="px-5" onClick={() => navigate("/signup")}>
                 Cadastro
               </Button>
             </div>

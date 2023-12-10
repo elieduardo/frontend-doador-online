@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Alert, Button, Col, Row } from "react-bootstrap";
+import React, { useCallback, useEffect, useState } from "react";
+import { Alert, Col, Row } from "react-bootstrap";
 import NavBarComp from "../../../components/NavBarComp";
 import CustomBreadCrumb from "../../../components/CustomBreadCrumb";
 import Footer from "../../../components/Footer";
@@ -7,7 +7,7 @@ import DefaultImage from "../../../assets/images/default-image.png";
 import { getCampaign } from "../../../services/campaignServices";
 import { toast } from "react-toastify";
 import { useParams } from 'react-router-dom';
-import { FacebookIcon, FacebookMessengerIcon, FacebookMessengerShareButton, FacebookShareButton, FacebookShareCount, TelegramIcon, TelegramShareButton, TwitterShareButton, WhatsappIcon, WhatsappShareButton, XIcon } from "react-share";
+import { FacebookIcon, FacebookShareButton, TelegramIcon, TelegramShareButton, TwitterShareButton, WhatsappIcon, WhatsappShareButton, XIcon } from "react-share";
 
 export default function CampaignDetails() {
     const [isLoading, setIsLoading] = useState(false);
@@ -20,11 +20,7 @@ export default function CampaignDetails() {
         window.scroll(0, 0);
     }, []);
 
-    useEffect(() => {
-        handleGetCampaign();
-    }, [])
-
-    const handleGetCampaign = async () => {
+    const handleGetCampaign = useCallback(async () => {
         setIsLoading(true);
         await getCampaign(id)
             .then(({ data }) => {
@@ -37,11 +33,16 @@ export default function CampaignDetails() {
                 });
             })
             .finally(() => setIsLoading(false));
-    }
+    }, [id]);
+
+    useEffect(() => {
+        handleGetCampaign();
+    }, [handleGetCampaign])
+
     return (
         <>
             <NavBarComp />
-            <CustomBreadCrumb title={`Campanha ${donee.doneeName != undefined ? `- ${donee.doneeName}` : ''}`} />
+            <CustomBreadCrumb title={`Campanha ${donee.doneeName !== undefined ? `- ${donee.doneeName}` : ''}`} />
             <div className="px-5 py-2">
                 {isLoading
                     ?
@@ -57,7 +58,7 @@ export default function CampaignDetails() {
                         :
                         <Row>
                             <Col lg={6}>
-                                <img className="img-details-campaign" variant="top" src={donee.photo ?? DefaultImage} />
+                                <img className="img-details-campaign" alt="details" variant="top" src={donee.photo ?? DefaultImage} />
                             </Col>
                             <Col lg={6} md={12} sm={12} className="px-lg-4">
                                 <div className="d-flex flex-column h-100 justify-content-between">

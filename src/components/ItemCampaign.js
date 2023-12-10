@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import DefaultImage from "../assets/images/default-image.png";
 
-export default function ItemCampanha({ data }) {
+export default function ItemCampaign({ data }) {
   const navigate = useNavigate();
   const { campaignId, doneeName, doneeAge, bloodType, photo } = data;
 

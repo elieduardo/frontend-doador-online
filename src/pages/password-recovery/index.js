@@ -38,7 +38,7 @@ export default function PasswordRecovery() {
         toast.success(
           "Senha alterada com sucesso.\n Realize o login com a nova senha."
         );
-        navigate("/singin");
+        navigate("/signin");
       })
       .catch((e) => {
         toast.error(`${e.status} - ${e.messages}`, {

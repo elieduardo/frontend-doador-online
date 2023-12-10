@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Alert, Col, Form } from "react-bootstrap";
 
-export default function ModalPromotion() {
+export default function ModalSale() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
