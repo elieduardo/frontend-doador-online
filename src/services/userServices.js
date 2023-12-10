@@ -142,14 +142,14 @@ const putDonationOptions = async (data) => {
 };
 
 const putAddress = async (data) => {
-  const { zipCode, street, number, addressline2, district, city, state } = data;
+  const { zipCode, street, number, complement, district, city, state } = data;
   const userId = await getUserId();
-
+  
   const payload = {
     zipCode: zipCode,
     street: street,
-    number: parseInt(number),
-    addressline2: addressline2,
+    number: number,
+    addressline2: complement,
     district: district,
     city: city,
     state: state

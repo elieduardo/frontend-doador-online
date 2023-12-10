@@ -49,7 +49,7 @@ export default function Donator() {
             <CustomBreadCrumb title={"Histórico"} whithPb={false} />
             <div className="mb-4 px-5">
                 <Row>
-                    <Col sm={12} md={12} lg={6} className="title-sm text-lg-start text-center">Joana Cardoso Vieira</Col>
+                    <Col sm={12} md={12} lg={6} className="title-sm text-lg-start text-center">{data.nome}</Col>
                     <Col sm={12} md={12} lg={6} className="text-lg-end text-center mt-4 mt-lg-0">
                         <ModalDonation userId={id} handleReload={handleGetDonationsHistory}/>
                     </Col>
@@ -68,7 +68,7 @@ export default function Donator() {
                         :
                         <DataTable
                             columns={columns}
-                            data={data}
+                            data={data.donations}
                             noDataComponent={"Nenhuma doação para exibir no momento."}
                             pagination
                             paginationComponentOptions={paginationComponentOptions}

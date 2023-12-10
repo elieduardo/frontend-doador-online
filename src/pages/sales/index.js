@@ -67,22 +67,15 @@ export default function Sales() {
           />)
           )}
         </Row>
-        <div className="pt-5 d-flex justify-content-center">
-          <Button type="submit" disabled={isLoading}>
-            {isLoading ? (
-              <>
-                Aguarde
-                <span
-                  class="ms-1 spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                />
-              </>
-            ) : (
-              "Ver mais"
-            )}
-          </Button>
-        </div>
+        {isLoading &&
+          <div className="pt-5 d-flex justify-content-center">
+            Aguarde
+            <span
+              class="ms-1 spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            />
+          </div>}
         <Footer />
       </div>
     </>

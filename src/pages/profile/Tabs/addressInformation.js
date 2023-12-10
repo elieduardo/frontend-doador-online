@@ -32,7 +32,7 @@ export default function AddressInformation({ addresses }) {
       street: addresses[0].street ?? "",
       district: addresses[0].district ?? "",
       number: addresses[0].number ?? "",
-      complement: "",
+      complement: addresses[0].addressLine2 ?? "",
       city: addresses[0].city ?? "",
       state: addresses[0].state ?? "",
     },
@@ -55,7 +55,7 @@ export default function AddressInformation({ addresses }) {
     setIsLoading(true);
     await getAddress(target.value)
       .then(({ data }) => {
-        const { state, city, neighborhood, street } = data;
+        const { state, city, addressline2, neighborhood, street } = data;
         setFieldValue("street", street);
         setFieldValue("district", neighborhood);
         setFieldValue("city", city);
