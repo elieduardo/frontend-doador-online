@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import { FaTrashCan } from "react-icons/fa6";
 import ConfirmationModal from "./ConfirmationModal";
-import { postUsePoints } from "../services/saleServices";
+import { deleteSale, postUsePoints } from "../services/saleServices";
 import { toast } from "react-toastify";
 import { usePointsContext } from "./usePoints";
 
@@ -34,12 +34,30 @@ export default function ItemSale({
       })
       .finally(() => { });
   }
+
+  const handleDeleteSale = async () => {
+    await deleteSale(saleId)
+      .then(() => {
+        toast.success('Promoção excluída com sucesso', {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .catch((e) => {
+        toast.error(`${e.status} - ${e.messages}`, {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .finally(() => { });
+  }
   return (
     <>
       <ConfirmationModal
         show={showModalConfirmExcludeItem}
         message="Confirma a exclusão?"
-        onConfirm={() => {
+        onConfirm={async () => {
+          await handleDeleteSale(saleId);
           setShowModalConfirmExcludeItem(!showModalConfirmExcludeItem);
         }}
         onCancel={() => {

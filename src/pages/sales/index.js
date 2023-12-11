@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 
-import { Button, Col, Row } from "react-bootstrap";
+import { Alert, Button, Col, Row } from "react-bootstrap";
 import { isAuthenticated, roleIsEqual } from "../../services/auth";
 import { Roles } from "../../helpers/Constant";
 import ModalSale from "./modalSale";
@@ -60,14 +60,7 @@ export default function Sales() {
         <div className="pb-3 pb-4 mt-3 border-top" />
       </div>
       <div className="px-5 py-2">
-        <Row>
-          {data.map(x =>
-          (<ItemSale
-            data={x}
-          />)
-          )}
-        </Row>
-        {isLoading &&
+        {isLoading ?
           <div className="pt-5 d-flex justify-content-center">
             Aguarde
             <span
@@ -75,7 +68,16 @@ export default function Sales() {
               role="status"
               aria-hidden="true"
             />
-          </div>}
+          </div> :
+          <Row>
+            {data.map(x =>
+            (<ItemSale
+              data={x}
+            />)
+            )}
+            {data.length === 0 && <Alert className="mx-3 my-7 text-center">Nenhuma promoção foi encontrada.</Alert>}
+          </Row>
+        }
         <Footer />
       </div>
     </>

@@ -4,6 +4,8 @@ import * as formik from "formik";
 import * as yup from "yup";
 import Footer from "../../components/Footer";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { postContact } from "../../services/userServices";
+import { toast } from "react-toastify";
 
 export default function Contact() {
     const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +21,23 @@ export default function Contact() {
         message: yup.string().required("É necessário preencher o campo Mensagem."),
     });
 
+    const handleSendContact = async (values) => {
+        setIsLoading(true);
+        await postContact(values)
+            .then(() => {
+                toast.success('Contato realizado com sucesso!', {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                });
+            })
+            .catch((e) => {
+                toast.error(`${e.status} - ${e.messages}`, {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                });
+            })
+            .finally(() => setIsLoading(false));
+    }
     return (
         <>
             <NavBarComp />
@@ -46,8 +65,8 @@ export default function Contact() {
             </div>
             <Formik
                 validationSchema={schema}
-                onSubmit={(values) => {
-
+                onSubmit={async (values) => {
+                    await handleSendContact(values);
                 }}
                 validateOnChange={false}
                 validateOnBlur={false}

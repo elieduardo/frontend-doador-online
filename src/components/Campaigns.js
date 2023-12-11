@@ -6,7 +6,6 @@ import CustomPrevCarrouselRows from "./CustomPrevCarrouselRows";
 import CustomNextCarrouselRows from "./CustomNextCarrouselRows";
 import { useNavigate } from "react-router";
 import { getCampaignCarrousel } from "../services/campaignServices";
-import { toast } from "react-toastify";
 
 export default function Campaigns() {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,10 +22,7 @@ export default function Campaigns() {
         setData(data);
       })
       .catch((e) => {
-        toast.error(`${e.status} - ${e.messages}`, {
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        console.error(`${e.status} - ${e.messages}`);
       })
       .finally(() => setIsLoading(false));
   }

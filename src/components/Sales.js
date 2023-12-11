@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import CustomPrevCarrouselRows from "./CustomPrevCarrouselRows";
 import CustomNextCarrouselRows from "./CustomNextCarrouselRows";
 import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
 import ItemSaleCarousel from "./ItemSaleCarousel";
 import { getSales } from "../services/saleServices";
 import { Button } from "react-bootstrap";
@@ -23,10 +22,7 @@ export default function Sales() {
                 setData(data);
             })
             .catch((e) => {
-                toast.error(`${e.status} - ${e.messages}`, {
-                    autoClose: 3000,
-                    hideProgressBar: true,
-                });
+                console.error(`${e.status} - ${e.messages}`);
             })
             .finally(() => setIsLoading(false));
     }

@@ -13,5 +13,8 @@ const postUsePoints = async (saleId) => {
     return await baseAxiosPublic.post(`/api/v1/sales/${saleId}/use-points`, payload);
 };
 
+const deleteSale = async (saleId) => {
+    return await baseAxiosPublic.delete(`/api/v1/sales/${saleId}`);
+}
 
-export { getSales, postUsePoints };
+export { getSales, postUsePoints, deleteSale };

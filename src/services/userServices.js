@@ -34,32 +34,35 @@ const createUser = async ({
     donationType.push(3);
   }
 
-  const payload = {
-    name,
-    cpf: removeMask(cpf),
-    password,
-    email,
-    phoneNumber: removeMask(phoneNumber),
-    birthDate,
-    gender: parseInt(gender),
-    bloodType: parseInt(bloodType),
-    RhesusFactor: parseInt(rhFactor),
-    userType: 3,
-    donationType,
-    Address: {
-      street,
-      district,
-      addressline2: complement,
-      number,
-      city,
-      state,
-      zipCode: removeMask(zipCode),
-      country: "Brasil",
-    },
-  };
+  const formData = new FormData();
+  formData.append('nome', name);
+  formData.append('cpf', removeMask(cpf));
+  formData.append('password', password);
+  formData.append('email', email);
+  formData.append('phoneNumber', removeMask(phoneNumber));
+  formData.append('birthDate', birthDate);
+  formData.append('gender', parseInt(gender));
+  formData.append('bloodType', parseInt(bloodType));
+  formData.append('RhesusFactor', parseInt(rhFactor));
+  formData.append('userType', 3);
+  formData.append('donationType', donationType);
 
-  return await baseAxiosPublic.post("/api/v1/users", payload);
+  formData.append('Address[street]', street);
+  formData.append('Address[district]', district);
+  formData.append('Address[addressline2]', complement);
+  formData.append('Address[number]', number);
+  formData.append('Address[city]', city);
+  formData.append('Address[state]', state);
+  formData.append('Address[zipCode]', removeMask(zipCode));
+  formData.append('Address[country]', "Brasil");
+
+  return await baseAxiosPublic.post("/api/v1/users", formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 };
+
 
 const passwordForget = async ({ email }) => {
   const payload = {
@@ -116,7 +119,7 @@ const putPersonalData = async (data) => {
   const { name, email, phoneNumber, birthDate, gender } = data;
   const userId = await getUserId();
   const payload = {
-    name: name,
+    nome: name,
     email: email,
     phoneNumber: phoneNumber,
     birthDate: birthDate,
@@ -144,7 +147,7 @@ const putDonationOptions = async (data) => {
 const putAddress = async (data) => {
   const { zipCode, street, number, complement, district, city, state } = data;
   const userId = await getUserId();
-  
+
   const payload = {
     zipCode: zipCode,
     street: street,
@@ -158,6 +161,17 @@ const putAddress = async (data) => {
   return await baseAxiosPublic.put(`api/v1/users/${userId}/address`, payload);
 };
 
+const postContact = async (data) => {
+  let { name, email, message } = data;
+  const payload = {
+    name,
+    email,
+    message
+  };
+
+  return await baseAxiosPublic.post(`/api/v1/users/contact-us`, payload);
+}
+
 export {
   createUser,
   passwordForget,
@@ -169,5 +183,6 @@ export {
   postDonation,
   putPersonalData,
   putDonationOptions,
-  putAddress
+  putAddress,
+  postContact
 };

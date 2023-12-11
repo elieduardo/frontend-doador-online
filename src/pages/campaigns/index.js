@@ -141,24 +141,6 @@ export default function Campaigns() {
                         {data.length === 0 && <Alert className="mx-3 my-7 text-center">Nenhuma campanha foi encontrada.</Alert>}
                     </Row>
                 }
-                {nextPage &&
-                    <div className="pt-5 d-flex justify-content-center">
-                        <Button type="submit" disabled={isLoading}>
-                            {isLoading ? (
-                                <>
-                                    Aguarde
-                                    <span
-                                        class="ms-1 spinner-border spinner-border-sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    />
-                                </>
-                            ) : (
-                                "Ver mais"
-                            )}
-                        </Button>
-                    </div>
-                }
                 <Footer />
             </div></>)
 }

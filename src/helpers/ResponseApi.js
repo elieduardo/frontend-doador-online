@@ -49,10 +49,11 @@ export function responseError(response) {
 }
 
 export function getMessageErrors(errors) {
-  if (!Array.isArray(errors)) {
+  let { Messages } = errors.Errors;
+  if (!Array.isArray(Messages)) {
     return "";
   }
-  const errorMessages = errors.map((error) => error.errorMessage);
+  const errorMessages = Messages.map((error) => error);
   const errorString = errorMessages.join("\n");
 
   return errorString;
