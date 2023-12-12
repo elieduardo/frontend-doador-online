@@ -11,25 +11,24 @@ const createCampaign = async ({
     donationPlace
 }) => {
     const formData = new FormData();
-    const payload = {
-        UserId: getUserId(),
-        DoneeName: name,
-        DoneeBloodType: bloodType,
-        DoneeRhFactor: rhFactor,
-        CampaignImage: formData,
-        DoneeBirthDate: birthDate,
-        DonationPlace: donationPlace
-    };
+    const blob = await fetch(image).then((res) => res.blob());
 
-    return await baseAxiosAuth.post("/api/v1/campaigns", payload, {
+    formData.append("userId", getUserId());
+    formData.append("image", blob, "campaign_image.png");
+    formData.append("doneeName", name);
+    formData.append("doneeBloodType", bloodType);
+    formData.append("doneeRhFactor", rhFactor);
+    formData.append("doneeBirthDate", birthDate);
+    formData.append("donationPlace", donationPlace);
+
+    return await baseAxiosAuth.post("/api/v1/campaigns", formData, {
         headers: {
             'content-type': 'multipart/form-data'
         }
     });
 };
 
-
-const getCampaigns = async ({ name, bloodType, rhFactor }) => {
+const getCampaigns = async ({ name = "", bloodType = "", rhFactor = "" }) => {
     const queryParams = new URLSearchParams({
         name,
         bloodType,
@@ -42,7 +41,7 @@ const getCampaign = async (campaignId) => {
     return await baseAxiosPublic.get(`/api/v1/campaigns/${campaignId}`);
 };
 
-const getCampaignCarrousel = async () =>{
+const getCampaignCarrousel = async () => {
     return await baseAxiosPublic.get('/api/v1/campaigns/carrousel');
 }
 

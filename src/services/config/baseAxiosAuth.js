@@ -23,7 +23,7 @@ function authHeader() {
   try {
     const token = localStorage.getItem(userStorageKey);
     const user = JSON.parse(token);
-    return { Authorization: `Bearer ${user.user.accessToken}` };
+    return { Authorization: `Bearer ${user.user.jwt}` };
   } catch {
     return { Authorization: "" };
   }

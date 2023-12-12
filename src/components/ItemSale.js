@@ -15,7 +15,7 @@ export default function ItemSale({
     useState(false);
   const [showModalConfirmUsePoints, setShowModalConfirmUsePoints] =
     useState(false);
-  const { saleId, name, description, points, base64Logo, podeExcluir } = data;
+  const { saleId, name, description, points, base64Logo, isAbleToDelete } = data;
 
   const handleUsePoints = async () => {
     await postUsePoints(saleId)
@@ -77,7 +77,7 @@ export default function ItemSale({
       />
       <Col lg={4} md={6}>
         <Card className="text-center shadow mx-lg-4 mx-md-4 mx-1 my-4 position-relative">
-          {podeExcluir && (
+          {isAbleToDelete && (
             <Button
               variant="danger"
               className="position-absolute top-0 end-0 mt-2 me-2"

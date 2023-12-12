@@ -19,6 +19,7 @@ import { Roles } from "./helpers/Constant";
 import BloodDonation from "./pages/donations/bloodDonation";
 import MarrowBoneDonation from "./pages/donations/marrowBoneDonation";
 import OrgansDonation from "./pages/donations/organsDonation";
+import TermsConditions from "./pages/terms-conditions";
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
         <Route path="/blood-donation" element={<BloodDonation />} />
         <Route path="/organs-donation" element={<OrgansDonation />} />
         <Route path="/marrow-bone-donation" element={<MarrowBoneDonation />} />
+        <Route path="/terms-conditions" element={<TermsConditions />} />
         <Route path="/donators/:id" element={<PrivateRoutes expectedRole={Roles.Hospital} />}>
           <Route index element={<Donator />} />
         </Route>

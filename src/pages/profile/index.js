@@ -37,7 +37,6 @@ export default function Profile() {
       .finally(() => setIsLoading(false));
   }
 
-  const inputFile = useRef(null);
   return (
     <>
       <NavBarComp />

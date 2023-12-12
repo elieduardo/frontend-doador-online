@@ -2,8 +2,12 @@ import { getUserId } from "./auth";
 import baseAxiosAuth from "./config/baseAxiosAuth";
 import baseAxiosPublic from "./config/baseAxiosPublic";
 
-const getSales = async (campaignId) => {
-    return await baseAxiosPublic.get(`/api/v1/sales`);
+const getSales = async () => {
+    return await baseAxiosAuth.get(`/api/v1/sales`);
+};
+
+const getSalesCarousel = async () => {
+    return await baseAxiosPublic.get(`/api/v1/sales/carousel`);
 };
 
 const postUsePoints = async (saleId) => {
@@ -13,8 +17,17 @@ const postUsePoints = async (saleId) => {
     return await baseAxiosPublic.post(`/api/v1/sales/${saleId}/use-points`, payload);
 };
 
+const postSale = async (values) => {
+    const { description, quantityPoints } = values;
+    const payload = {
+        description,
+        quantityPoints
+    };
+    return await baseAxiosPublic.post(`/api/v1/sales`, payload);
+};
+
 const deleteSale = async (saleId) => {
     return await baseAxiosPublic.delete(`/api/v1/sales/${saleId}`);
 }
 
-export { getSales, postUsePoints, deleteSale };
+export { getSales, getSalesCarousel, postUsePoints, postSale, deleteSale };

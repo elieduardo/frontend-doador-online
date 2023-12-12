@@ -35,7 +35,7 @@ const createUser = async ({
   }
 
   const formData = new FormData();
-  formData.append('nome', name);
+  formData.append('name', name);
   formData.append('cpf', removeMask(cpf));
   formData.append('password', password);
   formData.append('email', email);

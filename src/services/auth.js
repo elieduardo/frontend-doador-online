@@ -24,7 +24,9 @@ function decodeToken({ data: jwt }) {
     role,
     jti,
     exp,
+    jwt: payload
   };
+
   return { user: userApp };
 }
 

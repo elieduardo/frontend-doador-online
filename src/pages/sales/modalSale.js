@@ -5,8 +5,11 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Alert, Col, Form } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { postSale } from "../../services/saleServices";
 
-export default function ModalSale() {
+export default function ModalSale({ handleReload }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -37,6 +40,25 @@ export default function ModalSale() {
 
   const { handleChange, values, errors, handleSubmit } = formik;
 
+  const handlePostSale = async (values) => {
+    setIsLoading(true);
+    await postSale(values)
+      .then(() => {
+        toast.success('Promoção incluída com sucesso!', {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+        handleReload();
+      })
+      .catch((e) => {
+        toast.error(`${e.status} - ${e.messages}`, {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      })
+      .finally(() => setIsLoading(false), setShow(false));
+  }
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -55,6 +77,7 @@ export default function ModalSale() {
                   type="text"
                   placeholder="Descrição"
                   name="description"
+                  disabled={isLoading}
                   value={values.description}
                   onChange={handleChange}
                   isInvalid={!!errors.description}
@@ -71,6 +94,7 @@ export default function ModalSale() {
                   type="text"
                   placeholder="Quantidade de Pontos"
                   name="quantityPoints"
+                  disabled={isLoading}
                   value={values.quantityPoints}
                   onChange={handleChange}
                   isInvalid={!!errors.quantityPoints}
@@ -90,7 +114,7 @@ export default function ModalSale() {
           <Button variant="outline-secondary" onClick={handleClose}>
             Fechar
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" type='submit' disabled={isLoading}>
             Salvar
           </Button>
         </Modal.Footer>

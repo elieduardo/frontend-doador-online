@@ -46,7 +46,7 @@ export default function PersonalInformation({ personalData }) {
   const formik = useFormik({
     initialValues: {
       cpf: personalData.cpf ?? "",
-      name: personalData.name ?? "",
+      name: personalData.nome ?? "",
       gender: personalData.gender ?? "",
       birthDate: personalData.birthDate ? dateStringInputFormatter(personalData.birthDate) : "",
       email: personalData.email ?? "",

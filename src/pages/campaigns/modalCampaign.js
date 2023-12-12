@@ -43,6 +43,20 @@ export default function ModalCampaign({ handleGetCampaigns }) {
 
     const { handleChange, values, errors, handleSubmit } = formik;
 
+    const handleImageChange = (event) => {
+        const file = event.currentTarget.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                formik.setFieldValue("image", reader.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleCreateCampaign = async (values) => {
         setIsLoading(true);
         await createCampaign(values)
@@ -134,8 +148,7 @@ export default function ModalCampaign({ handleGetCampaigns }) {
                                 <Form.Control
                                     type="file"
                                     name="image"
-                                    value={values.image}
-                                    onChange={handleChange}
+                                    onChange={handleImageChange}
                                     isInvalid={!!errors.image}
                                 />
                             </Form.Group>

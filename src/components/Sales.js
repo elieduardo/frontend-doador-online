@@ -4,7 +4,7 @@ import CustomPrevCarrouselRows from "./CustomPrevCarrouselRows";
 import CustomNextCarrouselRows from "./CustomNextCarrouselRows";
 import { useNavigate } from "react-router";
 import ItemSaleCarousel from "./ItemSaleCarousel";
-import { getSales } from "../services/saleServices";
+import { getSalesCarousel } from "../services/saleServices";
 import { Button } from "react-bootstrap";
 
 export default function Sales() {
@@ -17,7 +17,7 @@ export default function Sales() {
 
     const handleGetSalesData = async () => {
         setIsLoading(true);
-        await getSales()
+        await getSalesCarousel()
             .then(({ data }) => {
                 setData(data);
             })
@@ -33,7 +33,7 @@ export default function Sales() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
+        slidesToShow: 1,
         slidesToScroll: 4,
         initialSlide: 0,
         nextArrow: <CustomNextCarrouselRows />,
