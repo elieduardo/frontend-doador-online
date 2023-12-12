@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 
-import { Alert, Button, Col, Row } from "react-bootstrap";
+import { Alert, Col, Row } from "react-bootstrap";
 import { isAuthenticated, roleIsEqual } from "../../services/auth";
 import { Roles } from "../../helpers/Constant";
 import ModalSale from "./modalSale";
@@ -54,7 +54,7 @@ export default function Sales() {
               lg={6}
               className="text-lg-end text-center mt-4 mt-lg-0"
             >
-              <ModalSale />
+              <ModalSale handleReload={getSales()} />
             </Col>}
         </Row>
         <div className="pb-3 pb-4 mt-3 border-top" />

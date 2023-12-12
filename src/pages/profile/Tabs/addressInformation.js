@@ -58,6 +58,7 @@ export default function AddressInformation({ addresses }) {
         const { state, city, addressline2, neighborhood, street } = data;
         setFieldValue("street", street);
         setFieldValue("district", neighborhood);
+        setFieldValue("complement", addressline2);
         setFieldValue("city", city);
         setFieldValue("state", state);
         setEditingDisabled(true);

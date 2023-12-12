@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 
 export default function Campaigns() {
     const [isLoading, setIsLoading] = useState(false);
-    const [nextPage, setNextPage] = useState(false);
     const [data, setData] = useState([]);
     const [filterValues, setFilterValues] = useState({
         name: "",

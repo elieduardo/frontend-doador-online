@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 import CustomBreadCrumb from "../../components/CustomBreadCrumb";
@@ -21,11 +21,7 @@ export default function Donators() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        handleGetUsers();
-    }, []);
-
-    const handleGetUsers = async () => {
+    const handleGetUsers = useCallback(async () => {
         setIsLoading(true);
         await getUsers(filterValues)
             .then(({ data }) => {
@@ -38,7 +34,11 @@ export default function Donators() {
                 });
             })
             .finally(() => setIsLoading(false));
-    }
+    }, [filterValues]);
+
+    useEffect(() => {
+        handleGetUsers();
+    }, [handleGetUsers]);
 
     const handleBloodTypeChange = (event) => {
         setFilterValues({

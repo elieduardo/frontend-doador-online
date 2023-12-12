@@ -18,12 +18,12 @@ const postUsePoints = async (saleId) => {
 };
 
 const postSale = async (values) => {
-    const { description, quantityPoints } = values;
+    const { description, points } = values;
     const payload = {
         description,
-        quantityPoints
+        points
     };
-    return await baseAxiosPublic.post(`/api/v1/sales`, payload);
+    return await baseAxiosAuth.post(`/api/v1/sales`, payload);
 };
 
 const deleteSale = async (saleId) => {

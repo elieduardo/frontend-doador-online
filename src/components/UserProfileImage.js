@@ -8,7 +8,7 @@ export default function UserProfileImage() {
             >
                 <img
                     className="img-user-profile rounded-shadow"
-                    alt="profile-image"
+                    alt="profile"
                     src={defaultImage}
                 />
             </div>

@@ -67,7 +67,7 @@ export default function Campaigns() {
     ],
   };
 
-  if(data.length === 0 || isLoading){
+  if (data.length === 0 || isLoading) {
     return (<></>);
   }
 

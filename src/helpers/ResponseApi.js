@@ -15,7 +15,7 @@ function handleMessage(error) {
 
   switch (status) {
     case CODE_UNAUTHORIZED:
-      return {status, title: "Não autorizado", messages:  ["Usuário não autorizado."] };
+      return { status, title: "Não autorizado", messages: ["Usuário não autorizado."] };
     case CODE_FORBIDDEN:
       return { status, title: DefaultTitleError, messages: [ForbiddenError] };
     case CODE_ERROR:

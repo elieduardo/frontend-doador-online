@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 import { Col, Nav, Row, Tab } from "react-bootstrap";
@@ -10,7 +10,7 @@ import DonationsOptions from "./Tabs/donationsOptions";
 import HistoryDonations from "./Tabs/historyDonations";
 import { getUser } from "../../services/userServices";
 import { toast } from "react-toastify";
-import { roleIsEqual } from "../../services/auth";
+import { getFullName, roleIsEqual } from "../../services/auth";
 import { Roles } from "../../helpers/Constant";
 
 export default function Profile() {
@@ -45,7 +45,7 @@ export default function Profile() {
         <Col>
           <Col sm={3} className="text-center">
             <UserProfileImage />
-            <div className="bold-card-title mb-4 mt-2">Eduardo de Ramos Eli</div>
+            <div className="bold-card-title mb-4 mt-2">{getFullName()}</div>
           </Col>
           <Tab.Container id="left-tabs" defaultActiveKey="first">
             <Row>

@@ -119,7 +119,7 @@ const putPersonalData = async (data) => {
   const { name, email, phoneNumber, birthDate, gender } = data;
   const userId = await getUserId();
   const payload = {
-    nome: name,
+    name: name,
     email: email,
     phoneNumber: phoneNumber,
     birthDate: birthDate,

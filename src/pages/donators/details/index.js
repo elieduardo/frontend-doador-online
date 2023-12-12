@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import NavBarComp from "../../../components/NavBarComp";
 import Footer from "../../../components/Footer";
 import CustomBreadCrumb from "../../../components/CustomBreadCrumb";
@@ -15,7 +15,7 @@ export default function Donator() {
     const [data, setData] = useState([]);
     let { id } = useParams();
 
-    const handleGetDonationsHistory = async () => {
+    const handleGetDonationsHistory = useCallback(async () => {
         setIsLoading(true);
         await getDonations(id)
             .then(({ data }) => {
@@ -28,9 +28,9 @@ export default function Donator() {
                 });
             })
             .finally(() => setIsLoading(false));
-    }
+    }, [id])
 
-    useEffect(() => { handleGetDonationsHistory(); }, [])
+    useEffect(() => { handleGetDonationsHistory(); }, [handleGetDonationsHistory])
 
     const paginationComponentOptions = {
         rowsPerPageText: 'Linhas por página',
@@ -51,7 +51,7 @@ export default function Donator() {
                 <Row>
                     <Col sm={12} md={12} lg={6} className="title-sm text-lg-start text-center">{data.nome}</Col>
                     <Col sm={12} md={12} lg={6} className="text-lg-end text-center mt-4 mt-lg-0">
-                        <ModalDonation userId={id} handleReload={handleGetDonationsHistory}/>
+                        <ModalDonation userId={id} handleReload={handleGetDonationsHistory} />
                     </Col>
                 </Row>
             </div>

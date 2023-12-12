@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,17 +8,15 @@ import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
 import { getFirstName, isAuthenticated, roleIsEqual, logout } from "../services/auth";
 import { Roles } from "../helpers/Constant";
-import { getPoints } from "../services/userServices";
 import { usePointsContext } from "./usePoints";
 
 export default function NavBarComp({ onlyLogo = false }) {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const { userPoints, updatePoints } = usePointsContext();
 
   useEffect(() => {
     updatePoints();
-  }, []);
+  }, [updatePoints]);
 
   if (onlyLogo)
     return (

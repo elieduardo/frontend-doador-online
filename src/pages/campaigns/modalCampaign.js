@@ -47,13 +47,7 @@ export default function ModalCampaign({ handleGetCampaigns }) {
         const file = event.currentTarget.files[0];
 
         if (file) {
-            const reader = new FileReader();
-
-            reader.onloadend = () => {
-                formik.setFieldValue("image", reader.result);
-            };
-
-            reader.readAsDataURL(file);
+            formik.setFieldValue("image", file);
         }
     };
 

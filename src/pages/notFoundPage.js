@@ -12,7 +12,7 @@ export default function NotFoundPage() {
           <img
             src={image}
             className="img-fluid-45 pb-5"
-            alt="imagem-not-found-page"
+            alt="banner-not-found-page"
           />
           <p class="fs-3">
             {" "}

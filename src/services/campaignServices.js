@@ -14,7 +14,7 @@ const createCampaign = async ({
     const blob = await fetch(image).then((res) => res.blob());
 
     formData.append("userId", getUserId());
-    formData.append("image", blob, "campaign_image.png");
+    formData.append("campaignImage", blob, "campaign_image.png");
     formData.append("doneeName", name);
     formData.append("doneeBloodType", bloodType);
     formData.append("doneeRhFactor", rhFactor);

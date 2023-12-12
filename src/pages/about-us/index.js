@@ -7,7 +7,7 @@ export default function AboutUs() {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
-  
+
   return (
     <>
       <NavBarComp />

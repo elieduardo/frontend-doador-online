@@ -33,7 +33,7 @@ export default function BloodDonationBanner() {
           sm={12}
           className="d-flex justify-content-lg-end justify-content-center"
         >
-          <img className="img-fluid-85 p-lg-0 p-4" src={bannerImage} alt="banner-image" />
+          <img className="img-fluid-85 p-lg-0 p-4" src={bannerImage} alt="banner" />
         </Col>
       </Row>
     </div>

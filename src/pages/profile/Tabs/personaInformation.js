@@ -11,7 +11,6 @@ export default function PersonalInformation({ personalData }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const schema = yup.object().shape({
-    name: yup.string().required("É necessário preencher o campo Nome."),
     gender: yup.string().required("É necessário selecionar o campo Gênero."),
     birthDate: yup
       .string()
@@ -46,7 +45,7 @@ export default function PersonalInformation({ personalData }) {
   const formik = useFormik({
     initialValues: {
       cpf: personalData.cpf ?? "",
-      name: personalData.nome ?? "",
+      name: personalData.name ?? "",
       gender: personalData.gender ?? "",
       birthDate: personalData.birthDate ? dateStringInputFormatter(personalData.birthDate) : "",
       email: personalData.email ?? "",
@@ -74,13 +73,9 @@ export default function PersonalInformation({ personalData }) {
               placeholder="Nome Completo"
               name="name"
               value={values.name}
+              disabled
               onChange={handleChange}
-              isInvalid={!!errors.name}
-              disabled={isLoading}
             />
-            <Form.Control.Feedback type="invalid">
-              {errors.name}
-            </Form.Control.Feedback>
           </Form.Group>
         </Col>
         <Row>

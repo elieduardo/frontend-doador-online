@@ -30,7 +30,7 @@ export default function SupportNetwork() {
           sm={12}
           className="d-flex justify-content-lg-end justify-content-center"
         >
-          <img className="img-fluid-85 p-lg-0 p-4" src={support} alt="support-image"/>
+          <img className="img-fluid-85 p-lg-0 p-4" src={support} alt="support" />
         </Col>
       </Row>
     </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { useNavigate } from "react-router";
 import DefaultImage from "../assets/images/default-image.png";
 
 export default function ItemSaleCarousel({ data }) {

@@ -20,7 +20,7 @@ export default function ModalSale({ handleReload }) {
       .string()
       .min(30, "A descrição deve ter no mínimo 30 caracteres.")
       .required("É necessário preencher o campo Descrição."),
-    quantityPoints: yup
+    points: yup
       .number()
       .typeError("A quantidade de pontos deve ser um número.")
       .positive("A quantidade de pontos deve ser maior que zero.")
@@ -30,11 +30,11 @@ export default function ModalSale({ handleReload }) {
   const formik = useFormik({
     initialValues: {
       description: "",
-      quantityPoints: 0,
+      points: 0,
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      console.log(values);
+      handlePostSale(values);
     },
   });
 
@@ -93,25 +93,25 @@ export default function ModalSale({ handleReload }) {
                 <Form.Control
                   type="text"
                   placeholder="Quantidade de Pontos"
-                  name="quantityPoints"
+                  name="points"
                   disabled={isLoading}
-                  value={values.quantityPoints}
+                  value={values.points}
                   onChange={handleChange}
-                  isInvalid={!!errors.quantityPoints}
+                  isInvalid={!!errors.points}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.quantityPoints}
+                  {errors.points}
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
             <Alert>
               A pontuação será debitada automaticamente do usário que solicitar
-              a troca.
+              o resgate.
             </Alert>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-secondary" onClick={handleClose}>
+          <Button variant="outline-secondary" disabled={isLoading} onClick={handleClose}>
             Fechar
           </Button>
           <Button variant="primary" type='submit' disabled={isLoading}>
