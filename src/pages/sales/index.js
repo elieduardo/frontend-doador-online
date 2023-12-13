@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import NavBarComp from "../../components/NavBarComp";
 import Footer from "../../components/Footer";
 
@@ -14,11 +14,7 @@ export default function Sales() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    handleGetSales();
-  }, [])
-
-  const handleGetSales = async () => {
+  const handleGetSales = useCallback(async () => {
     setIsLoading(true);
 
     await getSales()
@@ -32,7 +28,11 @@ export default function Sales() {
         });
       })
       .finally(() => setIsLoading(false));
-  }
+  }, []);
+
+  useEffect(() => {
+    handleGetSales();
+  }, [handleGetSales])
 
   return (
     <>
@@ -54,7 +54,7 @@ export default function Sales() {
               lg={6}
               className="text-lg-end text-center mt-4 mt-lg-0"
             >
-              <ModalSale handleReload={getSales()} />
+              <ModalSale handleGetSales={handleGetSales} />
             </Col>}
         </Row>
         <div className="pb-3 pb-4 mt-3 border-top" />
@@ -73,6 +73,7 @@ export default function Sales() {
             {data.map(x =>
             (<ItemSale
               data={x}
+              handleGetSales={handleGetSales}
             />)
             )}
             {data.length === 0 && <Alert className="mx-3 my-7 text-center">Nenhuma promoção foi encontrada.</Alert>}

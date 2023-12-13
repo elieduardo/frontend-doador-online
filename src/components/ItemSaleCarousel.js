@@ -7,7 +7,7 @@ export default function ItemSaleCarousel({ data }) {
 
     return (
         <Card className="text-center shadow mx-lg-4 mx-md-4 mx-1 my-4">
-            <Card.Img className="img-card-sales px-4 pt-4" variant="top" src={`data:image/jpeg;base64,${base64Logo}` ?? DefaultImage} />
+            <Card.Img className="img-card-sales px-4 pt-4" variant="top" src={base64Logo ? `data:image/png;base64, ${base64Logo}` : DefaultImage} />
             <Card.Body>
                 <div className="bold-card-title">{name}</div>
                 <div className="sale-item-carousel my-1 description-scroll">

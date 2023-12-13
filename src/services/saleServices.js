@@ -21,7 +21,7 @@ const postSale = async (values) => {
     const { description, points } = values;
     const payload = {
         description,
-        points
+        points: parseInt(points)
     };
     return await baseAxiosAuth.post(`/api/v1/sales`, payload);
 };

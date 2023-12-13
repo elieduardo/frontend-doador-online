@@ -5,9 +5,11 @@ import ConfirmationModal from "./ConfirmationModal";
 import { deleteSale, postUsePoints } from "../services/saleServices";
 import { toast } from "react-toastify";
 import { usePointsContext } from "./usePoints";
+import DefaultImage from "../assets/images/default-image.png";
 
 export default function ItemSale({
-  data
+  data,
+  handleGetSales
 }) {
   const { userPoints, updatePoints } = usePointsContext();
 
@@ -42,6 +44,7 @@ export default function ItemSale({
           autoClose: 3000,
           hideProgressBar: true,
         });
+        handleGetSales();
       })
       .catch((e) => {
         toast.error(`${e.status} - ${e.messages}`, {
@@ -91,7 +94,7 @@ export default function ItemSale({
           <Card.Img
             className="img-card-sales px-4 pt-4"
             variant="top"
-            src={`data:image/jpeg;base64,${base64Logo}`}
+            src={base64Logo ? `data:image/png;base64, ${base64Logo}` : DefaultImage}
           />
           <Card.Body>
             <div className="bold-card-title-lg mb-1">{name}</div>

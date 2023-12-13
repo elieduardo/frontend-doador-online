@@ -5,29 +5,24 @@ import { DefaultTitleError } from "../constants/values";
 
 const CODE_UNAUTHORIZED = 401;
 const CODE_FORBIDDEN = 403;
-const CODE_ERROR = 400;
 const MSG_NETWORK_ERROR = "Network Error";
 
 function handleMessage(error) {
   const { response } = error;
 
   const { status, data = {} } = response;
-
+  
   switch (status) {
     case CODE_UNAUTHORIZED:
       return { status, title: "Não autorizado", messages: ["Usuário não autorizado."] };
     case CODE_FORBIDDEN:
       return { status, title: DefaultTitleError, messages: [ForbiddenError] };
-    case CODE_ERROR:
+    default:
       return {
         status,
         title: DefaultTitleError,
         messages: getMessageErrors(data),
       };
-    default:
-      const { errors = {}, title = DefaultTitleError } = data;
-      const { messages = [DefaultError] } = errors;
-      return { status, title, messages };
   }
 }
 

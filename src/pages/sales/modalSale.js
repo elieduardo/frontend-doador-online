@@ -8,7 +8,7 @@ import { Alert, Col, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { postSale } from "../../services/saleServices";
 
-export default function ModalSale({ handleReload }) {
+export default function ModalSale({ handleGetSales }) {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -33,8 +33,8 @@ export default function ModalSale({ handleReload }) {
       points: 0,
     },
     validationSchema: schema,
-    onSubmit: (values) => {
-      handlePostSale(values);
+    onSubmit: async (values) => {
+      await handlePostSale(values);
     },
   });
 
@@ -47,8 +47,9 @@ export default function ModalSale({ handleReload }) {
         toast.success('Promoção incluída com sucesso!', {
           autoClose: 3000,
           hideProgressBar: true,
-        });
-        handleReload();
+        });        
+        handleGetSales();
+        setShow(false);
       })
       .catch((e) => {
         toast.error(`${e.status} - ${e.messages}`, {
@@ -56,7 +57,7 @@ export default function ModalSale({ handleReload }) {
           hideProgressBar: true,
         });
       })
-      .finally(() => setIsLoading(false), setShow(false));
+      .finally(() => setIsLoading(false));
   }
 
   return (
@@ -108,16 +109,16 @@ export default function ModalSale({ handleReload }) {
               A pontuação será debitada automaticamente do usário que solicitar
               o resgate.
             </Alert>
+            <Modal.Footer>
+              <Button variant="outline-secondary" disabled={isLoading} onClick={handleClose}>
+                Fechar
+              </Button>
+              <Button variant="primary" type='submit' disabled={isLoading}>
+                Salvar
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="outline-secondary" disabled={isLoading} onClick={handleClose}>
-            Fechar
-          </Button>
-          <Button variant="primary" type='submit' disabled={isLoading}>
-            Salvar
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
