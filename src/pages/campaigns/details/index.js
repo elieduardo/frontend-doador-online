@@ -58,7 +58,7 @@ export default function CampaignDetails() {
                         :
                         <Row>
                             <Col lg={6}>
-                                <img className="img-details-campaign" alt="details" variant="top" src={donee.photo ?? DefaultImage} />
+                                <img className="img-details-campaign" alt="details" variant="top" src={donee.base64Image ? `data:image/png;base64, ${donee.base64Image}` : DefaultImage} />
                             </Col>
                             <Col lg={6} md={12} sm={12} className="px-lg-4">
                                 <div className="d-flex flex-column h-100 justify-content-between">
