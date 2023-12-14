@@ -66,7 +66,7 @@ export default function Sales() {
         ],
     };
 
-    if (data.length === 0 || isLoading) {
+    if (data.length === 0 || data.length <= 3 || isLoading) {
         return (<></>);
     }
 
