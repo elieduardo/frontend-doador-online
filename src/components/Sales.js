@@ -28,12 +28,11 @@ export default function Sales() {
     }
 
     const navigate = useNavigate();
-
     var settings = {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
+        slidesToShow: 3,
         slidesToScroll: 4,
         initialSlide: 0,
         nextArrow: <CustomNextCarrouselRows />,
@@ -84,7 +83,7 @@ export default function Sales() {
                 (<ItemSaleCarousel
                     data={x} />))}
             </Slider>
-            <div className="pt-3 d-flex justify-content-center">
+            <div className="pt-5 d-flex justify-content-center">
                 <Button variant="outline-primary" onClick={() => { navigate("sales") }}>
                     Ver mais
                 </Button>
