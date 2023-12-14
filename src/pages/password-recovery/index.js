@@ -97,11 +97,11 @@ export default function PasswordRecovery() {
                 </Row>
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>Senha</Form.Label>
+                    <Form.Label>Confirmar senha</Form.Label>
                     <InputGroup hasValidation>
                       <Form.Control
                         type={showPassword ? "text" : "password"}
-                        placeholder="Senha"
+                        placeholder="Confirmar senha"
                         name="confirmPassword"
                         value={values.confirmPassword}
                         onChange={handleChange}
