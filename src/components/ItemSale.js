@@ -13,6 +13,7 @@ export default function ItemSale({
 }) {
   const { userPoints, updatePoints } = usePointsContext();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [showModalConfirmExcludeItem, setShowModalConfirmExcludeItem] =
     useState(false);
   const [showModalConfirmUsePoints, setShowModalConfirmUsePoints] =
@@ -20,6 +21,7 @@ export default function ItemSale({
   const { saleId, name, description, points, base64Logo, isAbleToDelete } = data;
 
   const handleUsePoints = async () => {
+    setIsLoading(true);
     await postUsePoints(saleId)
       .then(() => {
         toast.success('Resgate realizado com sucesso! Em breve você receberá um e-mail com maiores informações!', {
@@ -34,7 +36,7 @@ export default function ItemSale({
           hideProgressBar: true,
         });
       })
-      .finally(() => { });
+      .finally(() => { setIsLoading(false); });
   }
 
   const handleDeleteSale = async () => {
@@ -59,6 +61,7 @@ export default function ItemSale({
       <ConfirmationModal
         show={showModalConfirmExcludeItem}
         message="Confirma a exclusão?"
+        disabled={isLoading}
         onConfirm={async () => {
           await handleDeleteSale(saleId);
           setShowModalConfirmExcludeItem(!showModalConfirmExcludeItem);
@@ -70,6 +73,7 @@ export default function ItemSale({
       <ConfirmationModal
         show={showModalConfirmUsePoints}
         message="Confirma o uso dos pontos?"
+
         onConfirm={async () => {
           await handleUsePoints();
           setShowModalConfirmUsePoints(!showModalConfirmUsePoints);

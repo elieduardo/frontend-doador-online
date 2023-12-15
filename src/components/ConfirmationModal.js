@@ -6,6 +6,7 @@ export default function ConfirmationModal({
   message,
   onConfirm,
   onCancel,
+  isLoading
 }) {
   return (
     <Modal show={show} onHide={onCancel}>
@@ -14,10 +15,10 @@ export default function ConfirmationModal({
       </Modal.Header>
       <Modal.Body>{message}</Modal.Body>
       <Modal.Footer>
-        <Button variant="outline-secondary" onClick={onCancel}>
+        <Button variant="outline-secondary" onClick={onCancel} disabled={isLoading}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={onConfirm}>
+        <Button variant="primary" onClick={onConfirm} disabled={isLoading}>
           Confirmar
         </Button>
       </Modal.Footer>
